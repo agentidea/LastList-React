@@ -12,6 +12,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import GuardianAccess from './pages/GuardianAccess'
+import Faq from './pages/Faq'
 import Four04 from './pages/Four04'
 import styles from './App.module.css'
 
@@ -43,6 +44,7 @@ class App extends Component {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/guardian" component={GuardianAccess} />
+                <Route path="/faq" component={Faq} />
                 <Route default component={Four04} />
               </Switch>
             </div>
