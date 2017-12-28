@@ -1,0 +1,36 @@
+.login {
+  width: 600px;
+}
+
+.login h3 {
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-link-1);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--spacing-container);
+  margin-top: var(--spacing-container);
+}
+
+.buttons button {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .login {
+    width: 100%;
+  }
+  .buttons {
+    grid-template-columns: initial;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .loginButton {
+    grid-row: 1;
+  }
+}
