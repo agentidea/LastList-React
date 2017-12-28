@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -11,6 +11,7 @@ import Footer from './common/components/Footer'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Four04 from './pages/Four04'
 import styles from './App.module.css'
 
 const mapStateToProps = state => ({
@@ -36,9 +37,12 @@ class App extends Component {
           <div className={styles.main}>
             <Header isLoggedIn={isLoggedIn} />
             <div className={styles.content}>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                <Route default component={Four04} />
+              </Switch>
             </div>
             <Footer />
           </div>
