@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import * as userActionCreators from '../../common/state/user/actions'
 import UserError from '../../common/state/user/error'
@@ -13,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
 })
 
-class Login extends Component {
+class Signup extends Component {
   state = {
     email: '',
     password: '',
@@ -32,7 +31,7 @@ class Login extends Component {
     this.setState({ [field]: value, error: { field: null } })
   }
 
-  // On successful login, redirect the user to the intended page.
+  // On successful Signup, redirect the user to the intended page.
   redirect() {
     const { location, history } = this.props
     const match = location.pathname.match(/[?|&]fwd=\/?([-%\d\w]+)/)
@@ -66,7 +65,7 @@ class Login extends Component {
         <h3>Create your account</h3>
         {this.renderInputs()}
         <div className={styles.buttons}>
-          <Button to="/login" className={styles.loginButton} nonprimary>
+          <Button to="/Signup" className={styles.SignupButton} nonprimary>
             Sign In
           </Button>
           <Button>Create Account</Button>
@@ -107,4 +106,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Signup)
