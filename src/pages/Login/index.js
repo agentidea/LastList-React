@@ -37,9 +37,9 @@ class Login extends Component {
   // On successful login, redirect the user to the intended page.
   redirect() {
     const { location, history } = this.props
-    const match = location.pathname.match(/[?|&]fwd=\/?([-%\d\w]+)/)
-    const fwd = (match && match[1]) || ''
-    history.push(`/${fwd}`)
+    const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
+    const newRoute = (match && match[1]) || '/'
+    history.push(newRoute)
   }
 
   onSubmit = event => {

@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.links > * {
+.links a {
   padding: var(--spacing-elements);
   color: var(--color-link-3);
   letter-spacing: 1px;
