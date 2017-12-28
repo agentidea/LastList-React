@@ -5,7 +5,7 @@ import styles from './Footer.module.css'
 export class Footer extends Component {
   render() {
     return (
-      <footer class={styles.footer}>
+      <footer className={styles.footer}>
         <div className={styles.left}>
           <Link to="/faq">FAQ</Link>
           <Link to="/contact">Contact</Link>
