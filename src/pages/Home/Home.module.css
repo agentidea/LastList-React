@@ -1,0 +1,55 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.text {
+  text-align: center;
+}
+
+.subtitle {
+  text-transform: none;
+}
+
+.bodyText {
+  letter-spacing: 2.6px;
+}
+
+.list {
+  text-align: left;
+  color: #e6e61b;
+  padding-left: 16px;
+}
+
+.listItem {
+  margin: 14px;
+}
+
+.listItemText {
+  color: var(--color);
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  margin: var(--spacing-container) 0;
+}
+
+.links > a {
+  color: var(--link-primary);
+  transition: background-color 0.5s, color 0.5s;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .links > a {
+    margin: var(--spacing-elements);
+  }
+}

@@ -1,0 +1,32 @@
+.footer {
+  flex-shrink: 0;
+  background-color: var(--footer-color);
+  padding: var(--spacing-container);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: var(--font-size-small);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.left a {
+  padding: var(--spacing-elements);
+  color: var(--color-link-3);
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+  }
+  .left {
+    text-align: center;
+    margin-bottom: var(--spacing-container);
+  }
+}
