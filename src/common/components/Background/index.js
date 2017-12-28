@@ -5,18 +5,19 @@ import circle2 from './circle2.png'
 
 export default class BackgroundAnimation extends Component {
   render() {
+    let window = global.window || {}
+    const winW = window.innerWidth
+    const winH = window.innerHeight
     return (
       <div className={styles.background}>
-        {this.renderCircles()}
-        {this.renderParticles()}
+        {this.renderCircles(winW, winH)}
+        {this.renderParticles(winW, winH)}
       </div>
     )
   }
 
-  renderCircles() {
+  renderCircles(winW, winH) {
     const circles = []
-    let window = global.window || {}
-    const winW = window.innerWidth
     const offsetX = winW / 18
     for (let i = 0; i < 36; i++) {
       const size = `${Math.round(Math.random() * (winW / 2) + winW / 2)}px`
@@ -43,11 +44,8 @@ export default class BackgroundAnimation extends Component {
     return circles
   }
 
-  renderParticles() {
+  renderParticles(winW, winH) {
     const particles = []
-    let window = global.window || {}
-    const winW = window.innerWidth
-    const winH = window.innerHeight
     for (let i = 0; i < 50; i++) {
       const orbit = Math.random() * (winW * 0.5)
       const orbitStyle = {
@@ -67,7 +65,7 @@ export default class BackgroundAnimation extends Component {
         opacity: Math.random() * 0.5 + 0.25,
       }
       particles[i] = (
-        <div className={styles.particleOrbit} style={orbitStyle}>
+        <div key={i} className={styles.particleOrbit} style={orbitStyle}>
           <span className={styles.particleShape} style={particleStyle} />
         </div>
       )

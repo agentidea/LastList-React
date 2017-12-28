@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User reducer  LOGIN_SUCCESSFULL should set JWT 1`] = `
+Object {
+  "jwt": "abc",
+}
+`;
+
+exports[`User reducer  SET_CURRENT_USER should unset the JWT and reset the user data 1`] = `
+Object {
+  "_id": "XYZ",
+  "email": "jon.snow@gmail.com",
+  "firstName": "Jon",
+  "jwt": "abc",
+  "lastName": "Snow",
+}
+`;
+
+exports[`User reducer  SIGN_OUT should unset the JWT and reset the user data 1`] = `
+Object {
+  "_id": null,
+  "dob": null,
+  "email": null,
+  "firstName": null,
+  "jwt": null,
+  "lastName": null,
+  "payments": Array [],
+  "states": null,
+}
+`;
+
+exports[`User reducer  default state should contain correct data 1`] = `
+Object {
+  "_id": null,
+  "dob": null,
+  "email": null,
+  "firstName": null,
+  "jwt": undefined,
+  "lastName": null,
+  "payments": Array [],
+  "states": null,
+}
+`;
