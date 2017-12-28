@@ -6,13 +6,15 @@ import { connect } from 'react-redux'
 import { loggedInSelector } from './common/state/user/selectors'
 import * as userActionCreators from './common/state/user/actions'
 import Background from './common/components/Background'
+import ScrollToTop from './common/components/ScrollToTop'
 import Header from './common/components/Header'
 import Footer from './common/components/Footer'
 import Home from './pages/Home'
+import Contact from './pages/Contact'
+import Faq from './pages/Faq'
+import GuardianAccess from './pages/GuardianAccess'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import GuardianAccess from './pages/GuardianAccess'
-import Faq from './pages/Faq'
 import Four04 from './pages/Four04'
 import styles from './App.module.css'
 
@@ -34,23 +36,26 @@ class App extends Component {
     const { isLoggedIn } = this.props
     return (
       <Router>
-        <div className={styles.app}>
-          <Background />
-          <div className={styles.main}>
-            <Header isLoggedIn={isLoggedIn} />
-            <div className={styles.content}>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/guardian" component={GuardianAccess} />
-                <Route path="/faq" component={Faq} />
-                <Route default component={Four04} />
-              </Switch>
+        <ScrollToTop>
+          <div className={styles.app}>
+            <Background />
+            <div className={styles.main}>
+              <Header isLoggedIn={isLoggedIn} />
+              <div className={styles.content}>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/contact" component={Contact} />
+                  <Route path="/faq" component={Faq} />
+                  <Route path="/guardian" component={GuardianAccess} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/signup" component={Signup} />
+                  <Route default component={Four04} />
+                </Switch>
+              </div>
+              <Footer />
             </div>
-            <Footer />
           </div>
-        </div>
+        </ScrollToTop>
       </Router>
     )
   }
