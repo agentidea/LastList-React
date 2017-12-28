@@ -62,7 +62,7 @@ class Login extends Component {
 
   render() {
     return (
-      <form className={styles.login} onSubmit={this.onSubmit}>
+      <form className={styles.content} onSubmit={this.onSubmit}>
         <h3>Sign In To Your Last List</h3>
         {this.renderInputs()}
         <FormControlLabel

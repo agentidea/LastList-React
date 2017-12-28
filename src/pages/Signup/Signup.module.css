@@ -1,14 +1,5 @@
-.login {
+.content {
   width: 600px;
-}
-
-.login h3 {
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--color-link-1);
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2.4px;
 }
 
 .buttons {
@@ -23,7 +14,7 @@
 }
 
 @media (max-width: 600px) {
-  .login {
+  .content {
     width: 100%;
   }
   .buttons {

@@ -38,10 +38,12 @@ h2 {
   font-weight: normal;
 }
 h3 {
-  color: #004ddc;
+  font-weight: 700;
   font-size: 22px;
-  font-weight: normal;
+  color: var(--color-link-1);
+  text-align: center;
   text-transform: uppercase;
+  letter-spacing: 2.4px;
 }
 h4 {
   color: #168cff;

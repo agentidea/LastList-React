@@ -1,0 +1,18 @@
+.content {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.submit {
+  align-self: flex-end;
+}
+
+@media (max-width: 600px) {
+  .content {
+    width: 100%;
+  }
+  .submit {
+    align-self: initial;
+    width: 100%;
+  }
+}
