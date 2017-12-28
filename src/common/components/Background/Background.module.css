@@ -1,0 +1,57 @@
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f0fbff;
+}
+
+.circle {
+  position: absolute;
+  animation-name: bubbles;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+
+.particleOrbit {
+  position: absolute;
+  animation-name: orbit;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.particleShape {
+  background-color: #fff;
+  display: inline-block;
+}
+
+/* https://codepen.io/z-/pen/bpxgWZ */
+@keyframes bubbles {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(0, -125%);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(0, -375%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -500%);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

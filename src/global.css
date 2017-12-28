@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700');
+
+:root {
+  --color: #4a4a4a;
+  --header-color: #fff;
+  --footer-color: #f6f8f9;
+  --font-family: 'Ubuntu', 'Helvetica', 'Arial', sans-serif;
+  --font-size-small: 14px;
+  --font-size: 18px;
+  --spacing-elements: 8px;
+  --spacing-container: 16px;
+  --font-weight: 400;
+  --color-link-1: #004ddc;
+  --color-link-2: #3917fe;
+  --color-link-3: #168cff;
+  --color-link-1-alpha: rgba(0, 77, 220, 0.5);
+  --color-link-2-alpha: rgba(57, 23, 254, 0.5);
+  --color-link-3-alpha: rgba(22, 140, 255, 0.5);
+  --error: #f00;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  color: #0f1b56;
+  font-size: 46px;
+  font-weight: normal;
+}
+h3 {
+  color: #004ddc;
+  font-size: 22px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+h4 {
+  color: #168cff;
+  font-size: 22px;
+  font-weight: normal;
+}
+h5 {
+  font-size: var(--font-size);
+  font-weight: normal;
+}
+h6 {
+  font-size: var(--font-size-small);
+  font-weight: normal;
+}
