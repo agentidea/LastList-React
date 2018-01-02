@@ -7,6 +7,22 @@ const initialState = {
 
 const emptyList = () => [{ artistName: '', songName: '' }]
 
+/* Ensure that each list has exactly 10 items (even empty one)*/
+function convertFromServerLists(serverLists) {
+  if (!serverLists) {
+    serverLists = [[]]
+  }
+  return serverLists.map(list => {
+    if (list.length > 10) {
+      return list.slice(0, 10)
+    }
+    while (list.length < 10) {
+      list.push({ artistName: '', songName: '' })
+    }
+    return list
+  })
+}
+
 function updateListField(state, action) {
   const newLists = state.lists.map((list, listIndex) => {
     if (listIndex !== action.listIndex) return list
@@ -36,7 +52,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        lists: action.data,
+        lists: convertFromServerLists(action.data),
       }
     case GET_LISTS_API.FAILURE:
       return {
