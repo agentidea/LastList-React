@@ -1,0 +1,71 @@
+/**
+ * Source: https://codepen.io/mikeambrosi/#
+ */
+.loading,
+.loading::before,
+.loading::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid var(--color-link-3-alpha);
+  border-left-color: var(--color-link-1-alpha);
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+}
+
+.loading {
+  margin: -15px 0 0 -15px;
+  height: 30px;
+  width: 30px;
+  -webkit-animation: animation-rotate 1000ms linear infinite;
+  -moz-animation: animation-rotate 1000ms linear infinite;
+  -o-animation: animation-rotate 1000ms linear infinite;
+  animation: animation-rotate 1000ms linear infinite;
+}
+
+.loading::before {
+  content: '';
+  margin: -7px 0 0 -7px;
+  height: 14px;
+  width: 14px;
+  -webkit-animation: animation-rotate 1000ms linear infinite;
+  -moz-animation: animation-rotate 1000ms linear infinite;
+  -o-animation: animation-rotate 1000ms linear infinite;
+  animation: animation-rotate 1000ms linear infinite;
+}
+
+.loading::after {
+  content: '';
+  margin: -19px 0 0 -19px;
+  height: 36px;
+  width: 36px;
+  -webkit-animation: animation-rotate 2000ms linear infinite;
+  -moz-animation: animation-rotate 2000ms linear infinite;
+  -o-animation: animation-rotate 2000ms linear infinite;
+  animation: animation-rotate 2000ms linear infinite;
+}
+
+@-webkit-keyframes animation-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes animation-rotate {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes animation-rotate {
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@keyframes animation-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,8 +1,9 @@
 import { getJwt } from './utils/jwt'
-import { LOGIN_SUCCESSFULL, SIGN_OUT, SET_CURRENT_USER } from './actions'
+import { LOGIN_SUCCESSFULL, SIGN_OUT, SET_CURRENT_USER, GET_CURRENT_USER_API } from './actions'
 
 const initialState = {
   jwt: getJwt(),
+  loading: true,
   _id: null,
   email: null,
   firstName: null,
@@ -24,10 +25,21 @@ export default (state = initialState, action) => {
         ...initialState,
         jwt: null,
       }
+    case GET_CURRENT_USER_API.REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case GET_CURRENT_USER_API.FAILURE:
+      return {
+        ...state,
+        loading: false,
+      }
     case SET_CURRENT_USER:
       return {
         ...state,
         ...action.data,
+        loading: false,
       }
     default: {
       return state
