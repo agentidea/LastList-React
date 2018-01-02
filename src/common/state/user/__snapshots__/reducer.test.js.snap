@@ -13,6 +13,7 @@ Object {
   "firstName": "Jon",
   "jwt": "abc",
   "lastName": "Snow",
+  "loading": false,
 }
 `;
 
@@ -24,6 +25,7 @@ Object {
   "firstName": null,
   "jwt": null,
   "lastName": null,
+  "loading": true,
   "payments": Array [],
   "states": null,
 }
@@ -37,6 +39,7 @@ Object {
   "firstName": null,
   "jwt": undefined,
   "lastName": null,
+  "loading": true,
   "payments": Array [],
   "states": null,
 }

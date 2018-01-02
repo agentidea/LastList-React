@@ -34,7 +34,7 @@ describe('User actions', () => {
       })
     })
 
-    test('should return the user fetch from the API and set the user in the store if the JWT is set', async () => {
+    test('should return the user fetched from the API and set the user in the store if the JWT is set', async () => {
       const user = { id: '5', firstName: 'Jon', lastName: 'Snow' }
       nock(ENDPOINT)
         .post('/api/user/validate')

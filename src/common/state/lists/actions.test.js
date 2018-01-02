@@ -14,15 +14,14 @@ describe('Lists actions', () => {
     const store = mockStore({ user: { _id: 123 }, lists: [] })
     const serverLists = [
       {
-        setId: 0,
         name: 'My first list',
         songs: [
           { artistName: 'Linkin Park', songName: 'In the end' },
           { artistName: 'Eminem', songName: 'Stan' },
+          { artistName: '', songName: '' },
         ],
       },
       {
-        setId: 1,
         name: 'My second list',
         songs: [{ artistName: 'System of a down', songName: 'Chop Suey' }],
       },
@@ -34,7 +33,7 @@ describe('Lists actions', () => {
 
     const action = actions.fetchUserLists()
     return store.dispatch(action).then(() => {
-      const expectedAction = { type: actions.GET_LISTS_API.SUCCESS, data: serverLists, meta: null }
+      const expectedAction = { type: actions.GET_LISTS_API.SUCCESS, data: serverLists }
       expect(store.getActions()).toContainEqual(expectedAction)
     })
   })
