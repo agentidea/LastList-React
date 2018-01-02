@@ -65,7 +65,7 @@ class Signup extends Component {
         <h3>Create your account</h3>
         {this.renderInputs()}
         <div className={styles.buttons}>
-          <Button to="/Signup" className={styles.SignupButton} nonprimary>
+          <Button to="/login" className={styles.SignupButton} nonprimary>
             Sign In
           </Button>
           <Button>Create Account</Button>
@@ -87,7 +87,7 @@ class Signup extends Component {
           required
           error={errorEmail}
           placeholder="Your email address"
-          onInput={value => this.onChange('email', value)}
+          onChange={value => this.onChange('email', value)}
         />
         <Textfield
           type="password"
@@ -99,7 +99,7 @@ class Signup extends Component {
           minLength={8}
           maxLength={20}
           required
-          onInput={value => this.onChange('password', value)}
+          onChange={value => this.onChange('password', value)}
         />
       </div>
     )

@@ -30,7 +30,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
         doRequest(GET_CURRENT_USER_API, `user/validate`, {
           method: 'POST',
           body: {
-            email: 'touctouc46@gmail.com',
+            email: 'valentin.hervieu@gmail.com',
             id: jwt,
           },
         })

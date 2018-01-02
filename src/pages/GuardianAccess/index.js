@@ -46,7 +46,7 @@ export class GuardianAccess extends Component {
           type="text"
           label="LastList's user first and last name"
           value={lastlistName}
-          onInput={value => this.onChange('name', value)}
+          onChange={value => this.onChange('name', value)}
           error={errorName}
           required
         />
@@ -54,7 +54,7 @@ export class GuardianAccess extends Component {
           type="email"
           label="Email Address"
           value={email}
-          onInput={value => this.onChange('email', value)}
+          onChange={value => this.onChange('email', value)}
           error={errorEmail}
           required
         />

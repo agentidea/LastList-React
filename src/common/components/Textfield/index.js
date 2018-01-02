@@ -3,9 +3,9 @@ import classnames from 'classnames'
 import styles from './Textfield.module.css'
 
 export default class Textfield extends Component {
-  onInput = event => {
-    if (typeof this.props.onInput === 'function') {
-      this.props.onInput(event.target.value)
+  onChange = event => {
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event.target.value)
     }
   }
 
@@ -18,7 +18,7 @@ export default class Textfield extends Component {
           className={classnames(styles.input, error && styles.inputError)}
           type={type}
           {...rest}
-          onInput={this.onInput}
+          onChange={this.onChange}
         />
         {error ? (
           <span className={classnames(styles.help, styles.helpError)}>{error}</span>

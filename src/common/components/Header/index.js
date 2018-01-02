@@ -14,7 +14,7 @@ export default class Header extends Component {
           </Link>
         </div>
         <div className={styles.links}>
-          <Link to="/guardian">Guardian Access</Link>
+          {!isLoggedIn && <Link to="/guardian">Guardian Access</Link>}
           {this.renderLogin(isLoggedIn)}
         </div>
       </header>
@@ -25,7 +25,7 @@ export default class Header extends Component {
     const label = isLoggedIn ? 'Sign Out' : 'Sign In'
     return (
       <div>
-        {<Link to="/edit-list">Your list</Link>}
+        {isLoggedIn && <Link to="/edit-list">Your list</Link>}
         <Link to="/login">{label}</Link>
       </div>
     )
