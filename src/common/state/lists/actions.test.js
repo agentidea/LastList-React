@@ -52,4 +52,47 @@ describe('Lists actions', () => {
       value: 'Hello',
     })
   })
+
+  test('saveUserList should send a PUT request with correct data', () => {
+    const store = mockStore({
+      user: { _id: 123 },
+      lists: {
+        lists: [
+          [
+            { artistName: 'Linkin Park', songName: 'In the end' },
+            { artistName: 'Eminem', songName: 'Stan' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+            { artistName: '', songName: '' },
+          ],
+        ],
+      },
+    })
+
+    nock(ENDPOINT)
+      .put('/api/user/addList/123')
+      .reply(200, { success: true })
+
+    const action = actions.saveUserList()
+    return store.dispatch(action).then(() => {
+      const expectedAction = {
+        type: actions.SAVE_LIST_API.SUCCESS,
+        data: { success: true },
+        meta: {
+          sets: [
+            [
+              { artistName: 'Linkin Park', songName: 'In the end' },
+              { artistName: 'Eminem', songName: 'Stan' },
+            ],
+          ],
+        },
+      }
+      expect(store.getActions()).toContainEqual(expectedAction)
+    })
+  })
 })

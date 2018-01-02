@@ -1,7 +1,8 @@
-import { GET_LISTS_API, ADD_NEW_LIST, UPDATE_LIST_FIELD } from './actions'
+import { GET_LISTS_API, SAVE_LIST_API, ADD_NEW_LIST, UPDATE_LIST_FIELD } from './actions'
 
 const initialState = {
   loading: false,
+  saving: false,
   lists: [],
 }
 
@@ -61,6 +62,17 @@ export default (state = initialState, action) => {
       }
     case UPDATE_LIST_FIELD:
       return updateListField(state, action)
+    case SAVE_LIST_API.REQUEST:
+      return {
+        ...state,
+        saving: true,
+      }
+    case SAVE_LIST_API.SUCCESS:
+    case SAVE_LIST_API.FAILURE:
+      return {
+        ...state,
+        saving: false,
+      }
     case ADD_NEW_LIST:
       return {
         ...state,

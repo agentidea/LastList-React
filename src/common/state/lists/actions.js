@@ -1,8 +1,10 @@
 import { createAPIActions, doRequest } from '../api/actions'
+import { listsForServerSelector } from './selectors'
 import { currentUserSelector } from '../user/selectors'
 import getListsData from '../mocks/getLists'
 
 export const GET_LISTS_API = createAPIActions('GET_LISTS_API', 'FETCH')
+export const SAVE_LIST_API = createAPIActions('SAVE_LIST_API', 'PUT')
 
 export const ADD_NEW_LIST = 'ADD_NEW_LIST'
 export const UPDATE_LIST_FIELD = 'UPDATE_LIST_FIELD'
@@ -42,6 +44,22 @@ export const setListItemSong = (listIndex, itemIndex, value) => ({
   itemIndex,
   value,
 })
+
+export const saveUserList = () => async (dispatch, getState) => {
+  const user = currentUserSelector(getState())
+  if (user) {
+    await dispatch(
+      doRequest(SAVE_LIST_API, `user/addList/${user._id}`, {
+        method: 'PUT',
+        body: {
+          sets: listsForServerSelector(getState()),
+        },
+      })
+    )
+  } else {
+    console.error('User should be logged in to save his lists')
+  }
+}
 
 export const addNewList = () => ({
   type: ADD_NEW_LIST,

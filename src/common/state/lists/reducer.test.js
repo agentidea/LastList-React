@@ -1,5 +1,5 @@
 import reducer from './reducer.js'
-import { GET_LISTS_API, UPDATE_LIST_FIELD } from './actions'
+import * as actions from './actions'
 
 describe('List reducer ', () => {
   test('GET_LISTS_API.SUCCESS should set the lists and complete the list to 10 items', () => {
@@ -10,7 +10,7 @@ describe('List reducer ', () => {
       ],
     ]
     const action = {
-      type: GET_LISTS_API.SUCCESS,
+      type: actions.GET_LISTS_API.SUCCESS,
       data: lists,
     }
     const state = reducer({ loading: true, lists: [] }, action)
@@ -49,7 +49,7 @@ describe('List reducer ', () => {
       ],
     ]
     const action = {
-      type: GET_LISTS_API.SUCCESS,
+      type: actions.GET_LISTS_API.SUCCESS,
       data: lists,
     }
     const state = reducer({ loading: true, lists: [] }, action)
@@ -81,7 +81,7 @@ describe('List reducer ', () => {
       [{ artistName: 'System of a down', songName: 'Chop Suey' }],
     ]
     const action = {
-      type: UPDATE_LIST_FIELD,
+      type: actions.UPDATE_LIST_FIELD,
       field: 'songName',
       listIndex: 1,
       itemIndex: 0,
@@ -108,7 +108,7 @@ describe('List reducer ', () => {
       [{ artistName: 'System of a down', songName: 'Chop Suey' }],
     ]
     const action = {
-      type: UPDATE_LIST_FIELD,
+      type: actions.UPDATE_LIST_FIELD,
       field: 'artistName',
       listIndex: 0,
       itemIndex: 1,
@@ -124,5 +124,23 @@ describe('List reducer ', () => {
         [{ artistName: 'System of a down', songName: 'Chop Suey' }],
       ],
     })
+  })
+
+  test('SAVE_LIST_API.REQUEST should set the saving flag to true', () => {
+    const action = { type: actions.SAVE_LIST_API.REQUEST }
+    const state = reducer({ saving: false }, action)
+    expect(state).toEqual({ saving: true })
+  })
+
+  test('SAVE_LIST_API.SUCCESS should set the saving flag to false', () => {
+    const action = { type: actions.SAVE_LIST_API.SUCCESS }
+    const state = reducer({ saving: true }, action)
+    expect(state).toEqual({ saving: false })
+  })
+
+  test('SAVE_LIST_API.FAILURE should set the saving flag to false', () => {
+    const action = { type: actions.SAVE_LIST_API.FAILURE }
+    const state = reducer({ saving: true }, action)
+    expect(state).toEqual({ saving: false })
   })
 })

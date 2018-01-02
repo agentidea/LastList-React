@@ -6,11 +6,13 @@ import * as listsActionCreators from '../../common/state/lists/actions'
 import Loading from '../../common/components/Loading'
 import requireLogin from '../../common/hocs/requireLogin'
 import Textfield from '../../common/components/Textfield'
+import Button from '../../common/components/Button'
 import styles from './EditLastList.module.css'
 
 const mapStateToProps = state => ({
   lists: state.lists.lists,
   loading: state.lists.loading,
+  saving: state.lists.saving,
 })
 const mapDispatchToProps = dispatch => ({
   listsActions: bindActionCreators(listsActionCreators, dispatch),
@@ -21,10 +23,10 @@ export class EditLastList extends Component {
   }
 
   render() {
-    const { lists, loading } = this.props
+    const { lists, loading, saving } = this.props
     if (loading) return <Loading />
     return (
-      <div>
+      <div className={styles.content}>
         <h4>Step Two</h4>
         <h3>Create Your Last List</h3>
         <p>
@@ -33,6 +35,13 @@ export class EditLastList extends Component {
           whenever you want to.
         </p>
         <div>{lists.map((l, i) => this.renderList(l, i))}</div>
+        <Button
+          className={styles.saveBtn}
+          onClick={this.props.listsActions.saveUserList}
+          disabled={saving}
+        >
+          {saving ? 'Saving...' : 'Save'}
+        </Button>
       </div>
     )
   }
@@ -61,4 +70,4 @@ export class EditLastList extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditLastList)
+export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(EditLastList))
