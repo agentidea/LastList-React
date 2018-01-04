@@ -1,3 +1,4 @@
+import store from 'store/dist/store.modern'
 import { createAPIActions, doRequest } from '../api/actions'
 import { resetJwt, setJwt } from './utils/jwt'
 import { jwtSelector } from './selectors'
@@ -15,6 +16,7 @@ export const CONFIRM_USER_API = createAPIActions('CONFIRM_USER_API', 'POST')
 
 export const signOut = () => async dispatch => {
   await resetJwt()
+  store.set('jwtEmail', null) // temporary until we have real JWT
   dispatch({
     type: SIGN_OUT,
   })
@@ -30,7 +32,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
         doRequest(GET_CURRENT_USER_API, `user/validate`, {
           method: 'POST',
           body: {
-            email: 'valentin.hervieu@gmail.com',
+            email: store.get('jwtEmail'), // temporary until we have real JWT
             id: jwt,
           },
         })
@@ -60,6 +62,7 @@ export const login = (email, password) => async dispatch => {
     const jwt = user._id // todo replace this with real JWT
     if (jwt) {
       setJwt(jwt)
+      store.set('jwtEmail', email) // temporary until we have real JWT
       dispatch({
         type: LOGIN_SUCCESSFULL,
         jwt,

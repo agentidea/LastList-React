@@ -22,8 +22,8 @@ const fakeRequest = (dispatch, action, user, data) => {
 export const fetchUserLists = () => async (dispatch, getState) => {
   const user = currentUserSelector(getState())
   if (user) {
-    await fakeRequest(dispatch, GET_LISTS_API, user, getListsData)
-    // await dispatch(doRequest(GET_LISTS_API, `user/getLists/${user._id}`))
+    // await fakeRequest(dispatch, GET_LISTS_API, user, getListsData)
+    await dispatch(doRequest(GET_LISTS_API, `user/getLists/${user._id}`))
   } else {
     console.error('User should be logged in to fetch his lists')
   }

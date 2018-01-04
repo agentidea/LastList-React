@@ -26,7 +26,7 @@ describe('Lists actions', () => {
 
     const action = actions.fetchUserLists()
     return store.dispatch(action).then(() => {
-      const expectedAction = { type: actions.GET_LISTS_API.SUCCESS, data: serverLists }
+      const expectedAction = { type: actions.GET_LISTS_API.SUCCESS, data: serverLists, meta: null }
       expect(store.getActions()).toContainEqual(expectedAction)
     })
   })
