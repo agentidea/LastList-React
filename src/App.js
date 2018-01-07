@@ -12,6 +12,7 @@ import Footer from './common/components/Footer'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import EditLastList from './pages/EditLastList'
+import EditProfile from './pages/EditProfile'
 import Faq from './pages/Faq'
 import GuardianAccess from './pages/GuardianAccess'
 import Login from './pages/Login'
@@ -47,6 +48,7 @@ class App extends Component {
                   <Route exact path="/" component={Home} />
                   <Route path="/contact" component={Contact} />
                   <Route path="/edit-list" component={EditLastList} />
+                  <Route path="/edit-profile" component={EditProfile} />
                   <Route path="/faq" component={Faq} />
                   <Route path="/guardian" component={GuardianAccess} />
                   <Route path="/login" component={Login} />

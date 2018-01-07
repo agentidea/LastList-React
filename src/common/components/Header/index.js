@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 import logo from './logo.png'
@@ -25,7 +25,12 @@ export default class Header extends Component {
     const label = isLoggedIn ? 'Sign Out' : 'Sign In'
     return (
       <div>
-        {isLoggedIn && <Link to="/edit-list">Your list</Link>}
+        {isLoggedIn && (
+          <Fragment>
+            <Link to="/edit-profile">Profile</Link>
+            <Link to="/edit-list">Your list</Link>
+          </Fragment>
+        )}
         <Link to="/login">{label}</Link>
       </div>
     )

@@ -1,7 +1,3 @@
-.content {
-  width: 600px;
-}
-
 .buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -14,9 +10,6 @@
 }
 
 @media (max-width: 600px) {
-  .content {
-    width: 100%;
-  }
   .buttons {
     grid-template-columns: initial;
     grid-template-rows: repeat(2, 1fr);

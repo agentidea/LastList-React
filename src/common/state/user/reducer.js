@@ -1,5 +1,5 @@
 import { getJwt } from './utils/jwt'
-import { LOGIN_SUCCESSFULL, SIGN_OUT, SET_CURRENT_USER, GET_CURRENT_USER_API } from './actions'
+import { LOGIN_SUCCESSFULL, SIGN_OUT, SET_CURRENT_USER } from './actions'
 
 const initialState = {
   jwt: getJwt(),

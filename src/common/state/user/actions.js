@@ -1,7 +1,7 @@
 import store from 'store/dist/store.modern'
 import { createAPIActions, doRequest } from '../api/actions'
 import { resetJwt, setJwt } from './utils/jwt'
-import { jwtSelector } from './selectors'
+import { jwtSelector, currentUserSelector } from './selectors'
 import UserError from './error'
 
 export const LOGIN_SUCCESSFULL = 'LOGIN_SUCCESSFULL'
@@ -13,6 +13,7 @@ export const GET_CURRENT_USER_API = createAPIActions('CURRENT_USER', 'FETCH')
 export const LOGIN_API = createAPIActions('LOGIN_API', 'POST')
 export const SIGNUP_API = createAPIActions('SIGNUP_API', 'POST')
 export const CONFIRM_USER_API = createAPIActions('CONFIRM_USER_API', 'POST')
+export const SAVE_PROFILE_API = createAPIActions('SAVE_PROFILE_API', 'PUT')
 
 export const signOut = () => async dispatch => {
   await resetJwt()
@@ -108,5 +109,24 @@ export const confirmAccount = confirmationCode => async dispatch => {
       throw new UserError(message)
     }
     throw e
+  }
+}
+
+export const saveUserProfile = (firstName, lastName) => async (dispatch, getState) => {
+  const user = currentUserSelector(getState())
+  if (user) {
+    await dispatch(
+      doRequest(SAVE_PROFILE_API, `user/profile/${user._id}`, {
+        method: 'PUT',
+        body: {
+          firstName,
+          lastName,
+          dob: '01/01/1990',
+        },
+      })
+    )
+    return true
+  } else {
+    console.error('User should be logged in to save his profile')
   }
 }
