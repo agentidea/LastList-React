@@ -112,7 +112,7 @@ export const confirmAccount = confirmationCode => async dispatch => {
   }
 }
 
-export const saveUserProfile = (firstName, lastName) => async (dispatch, getState) => {
+export const saveUserProfile = (firstName, lastName, dob) => async (dispatch, getState) => {
   const user = currentUserSelector(getState())
   if (user) {
     await dispatch(
@@ -121,7 +121,7 @@ export const saveUserProfile = (firstName, lastName) => async (dispatch, getStat
         body: {
           firstName,
           lastName,
-          dob: '01/01/1990',
+          dob: dob.toISOString(),
         },
       })
     )

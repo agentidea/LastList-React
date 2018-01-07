@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { DatePicker } from 'material-ui-pickers'
 
 import requireLogin from '../../common/hocs/requireLogin'
 import * as userActionCreators from '../../common/state/user/actions'
@@ -25,23 +26,27 @@ class EditProfile extends Component {
 
   componentDidMount() {
     this.setState({ ...this.props.currentProfile, loaded: true })
-    console.log(this.props.currentProfile)
   }
 
   onTextChange = (field, value) => {
     this.setState({ [field]: value })
   }
 
+  onDateChange = date => {
+    this.setState({ dob: date })
+  }
+
   saveProfile = () => {
-    const { firstName, lastName } = this.state
+    const { firstName, lastName, dob } = this.state
     this.setState({ saving: true })
     this.props.userActions
-      .saveUserProfile(firstName, lastName)
+      .saveUserProfile(firstName, lastName, dob)
       .then(() => this.setState({ saving: false }))
+      .catch(() => this.setState({ saving: false }))
   }
 
   render() {
-    const { loaded, saving, firstName, lastName } = this.state
+    const { loaded, saving, firstName, lastName, dob } = this.state
     return (
       <div className={styles.content}>
         <h4>Step One</h4>
@@ -59,6 +64,12 @@ class EditProfile extends Component {
               placeholder="Last name"
               value={lastName}
               onChange={value => this.onTextChange('lastName', value)}
+            />
+            <DatePicker
+              value={dob}
+              onChange={this.onDateChange}
+              format="MM-DD-YYYY"
+              disableFuture
             />
             <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
               {saving ? 'Saving...' : 'Save'}

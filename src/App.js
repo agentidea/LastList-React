@@ -40,7 +40,6 @@ class App extends Component {
       <Router>
         <ScrollToTop>
           <div className={styles.app}>
-            <Background />
             <div className={styles.main}>
               <Header isLoggedIn={isLoggedIn} />
               <div className={styles.content}>
