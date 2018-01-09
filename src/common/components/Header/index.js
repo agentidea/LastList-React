@@ -24,15 +24,16 @@ export default class Header extends Component {
   renderLogin(isLoggedIn) {
     const label = isLoggedIn ? 'Sign Out' : 'Sign In'
     return (
-      <div>
+      <Fragment>
         {isLoggedIn && (
           <Fragment>
             <Link to="/edit-profile">Profile</Link>
             <Link to="/edit-list">Your list</Link>
+            <Link to="/guardians">Your guardians</Link>
           </Fragment>
         )}
         <Link to="/login">{label}</Link>
-      </div>
+      </Fragment>
     )
   }
 }

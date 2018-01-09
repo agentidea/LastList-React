@@ -12,3 +12,8 @@
 .saveBtn {
   align-self: flex-end;
 }
+
+.loaderContainer {
+  position: relative;
+  margin-top: 50px;
+}

@@ -1,0 +1,20 @@
+.addGuardian {
+  display: flex;
+  flex-direction: column;
+}
+.addGuardian button {
+  align-self: flex-end;
+}
+.inputs {
+  display: grid;
+  grid-gap: var(--spacing-elements);
+  grid-template-columns: 1fr 1fr 2fr;
+}
+@media (max-width: 600px) {
+  .inputs {
+    grid-template-columns: initial;
+  }
+  .addGuardian button {
+    align-self: initial;
+  }
+}

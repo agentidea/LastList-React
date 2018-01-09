@@ -32,6 +32,7 @@
     flex-direction: column;
   }
   .links {
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: var(--spacing-container);
   }

@@ -12,11 +12,11 @@ export class Home extends Component {
           <h3 className={styles.subtitle}>
             Create a playlist for your loved ones to remember you by.
           </h3>
-          <p className={styles.bodyText}>
+          <p>
             Music connects us all on deeply emotional level. Just the opening chords of a song can
             conjure up memories and take you straight back to another place and time.
           </p>
-          <p className={styles.bodyText}>
+          <p>
             Last List is a selection of your favorite songs that can be played at your memorial,
             wake or funeral, and shared with those you care about when you’re no longer around. It’s
             chance for you to leave family and friends with a lasting musical testimonial of your

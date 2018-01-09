@@ -65,10 +65,10 @@ class Signup extends Component {
         <h3>Create your account</h3>
         {this.renderInputs()}
         <div className={styles.buttons}>
-          <Button to="/login" className={styles.SignupButton} nonprimary>
+          <Button to="/login" nonprimary>
             Sign In
           </Button>
-          <Button>Create Account</Button>
+          <Button className={styles.signupButton}>Create Account</Button>
         </div>
       </form>
     )

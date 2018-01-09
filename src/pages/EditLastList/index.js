@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+import requireLogin from '../../common/hocs/requireLogin'
 import * as listsActionCreators from '../../common/state/lists/actions'
 import Loading from '../../common/components/Loading'
-import requireLogin from '../../common/hocs/requireLogin'
 import Textfield from '../../common/components/Textfield'
 import Button from '../../common/components/Button'
 import styles from './EditLastList.module.css'
@@ -24,7 +24,6 @@ export class EditLastList extends Component {
 
   render() {
     const { lists, loading, saving } = this.props
-    if (loading) return <Loading />
     return (
       <div className={styles.content}>
         <h4>Step Two</h4>
@@ -34,14 +33,22 @@ export class EditLastList extends Component {
           you love, so your Last List can include as many sets as you like and you can edit it
           whenever you want to.
         </p>
-        <div>{lists.map((l, i) => this.renderList(l, i))}</div>
-        <Button
-          className={styles.saveBtn}
-          onClick={this.props.listsActions.saveUserList}
-          disabled={saving}
-        >
-          {saving ? 'Saving...' : 'Save'}
-        </Button>
+        {loading ? (
+          <div className={styles.loaderContainer}>
+            <Loading />
+          </div>
+        ) : (
+          <Fragment>
+            <div>{lists.map((l, i) => this.renderList(l, i))}</div>
+            <Button
+              className={styles.saveBtn}
+              onClick={this.props.listsActions.saveUserList}
+              disabled={saving}
+            >
+              {saving ? 'Saving...' : 'Save'}
+            </Button>
+          </Fragment>
+        )}
       </div>
     )
   }

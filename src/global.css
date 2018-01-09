@@ -58,3 +58,6 @@ h6 {
   font-size: var(--font-size-small);
   font-weight: normal;
 }
+p {
+  letter-spacing: 2.6px;
+}
