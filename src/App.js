@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 import { loggedInSelector } from './common/state/user/selectors'
 import * as userActionCreators from './common/state/user/actions'
-import Background from './common/components/Background'
 import ScrollToTop from './common/components/ScrollToTop'
 import Header from './common/components/Header'
 import Footer from './common/components/Footer'
@@ -13,6 +12,7 @@ import Home from './pages/Home'
 import Contact from './pages/Contact'
 import EditLastList from './pages/EditLastList'
 import EditProfile from './pages/EditProfile'
+import EmailConfirmation from './pages/EmailConfirmation'
 import Faq from './pages/Faq'
 import GuardianAccess from './pages/GuardianAccess'
 import Login from './pages/Login'
@@ -45,6 +45,7 @@ class App extends Component {
               <div className={styles.content}>
                 <Switch>
                   <Route exact path="/" component={Home} />
+                  <Route path="/confirmation" component={EmailConfirmation} />
                   <Route path="/contact" component={Contact} />
                   <Route path="/edit-list" component={EditLastList} />
                   <Route path="/edit-profile" component={EditProfile} />
