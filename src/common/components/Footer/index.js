@@ -10,7 +10,7 @@ export class Footer extends Component {
           <Link to="/faq">FAQ</Link>
           <Link to="/contact">Contact</Link>
         </div>
-        <div className={styles.right}>Last List &copy; Copyright 2017</div>
+        <div className={styles.right}>Last List &copy; Copyright 2018</div>
       </footer>
     )
   }
