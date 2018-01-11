@@ -19,6 +19,11 @@
   color: var(--error);
   text-align: center;
 }
+.deleteIcon {
+  font-weight: bold;
+  margin-left: var(--spacing-elements);
+  cursor: pointer;
+}
 @media (max-width: 600px) {
   .inputs {
     grid-template-columns: initial;

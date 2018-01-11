@@ -1,4 +1,4 @@
-import { ADD_GUARDIAN_API, GET_GUARDIANS_API } from './actions'
+import { ADD_GUARDIAN_API, GET_GUARDIANS_API, REMOVE_GUARDIAN_API } from './actions'
 
 const initialState = {
   loading: false,
@@ -27,6 +27,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         guardians: action.data,
+      }
+    case REMOVE_GUARDIAN_API.REQUEST:
+      return {
+        ...state,
+        guardians: state.guardians.filter(g => g.uuid !== action.meta.uuid),
       }
     default: {
       return state

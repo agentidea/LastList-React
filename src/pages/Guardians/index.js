@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Tooltip from 'material-ui/Tooltip'
 
 import requireLogin from '../../common/hocs/requireLogin'
 import * as guardiansActionCreators from '../../common/state/guardians/actions'
@@ -63,12 +64,29 @@ class Guardians extends Component {
     return (
       <ul>
         {guardians.map(g => (
-          <li key={g.email}>
+          <li key={g.uuid}>
             {g.firstName} {g.lastName} ({g.email})
+            <Tooltip id="tooltip-top" title="Remove" placement="right">
+              <span className={styles.deleteIcon} onClick={() => this.removeGuardian(g)}>
+                ✕
+              </span>
+            </Tooltip>
           </li>
         ))}
       </ul>
     )
+  }
+
+  removeGuardian = guardian => {
+    if (
+      window.confirm(
+        `Are you sure you want to remove ${guardian.firstName} ${
+          guardian.lastName
+        } from your guardians?`
+      )
+    ) {
+      this.props.guardiansActions.removeGuardian(guardian.uuid)
+    }
   }
 
   renderAddGuardian() {

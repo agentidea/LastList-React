@@ -31,7 +31,7 @@ describe('Guardians actions', () => {
     })
   })
 
-  test('saveUserList should send a PUT request with correct data', () => {
+  test('addGuardian should send a PUT request with correct data', () => {
     const store = mockStore({
       user: { _id: 123 },
       guardians: {
@@ -53,6 +53,32 @@ describe('Guardians actions', () => {
           firstName: 'Jon',
           lastName: 'Snow',
           email: 'jon.snow@gmail.com',
+        },
+      }
+      expect(store.getActions()).toContainEqual(expectedAction)
+    })
+  })
+
+  test('removeGuardian should send a PUT request with correct data', () => {
+    const store = mockStore({
+      user: { _id: 123 },
+      guardians: {
+        loading: false,
+        guardians: [{ firstName: 'Jon', lastName: 'Snow', uuid: 12 }],
+      },
+    })
+
+    nock(ENDPOINT)
+      .delete('/api/user/guardian/123', { uuid: 12 })
+      .reply(200, { success: true })
+
+    const action = actions.removeGuardian(12)
+    return store.dispatch(action).then(() => {
+      const expectedAction = {
+        type: actions.REMOVE_GUARDIAN_API.SUCCESS,
+        data: { success: true },
+        meta: {
+          uuid: 12,
         },
       }
       expect(store.getActions()).toContainEqual(expectedAction)
