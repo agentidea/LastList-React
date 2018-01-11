@@ -1,5 +1,4 @@
 .content {
-  width: 600px;
   display: flex;
   flex-direction: column;
 }
@@ -8,9 +7,6 @@
 }
 
 @media (max-width: 600px) {
-  .content {
-    width: 100%;
-  }
   .submit {
     align-self: initial;
     width: 100%;
