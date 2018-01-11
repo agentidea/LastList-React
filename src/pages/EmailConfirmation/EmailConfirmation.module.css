@@ -3,5 +3,5 @@
 }
 
 .error {
-  color: rgb(223, 29, 29);
+  color: var(--error);
 }

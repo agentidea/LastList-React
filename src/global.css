@@ -16,7 +16,7 @@
   --color-link-1-alpha: rgba(0, 77, 220, 0.5);
   --color-link-2-alpha: rgba(57, 23, 254, 0.5);
   --color-link-3-alpha: rgba(22, 140, 255, 0.5);
-  --error: #f00;
+  --error: rgb(223, 29, 29);
 }
 
 html,

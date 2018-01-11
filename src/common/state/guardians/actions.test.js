@@ -10,6 +10,27 @@ export const ENDPOINT = 'https://yourlastplaylist.com'
 nock.disableNetConnect() // we should
 
 describe('Guardians actions', () => {
+  test('fetchUserGuardians should fetch and set the existing guardians', () => {
+    const store = mockStore({ user: { _id: 123 }, guardians: { guardians: [] } })
+    const serverGuardians = [
+      { firstName: 'Arya', lastName: 'Stark', email: 'arya.stark@gmail.com' },
+    ]
+
+    nock(ENDPOINT)
+      .get('/api/user/getGuaridans/123')
+      .reply(200, serverGuardians)
+
+    const action = actions.fetchUserGuardians()
+    return store.dispatch(action).then(() => {
+      const expectedAction = {
+        type: actions.GET_GUARDIANS_API.SUCCESS,
+        data: serverGuardians,
+        meta: null,
+      }
+      expect(store.getActions()).toContainEqual(expectedAction)
+    })
+  })
+
   test('saveUserList should send a PUT request with correct data', () => {
     const store = mockStore({
       user: { _id: 123 },

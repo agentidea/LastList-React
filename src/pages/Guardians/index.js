@@ -4,12 +4,15 @@ import { bindActionCreators } from 'redux'
 
 import requireLogin from '../../common/hocs/requireLogin'
 import * as guardiansActionCreators from '../../common/state/guardians/actions'
+import UserError from '../../common/state/user/error'
+import Loading from '../../common/components/Loading'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Guardians.module.css'
 
 const mapStateToProps = state => ({
-  guardians: state.user.guardians,
+  guardians: state.guardians.guardians,
+  loading: state.guardians.loading,
 })
 const mapDispatchToProps = dispatch => ({
   guardiansActions: bindActionCreators(guardiansActionCreators, dispatch),
@@ -21,12 +24,15 @@ class Guardians extends Component {
     lastName: '',
     email: '',
     adding: false,
+    addError: null,
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.guardiansActions.fetchUserGuardians()
+  }
 
   render() {
-    const { guardians } = this.props
+    const { loading, guardians } = this.props
     return (
       <div className={styles.content}>
         <h4>Step Three</h4>
@@ -38,7 +44,11 @@ class Guardians extends Component {
           to.
         </p>
         <h4>Your guardians</h4>
-        {guardians.length === 0 ? (
+        {loading ? (
+          <div className={styles.loaderContainer}>
+            <Loading />
+          </div>
+        ) : guardians.length === 0 ? (
           <p>You don't have guardians at the moment</p>
         ) : (
           this.renderGuardians(guardians)
@@ -62,7 +72,7 @@ class Guardians extends Component {
   }
 
   renderAddGuardian() {
-    const { firstName, lastName, email, adding } = this.state
+    const { firstName, lastName, email, adding, addError } = this.state
     return (
       <div className={styles.addGuardian}>
         <div className={styles.inputs}>
@@ -91,6 +101,7 @@ class Guardians extends Component {
             onChange={value => this.onInputChange('email', value)}
           />
         </div>
+        {addError && <div className={styles.addError}>{addError}</div>}
         <Button onClick={this.addGuardian}>{adding ? 'Adding...' : 'Add'}</Button>
       </div>
     )
@@ -102,16 +113,26 @@ class Guardians extends Component {
 
   addGuardian = async () => {
     const { firstName, lastName, email } = this.state
-    this.setState({ adding: true })
+    this.setState({ adding: true, addError: null })
 
-    this.props.guardiansActions.addGuardian(firstName, lastName, email).then(() => {
-      this.setState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        adding: false,
+    this.props.guardiansActions
+      .addGuardian(firstName, lastName, email)
+      .then(() => {
+        this.setState({
+          firstName: '',
+          lastName: '',
+          email: '',
+          adding: false,
+        })
       })
-    })
+      .catch(error => {
+        if (error instanceof UserError) {
+          const { message } = error
+          this.setState({ addError: message, adding: false })
+        } else {
+          this.setState({ addError: 'Unknown error', adding: false })
+        }
+      })
   }
 }
 
