@@ -39,7 +39,7 @@ export class Home extends Component {
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
                 Give us the names of up to 5 Guardians of your list. We’ll let them know they’ve
-                been chosen and what the have to do to when you’ve passed away.
+                been chosen and what they have to do to when you’ve passed away.
               </span>
             </li>
             <li className={styles.listItem}>
