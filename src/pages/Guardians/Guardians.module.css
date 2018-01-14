@@ -3,32 +3,3 @@
   height: 40px;
   margin: var(--spacing-container) 0;
 }
-.addGuardian {
-  display: flex;
-  flex-direction: column;
-}
-.addGuardian button {
-  align-self: flex-end;
-}
-.inputs {
-  display: grid;
-  grid-gap: var(--spacing-elements);
-  grid-template-columns: 1fr 1fr 2fr;
-}
-.addError {
-  color: var(--error);
-  text-align: center;
-}
-.deleteIcon {
-  font-weight: bold;
-  margin-left: var(--spacing-elements);
-  cursor: pointer;
-}
-@media (max-width: 600px) {
-  .inputs {
-    grid-template-columns: initial;
-  }
-  .addGuardian button {
-    align-self: initial;
-  }
-}

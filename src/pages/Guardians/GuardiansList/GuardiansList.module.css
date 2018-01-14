@@ -1,0 +1,5 @@
+.deleteIcon {
+  font-weight: bold;
+  margin-left: var(--spacing-elements);
+  cursor: pointer;
+}

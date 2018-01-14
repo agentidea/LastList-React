@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Tooltip from 'material-ui/Tooltip'
 
 import requireLogin from '../../common/hocs/requireLogin'
 import * as guardiansActionCreators from '../../common/state/guardians/actions'
-import UserError from '../../common/state/user/error'
 import Loading from '../../common/components/Loading'
-import Button from '../../common/components/Button'
-import Textfield from '../../common/components/Textfield'
 import styles from './Guardians.module.css'
+import GuardiansList from './GuardiansList'
+import AddGuardian from './AddGuardian'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -20,14 +18,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Guardians extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    adding: false,
-    addError: null,
-  }
-
   componentDidMount() {
     this.props.guardiansActions.fetchUserGuardians()
   }
@@ -52,105 +42,15 @@ class Guardians extends Component {
         ) : guardians.length === 0 ? (
           <p>You don't have guardians at the moment</p>
         ) : (
-          this.renderGuardians(guardians)
+          <GuardiansList
+            guardians={guardians}
+            onRemoveGuardian={uuid => this.props.guardiansActions.removeGuardian(uuid)}
+          />
         )}
         <h4>Add a guardian</h4>
-        {this.renderAddGuardian()}
+        <AddGuardian />
       </div>
     )
-  }
-
-  renderGuardians(guardians) {
-    return (
-      <ul>
-        {guardians.map(g => (
-          <li key={g.uuid}>
-            {g.firstName} {g.lastName} ({g.email})
-            <Tooltip id="tooltip-top" title="Remove" placement="right">
-              <span className={styles.deleteIcon} onClick={() => this.removeGuardian(g)}>
-                ✕
-              </span>
-            </Tooltip>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-
-  removeGuardian = guardian => {
-    if (
-      window.confirm(
-        `Are you sure you want to remove ${guardian.firstName} ${
-          guardian.lastName
-        } from your guardians?`
-      )
-    ) {
-      this.props.guardiansActions.removeGuardian(guardian.uuid)
-    }
-  }
-
-  renderAddGuardian() {
-    const { firstName, lastName, email, adding, addError } = this.state
-    return (
-      <div className={styles.addGuardian}>
-        <div className={styles.inputs}>
-          <Textfield
-            type="text"
-            label="First name"
-            value={firstName}
-            required
-            placeholder="Her first name"
-            onChange={value => this.onInputChange('firstName', value)}
-          />
-          <Textfield
-            type="text"
-            label="Last name"
-            value={lastName}
-            required
-            placeholder="Her last name"
-            onChange={value => this.onInputChange('lastName', value)}
-          />
-          <Textfield
-            type="email"
-            label="Email"
-            value={email}
-            required
-            placeholder="Her email address"
-            onChange={value => this.onInputChange('email', value)}
-          />
-        </div>
-        {addError && <div className={styles.addError}>{addError}</div>}
-        <Button onClick={this.addGuardian}>{adding ? 'Adding...' : 'Add'}</Button>
-      </div>
-    )
-  }
-
-  onInputChange(field, value) {
-    this.setState({ [field]: value })
-  }
-
-  addGuardian = async () => {
-    const { firstName, lastName, email } = this.state
-    this.setState({ adding: true, addError: null })
-
-    this.props.guardiansActions
-      .addGuardian(firstName, lastName, email)
-      .then(() => {
-        this.setState({
-          firstName: '',
-          lastName: '',
-          email: '',
-          adding: false,
-        })
-      })
-      .catch(error => {
-        if (error instanceof UserError) {
-          const { message } = error
-          this.setState({ addError: message, adding: false })
-        } else {
-          this.setState({ addError: 'Unknown error', adding: false })
-        }
-      })
   }
 }
 
