@@ -1,7 +1,36 @@
 # LastList-React
 React frontend to LastList-Server REST api.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+
+## Install `nvm` first
+
+as non-sudo
+
+>    curl https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+
+installed latest (LTS ) of node
+
+>    nvm list
+
+## Install any version of Node ( LTS long term support --> usually best practice? )
+> nvm install 8.9.4
+> nvm use stable
+
+
+## Install `yarn`
+npm install -g yarn
+
+
+
+## Run yarn build tool against the source
+> cd /opt/rangal/1.0.0/bin/peer/LastList-React
+> yarn 
+
+
+
+
+#This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
