@@ -27,6 +27,15 @@ npm install -g yarn
 > cd /opt/rangal/1.0.0/bin/peer/LastList-React
 > yarn 
 
+## build
+
+npm runbuild
+
+
+
+
+
+
 #### This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
