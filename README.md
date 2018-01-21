@@ -7,29 +7,36 @@ React frontend to LastList-Server REST api.
 
 as non-sudo
 
->    curl https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+`curl https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash`
 
 installed latest (LTS ) of node
 
->    nvm list
+`nvm list`
 
 ## Install any version of Node ( LTS long term support --> usually best practice? )
-> nvm install 8.9.4
-> nvm use stable
-
+```bash
+nvm install 8.9.4
+nvm use stable
+```
 
 ## Install `yarn`
+```bash
 npm install -g yarn
+```
 
 
 
 ## Run yarn build tool against the source
-> cd /opt/rangal/1.0.0/bin/peer/LastList-React
-> yarn 
+```bash
+cd /opt/rangal/1.0.0/bin/peer/LastList-React
+yarn
+yarn start
+```
 
 ## build
-
-npm runbuild
+```bash
+yarn build
+```
 
 
 
