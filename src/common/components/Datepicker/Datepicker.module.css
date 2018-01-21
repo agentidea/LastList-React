@@ -1,0 +1,8 @@
+.dialogBar {
+  font-family: var(--font-family);
+}
+
+.dialogTitle {
+  flex: 1;
+  color: white;
+}

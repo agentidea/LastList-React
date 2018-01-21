@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { DatePicker } from 'material-ui-pickers'
 
 import requireLogin from '../../common/hocs/requireLogin'
 import * as userActionCreators from '../../common/state/user/actions'
@@ -9,6 +8,7 @@ import { profileSelector } from '../../common/state/user/selectors'
 
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
+import Datepicker from '../../common/components/Datepicker'
 import styles from './EditProfile.module.css'
 
 const mapStateToProps = state => ({
@@ -65,11 +65,11 @@ class EditProfile extends Component {
               value={lastName}
               onChange={value => this.onTextChange('lastName', value)}
             />
-            <DatePicker
+            <Datepicker
+              label="Birthday"
+              placeholder="Birthday"
               value={dob}
               onChange={this.onDateChange}
-              format="MM-DD-YYYY"
-              disableFuture
             />
             <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
               {saving ? 'Saving...' : 'Save'}
@@ -81,4 +81,4 @@ class EditProfile extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(EditProfile))
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

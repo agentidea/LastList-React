@@ -10,17 +10,14 @@ import './global.css'
 
 const store = createStore()
 
-
-const mainColor = '#3917fe'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: mainColor,
-      // we need to use this legacy theme until material-ui-pickers is updated to latest material-ui
-      500: mainColor
-    }
-  }
-});
+      main: '#3917fe',
+      light: '#168cff',
+    },
+  },
+})
 
 const AppWithProviders = () => (
   <Provider store={store}>
