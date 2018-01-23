@@ -37,6 +37,10 @@ yarn start
 ```bash
 yarn build
 ```
+## build with npm
+```bash
+npm run build
+```
 
 
 
