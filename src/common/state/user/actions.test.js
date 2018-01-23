@@ -7,7 +7,7 @@ import * as jwt from './utils/jwt'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-export const ENDPOINT = 'https://yourlastplaylist.com'
+export const ENDPOINT = 'https://lastlist.com'
 nock.disableNetConnect() // we should not access a real endpoint
 
 describe('User actions', () => {

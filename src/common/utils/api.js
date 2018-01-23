@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_ROOT = 'https://yourlastplaylist.com/api'
+export const API_ROOT = 'https://api.lastlist.com/api'
 
 function getUrl(endpoint) {
   // if it's an external call
