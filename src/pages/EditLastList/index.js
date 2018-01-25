@@ -40,13 +40,18 @@ export class EditLastList extends Component {
         ) : (
           <Fragment>
             <div>{lists.map((l, i) => this.renderList(l, i))}</div>
-            <Button
-              className={styles.saveBtn}
-              onClick={this.props.listsActions.saveUserList}
-              disabled={saving}
-            >
-              {saving ? 'Saving...' : 'Save'}
-            </Button>
+            <div className={styles.buttons}>
+              <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
+                Add another 10 songs
+              </Button>
+              <Button
+                className={styles.saveBtn}
+                onClick={this.props.listsActions.saveUserList}
+                disabled={saving}
+              >
+                {saving ? 'Saving...' : 'Save'}
+              </Button>
+            </div>
           </Fragment>
         )}
       </div>

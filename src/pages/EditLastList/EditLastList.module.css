@@ -9,8 +9,9 @@
   grid-gap: var(--spacing-container);
 }
 
-.saveBtn {
-  align-self: flex-end;
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .loaderContainer {

@@ -6,7 +6,7 @@ const initialState = {
   lists: [],
 }
 
-const emptyList = () => [{ artistName: '', songName: '' }]
+const emptyList = () => Array(10).fill({ artistName: '', songName: '' })
 
 /* Ensure that each list has exactly 10 items (even empty one)*/
 function convertFromServerLists(serverLists) {
