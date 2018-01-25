@@ -19,6 +19,8 @@ import Guardians from './pages/Guardians'
 import LastList from './pages/LastList'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Payment from './pages/Payment'
+import PaymentSuccess from './pages/PaymentSuccess'
 import Four04 from './pages/Four04'
 import styles from './App.module.css'
 
@@ -56,6 +58,8 @@ class App extends Component {
                   <Route path="/guardians" component={Guardians} />
                   <Route path="/lastlist/:id" component={LastList} />
                   <Route path="/login" component={Login} />
+                  <Route path="/payment" component={Payment} />
+                  <Route path="/payment-success" component={PaymentSuccess} />
                   <Route path="/signup" component={Signup} />
                   <Route default component={Four04} />
                 </Switch>
