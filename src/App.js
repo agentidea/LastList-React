@@ -16,6 +16,7 @@ import EmailConfirmation from './pages/EmailConfirmation'
 import Faq from './pages/Faq'
 import GuardianAccess from './pages/GuardianAccess'
 import Guardians from './pages/Guardians'
+import LastList from './pages/LastList'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Four04 from './pages/Four04'
@@ -46,13 +47,14 @@ class App extends Component {
               <div className={styles.content}>
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route path="/confirmation" component={EmailConfirmation} />
+                  <Route path="/confirmation/:code" component={EmailConfirmation} />
                   <Route path="/contact" component={Contact} />
                   <Route path="/edit-list" component={EditLastList} />
                   <Route path="/edit-profile" component={EditProfile} />
                   <Route path="/faq" component={Faq} />
                   <Route path="/guardian" component={GuardianAccess} />
                   <Route path="/guardians" component={Guardians} />
+                  <Route path="/lastlist/:id" component={LastList} />
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={Signup} />
                   <Route default component={Four04} />

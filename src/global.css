@@ -47,7 +47,7 @@ h3 {
   letter-spacing: 2.4px;
 }
 h4 {
-  color: #168cff;
+  color: var(--color-link-3);
   font-size: 22px;
   font-weight: normal;
 }

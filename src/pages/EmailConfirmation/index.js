@@ -19,8 +19,8 @@ class EmailConfirmation extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.props
-    const code = location.pathname.replace('/confirmation/', '')
+    const { match } = this.props
+    const { code } = match.params
     this.props.userActions
       .confirmAccount(code)
       .then(() => this.setState({ confirming: false, error: null }))

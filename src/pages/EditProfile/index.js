@@ -81,4 +81,4 @@ class EditProfile extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(EditProfile))

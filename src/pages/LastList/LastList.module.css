@@ -1,0 +1,39 @@
+.intro {
+  text-align: center;
+}
+
+.loaderContainer {
+  position: relative;
+  margin-top: 50px;
+  height: 50px;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.songsCount {
+  color: var(--color-link-3);
+}
+
+.songsTable {
+  width: 100%;
+  margin-top: var(--spacing-container);
+}
+
+.songsTable thead th {
+  text-align: left;
+  padding-bottom: var(--spacing-container);
+}
+
+.songsTable tbody td {
+  color: var(--color-link-1);
+  padding-bottom: 30px;
+}
+
+.error {
+  color: var(--error);
+  text-align: center;
+}
