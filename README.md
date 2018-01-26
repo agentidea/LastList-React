@@ -1,5 +1,5 @@
 # LastList-React
-React frontend to LastList-Server REST api.
+React frontend to LastList-Server's REST api.
 
 
 
@@ -33,15 +33,21 @@ yarn
 yarn start
 ```
 
-## build
+## build with Yarn
 ```bash
 yarn build
 ```
-## build with npm
+
+`OR` 
+
+## build with NPM run `script`
 ```bash
 npm run build
 ```
 
+## NB!! Clear browser cache 
+from time to time after a build, clear your browser's cache / settings
+if you do not see updates as expected
 
 
 
