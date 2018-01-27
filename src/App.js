@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { loggedInSelector } from './common/state/user/selectors'
 import * as userActionCreators from './common/state/user/actions'
 import ScrollToTop from './common/components/ScrollToTop'
+import Background from './common/components/Background'
 import Header from './common/components/Header'
 import Footer from './common/components/Footer'
 import Home from './pages/Home'
@@ -44,6 +45,7 @@ class App extends Component {
       <Router>
         <ScrollToTop>
           <div className={styles.app}>
+            <Background />
             <div className={styles.main}>
               <Header isLoggedIn={isLoggedIn} />
               <div className={styles.content}>
