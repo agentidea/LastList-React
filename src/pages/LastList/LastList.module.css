@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.noSongs {
+  text-align: center;
+}
+
 .songsCount {
   color: var(--color-link-3);
 }

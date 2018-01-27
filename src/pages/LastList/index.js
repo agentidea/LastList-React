@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import apiRequest from '../../common/utils/api'
 import Loading from '../../common/components/Loading'
@@ -6,8 +6,8 @@ import styles from './LastList.module.css'
 
 export class LastList extends Component {
   state = {
-    firstName: 'Jane',
-    lastName: 'Doe',
+    firstName: '',
+    lastName: '',
     songs: null,
     loading: false,
     error: null,
@@ -22,11 +22,21 @@ export class LastList extends Component {
   async loadLastList(id) {
     try {
       this.setState({ loading: true })
-      const data = await apiRequest(`user/getLists/${id}`)
+      const data = await apiRequest(`/guardian/lastlist`, null, {
+        method: 'POST',
+        body: {
+          guardian_uuid: id,
+        },
+      })
 
       // merge all lists songs
-      const songs = data.reduce((acc, item) => [...acc, ...item], [])
-      this.setState({ songs, loading: false })
+      const songs = data.lists.reduce((acc, item) => [...acc, ...item], [])
+      this.setState({
+        songs,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        loading: false,
+      })
     } catch (e) {
       let message = 'Unknown error'
       if (e.response && e.response.data && e.response.data.error_type) {
@@ -37,10 +47,27 @@ export class LastList extends Component {
   }
 
   render() {
-    const { firstName, lastName, songs } = this.state
+    const { firstName, lastName } = this.state
     return (
       <div>
         <h3>{`${firstName} ${lastName}`} Last list</h3>
+        {this.renderLists()}
+      </div>
+    )
+  }
+
+  renderLists() {
+    const { songs, firstName, lastName, loading, error } = this.state
+    if (loading)
+      return (
+        <div className={styles.loaderContainer}>
+          <Loading />
+        </div>
+      )
+    if (error) return <div className={styles.error}>{error}</div>
+
+    return (
+      <Fragment>
         <p className={styles.intro}>
           Here are the songs {`${firstName} ${lastName}`} has chosen to have played at their
           memorial, wake or funeral, and share with their loved ones. We've emailed you a copy for
@@ -54,39 +81,27 @@ export class LastList extends Component {
             </div>
           )}
         </div>
-        {this.renderLists()}
-      </div>
-    )
-  }
-
-  renderLists() {
-    const { songs, loading, error } = this.state
-    if (loading)
-      return (
-        <div className={styles.loaderContainer}>
-          <Loading />
-        </div>
-      )
-    if (error) return <div className={styles.error}>{error}</div>
-    if (!songs || songs.length === 0) return 'No songs found.'
-
-    return (
-      <table className={styles.songsTable}>
-        <thead>
-          <tr>
-            <th>Artist</th>
-            <th>Song Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          {songs.map((song, songIndex) => (
-            <tr key={songIndex}>
-              <td>{song.artistName}</td>
-              <td>{song.songName}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        {songs && songs.length > 0 ? (
+          <table className={styles.songsTable}>
+            <thead>
+              <tr>
+                <th>Artist</th>
+                <th>Song Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              {songs.map((song, songIndex) => (
+                <tr key={songIndex}>
+                  <td>{song.artistName}</td>
+                  <td>{song.songName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className={styles.noSongs}>No songs found.</div>
+        )}
+      </Fragment>
     )
   }
 }
