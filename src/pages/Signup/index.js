@@ -17,6 +17,8 @@ class Signup extends Component {
     email: '',
     password: '',
     remember: true,
+    successMessage: null,
+    creating: false,
     error: {
       field: null,
       message: null,
@@ -31,44 +33,44 @@ class Signup extends Component {
     this.setState({ [field]: value, error: { field: null } })
   }
 
-  // On successful Signup, redirect the user to the intended page.
-  redirect() {
-    const { location, history } = this.props
-    const match = location.pathname.match(/[?|&]fwd=\/?([-%\d\w]+)/)
-    const fwd = (match && match[1]) || ''
-    history.push(`/${fwd}`)
-  }
-
   onSubmit = event => {
     event.preventDefault()
-    this.setState({ successMessage: null })
+    this.setState({ creating: true, successMessage: null, error: { field: null } })
 
     const { email, password } = this.state
     this.props.userActions
       .signup(email, password)
       .then(resp => {
-        this.setState({ successMessage: resp })
+        this.setState({
+          creating: false,
+          successMessage:
+            'Your account has been created. Please check your inbox to confirm your email.',
+        })
       })
       .catch(error => {
         if (error instanceof UserError) {
           const { field, message } = error
-          this.setState({ error: { field, message } })
+          this.setState({ creating: false, error: { field, message } })
         } else {
-          this.setState({ error: { field: 'email', message: 'Unknown error' } })
+          this.setState({ creating: false, error: { field: 'email', message: 'Unknown error' } })
         }
       })
   }
 
   render() {
+    const { successMessage, creating } = this.state
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
         <h3>Create your account</h3>
         {this.renderInputs()}
+        {successMessage && <div className={styles.success}>{successMessage}</div>}
         <div className={styles.buttons}>
           <Button to="/login" nonprimary>
             Sign In
           </Button>
-          <Button className={styles.signupButton}>Create Account</Button>
+          <Button disabled={creating} className={styles.signupButton}>
+            {creating ? 'Creating Account...' : 'Create Account'}
+          </Button>
         </div>
       </form>
     )
