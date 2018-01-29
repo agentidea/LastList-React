@@ -6,7 +6,7 @@ import * as actions from './actions'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-export const ENDPOINT = 'https://lastlist.com'
+export const ENDPOINT = 'https://api.lastlist.com'
 nock.disableNetConnect() // we should not access a real endpoint
 
 describe('Api actions ', () => {

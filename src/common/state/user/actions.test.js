@@ -7,7 +7,7 @@ import * as jwt from './utils/jwt'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-export const ENDPOINT = 'https://lastlist.com'
+export const ENDPOINT = 'https://api.lastlist.com'
 nock.disableNetConnect() // we should not access a real endpoint
 
 describe('User actions', () => {
@@ -94,7 +94,7 @@ describe('User actions', () => {
     test('should return an error with a custom message if the server returns a 409 error', async () => {
       nock(ENDPOINT)
         .post('/api/user/login')
-        .reply(409, { message: 'Custom message' })
+        .reply(404, { message: 'Custom message' })
       const store = mockStore({ user: { jwt: null } })
 
       const action = actions.login('jon.snow@gmail.com', 'Test1234')

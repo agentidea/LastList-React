@@ -71,7 +71,7 @@ export const login = (email, password) => async dispatch => {
       return dispatch({ type: SET_CURRENT_USER, data: user })
     }
   } catch (e) {
-    if (e.response && e.response.status === 409) {
+    if (e.response && e.response.status === 404) {
       const message = e.response.data.message || 'User not found.'
       throw new UserError(message, 'email')
     }
@@ -89,7 +89,7 @@ export const signup = (email, password) => async dispatch => {
     )
     return result
   } catch (e) {
-    if (e.response && e.response.data && e.response.data.error_type) {
+    if (e.response && e.response.data) {
       const message = e.response.data.message
       throw new UserError(message || 'An error occurred.', 'email')
     }
@@ -104,7 +104,7 @@ export const confirmAccount = confirmationCode => async dispatch => {
     )
     return user
   } catch (e) {
-    if (e.response && e.response.data && e.response.data.error_type) {
+    if (e.response && e.response.data) {
       const message = e.response.data.message
       throw new UserError(message)
     }
