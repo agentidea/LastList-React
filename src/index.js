@@ -5,7 +5,6 @@ import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
 
 import App from './App'
 import createStore from './store'
-import registerServiceWorker from './common/utils/registerServiceWorker'
 import './global.css'
 
 const store = createStore()
@@ -28,4 +27,3 @@ const AppWithProviders = () => (
 )
 
 ReactDOM.render(<AppWithProviders />, document.getElementById('root'))
-registerServiceWorker()
