@@ -22,7 +22,7 @@ export class LastList extends Component {
   async loadLastList(id) {
     try {
       this.setState({ loading: true })
-      const data = await apiRequest(`/guardian/lastlist/${id}`)
+      const data = await apiRequest(`guardian/lastlist/${id}`)
 
       // merge all lists songs
       const songs = data.lists.reduce((acc, item) => [...acc, ...item], [])
