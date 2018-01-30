@@ -38,7 +38,7 @@ const Faq = () => {
       <h4>4. How much does a Last List cost?</h4>
 
       <p>
-        A set of 10 songs is only 99c. Your Last List can be made up of as many sets as you want.
+        A set of 10 songs is only $1. Your Last List can be made up of as many sets as you want.
       </p>
 
       <h4>5. What is a Guardian?</h4>
