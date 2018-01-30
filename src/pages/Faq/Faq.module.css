@@ -1,3 +1,13 @@
 .content h3 {
   font-weight: normal;
 }
+
+.list {
+  text-align: left;
+  color: #000000;
+  padding-left: 16px;
+}
+
+.listItem {
+  margin: 14px;
+}

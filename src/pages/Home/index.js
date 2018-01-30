@@ -32,13 +32,12 @@ export class Home extends Component {
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
-                Add a set of 10 songs for $1. You can have as many sets as you want, it’s
-                totally up to you.
+                Add a set of 10 songs for $1. You can have as many sets as you want.
               </span>
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
-                Give us the names of up to 5 Guardians of your list. We’ll let them know they’ve
+                Add the names of up to 5 Guardians of your list. We’ll let them know they’ve
                 been chosen and what they have to do to when you’ve passed away.
               </span>
             </li>
@@ -50,7 +49,7 @@ export class Home extends Component {
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
-                Finish up by checking out with a Credit Card or Apple Pay.
+                Finish up by checking out with a credit card or Apple Pay.
               </span>
             </li>
           </ul>
