@@ -25,7 +25,7 @@ class EmailConfirmation extends Component {
       .confirmAccount(code)
       .then(() => this.setState({ confirming: false, error: null }))
       .catch(e => {
-        let message = 'Unknown error'
+        let message = 'Unknown error ' + e.message
         if (e instanceof UserError) {
           message = e.message
         }

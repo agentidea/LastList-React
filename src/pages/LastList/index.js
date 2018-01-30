@@ -33,7 +33,7 @@ export class LastList extends Component {
         loading: false,
       })
     } catch (e) {
-      let message = 'Unknown error'
+      let message = 'Unknown error '
       if (e.response && e.response.data && e.response.data.error_type) {
         message = e.response.data.message
       }
