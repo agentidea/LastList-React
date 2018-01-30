@@ -32,7 +32,7 @@ export class Home extends Component {
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
-                Add a set of 10 songs for 99c. You can have as many sets as you want, it’s
+                Add a set of 10 songs for $1. You can have as many sets as you want, it’s
                 totally up to you.
               </span>
             </li>
@@ -45,12 +45,12 @@ export class Home extends Component {
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
                 You can edit your Last List and Guardian(s) whenever you feel like it. We’ll
-                store your Last List for you until the time has come.
+                store your Last List for you until the time has come. 
               </span>
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
-                Finish up by checking out with PayPal or Apple Pay.
+                Finish up by checking out with a Credit Card or Apple Pay.
               </span>
             </li>
           </ul>

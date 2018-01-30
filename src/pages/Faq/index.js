@@ -16,7 +16,7 @@ const Faq = () => {
       <h4>2. How does it work?</h4>
       <ul>
         <li>Sign up and create your Last List</li>
-        <li>Add a set of 10 songs for 99c. You can have as many sets as you want.</li>
+        <li>Add a set of 10 songs for $1. You can have as many sets as you want.</li>
         <li>
           Give us the names of up to 5 Guardians of your list. We’ll let them know they’ve been
           chosen and what they have to do to when you’ve passed away.
@@ -25,7 +25,7 @@ const Faq = () => {
           You can edit your Last List and Guardian(s) whenever you feel like it. We’ll store your
           Last List for you until the time has come.
         </li>
-        <li>Finish up by checking out with PayPal or Apple Pay.</li>
+        <li>Finish up by checking out with a credit card or Apple Pay.</li>
       </ul>
 
       <h4>3. How will my Last List be shared with my loved ones?</h4>
