@@ -13,7 +13,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.saveBtn {
+  margin-left: auto;
+}
 .loaderContainer {
   position: relative;
   margin-top: 50px;
