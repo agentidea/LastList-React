@@ -22,6 +22,16 @@ export class EditLastList extends Component {
     this.props.listsActions.fetchUserLists()
   }
 
+  shouldShowAddSongs = () => {
+    const { lists } = this.props
+    if (lists && lists.length > 0) {
+      const lastList = lists[lists.length - 1]
+      const nonEmptySongs = lastList.filter(item => item.artistName !== '' || item.songName !== '')
+      return nonEmptySongs.length === 10
+    }
+    return false
+  }
+
   render() {
     const { lists, loading, saving } = this.props
     return (
@@ -41,9 +51,11 @@ export class EditLastList extends Component {
           <Fragment>
             <div>{lists.map((l, i) => this.renderList(l, i))}</div>
             <div className={styles.buttons}>
-              <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
-                Add another 10 songs
-              </Button>
+              {this.shouldShowAddSongs() && (
+                <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
+                  Add another 10 songs
+                </Button>
+              )}
               <Button
                 className={styles.saveBtn}
                 onClick={this.props.listsActions.saveUserList}
