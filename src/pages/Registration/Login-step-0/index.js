@@ -40,7 +40,7 @@ class RegLogin extends Component {
   // i.e. CreateNewProfile-step-2
   //
   redirect() {
-    //const { location, history } = this.props
+    const { location, history } = this.props
     //const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
     //const newRoute = (match && match[1]) || '/'
     history.push('/reg/create-profile')
