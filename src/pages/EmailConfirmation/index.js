@@ -45,9 +45,9 @@ class EmailConfirmation extends Component {
         ) : (
           <div>
             <p className={styles.success}>
-              Your account is now confirmed. You can login and start creating your list.
+              Your email is now confirmed. You can login and start creating your profile and list.
             </p>
-            <Button to="/login">Go to Login</Button>
+            <Button to="/reg/login">Login</Button>
           </div>
         )}
       </div>

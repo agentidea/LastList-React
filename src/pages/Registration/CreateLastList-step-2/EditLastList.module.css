@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.listRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--spacing-container);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.saveBtn {
+  margin-left: auto;
+}
+.loaderContainer {
+  position: relative;
+  margin-top: 50px;
+}

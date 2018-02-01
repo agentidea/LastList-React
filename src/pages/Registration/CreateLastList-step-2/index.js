@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   listsActions: bindActionCreators(listsActionCreators, dispatch),
 })
-export class EditLastList extends Component {
+export class CreateFirstLastList extends Component {
   componentDidMount() {
     this.props.listsActions.fetchUserLists()
   }
@@ -36,6 +36,7 @@ export class EditLastList extends Component {
     const { lists, loading, saving } = this.props
     return (
       <div className={styles.content}>
+        <h4>Step Two</h4>
         <h3>Create Your Last List</h3>
         <p>
           Get started by curating a set of 10 songs for 99&#162;. You might have loads of songs that

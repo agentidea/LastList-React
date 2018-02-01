@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
 })
 
-class EditProfile extends Component {
+class NewProfile extends Component {
   state = {
     loaded: false,
     saving: false,
@@ -36,6 +36,12 @@ class EditProfile extends Component {
     this.setState({ dob: date })
   }
 
+
+  goNext = () => {
+    this.setState( {goingnext: true} )
+    this.props.userActions
+      .goNextStep('/reg/')
+  }
   saveProfile = () => {
     const { firstName, lastName, dob } = this.state
     this.setState({ saving: true })
@@ -46,37 +52,24 @@ class EditProfile extends Component {
   }
 
   render() {
-    const { loaded, saving, firstName, lastName, dob } = this.state
-    return (
-      <div className={styles.content}>
+    const { loaded, saving, goingnext, firstName, lastName, dob } = this.state
+    return <div className={styles.content}>
+        <h4>Step One</h4>
         <h3>About You</h3>
-        {loaded && (
-          <Fragment>
-            <Textfield
-              label="First name"
-              placeholder="First name"
-              value={firstName}
-              onChange={value => this.onTextChange('firstName', value)}
-            />
-            <Textfield
-              label="Last name"
-              placeholder="Last name"
-              value={lastName}
-              onChange={value => this.onTextChange('lastName', value)}
-            />
-            <Datepicker
-              label="Birthday"
-              placeholder="Birthday"
-              value={dob}
-              onChange={this.onDateChange}
-            />
+        {loaded && <Fragment>
+            <Textfield label="First name" placeholder="First name" value={firstName} onChange={value => this.onTextChange('firstName', value)} />
+            <Textfield label="Last name" placeholder="Last name" value={lastName} onChange={value => this.onTextChange('lastName', value)} />
+            <Datepicker label="Birthday" placeholder="Birthday" value={dob} onChange={this.onDateChange} />
+
             <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
               {saving ? 'Saving...' : 'Save'}
             </Button>
-          </Fragment>
-        )}
+            <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
+              {next ? 'next...' : 'Next'}
+            </Button>
+            
+          </Fragment>}
       </div>
-    )
   }
 }
 
