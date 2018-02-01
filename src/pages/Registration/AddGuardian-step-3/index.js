@@ -23,7 +23,7 @@ class RegAddGuardian extends Component {
   }
 
   render() {
-    const { firstName, lastName, email, adding, error } = this.state
+    const { firstName, lastName, email, adding, error, pay } = this.state
     return <form className={styles.addGuardian} onSubmit={this.addGuardian}>
         <div className={styles.inputs}>
           <Textfield type="text" label="First name" value={firstName} required placeholder="Her first name" onChange={value => this.onInputChange('firstName', value)} />
