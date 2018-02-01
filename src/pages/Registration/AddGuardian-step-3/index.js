@@ -19,6 +19,7 @@ class RegAddGuardian extends Component {
     email: '',
     adding: false,
     error: null,
+    pay: false,
   }
 
   render() {
@@ -31,7 +32,7 @@ class RegAddGuardian extends Component {
         </div>
         {error && <div className={styles.error}>{error}</div>}
         <Button>{adding ? 'Adding...' : 'Add'}</Button>
-        <Button>{pay ? 'Paying' : 'Paid'}</Button>
+        <Button>{pay ? 'Paying...' : 'Paid'}</Button>
       </form>
   }
 
