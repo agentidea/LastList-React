@@ -16,4 +16,4 @@ export class RegPayment extends Component {
   }
 }
 
-export default Payment
+export default RegPayment
