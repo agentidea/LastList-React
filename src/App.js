@@ -30,7 +30,7 @@ import NewProfile from './pages/Registration/CreateNewProfile-step-1'
 import CreateFirstLastList from './pages/Registration/CreateLastList-step-2'
 import RegAddGuardian from './pages/Registration/AddGuardian-step-3'
 import RegPayment from './pages/Registration/Payment-step-4'
-import WelcomeMember from './pages/registration/WelcomeMember-step-5' 
+import WelcomeMember from './pages/Registration/WelcomeMember-step-5' 
 
 
 
