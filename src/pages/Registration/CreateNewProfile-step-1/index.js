@@ -22,6 +22,7 @@ class NewProfile extends Component {
   state = {
     loaded: false,
     saving: false,
+    goingnext: false,
   }
 
   componentDidMount() {
@@ -40,7 +41,7 @@ class NewProfile extends Component {
   goNext = () => {
     this.setState( {goingnext: true} )
     this.props.userActions
-      .goNextStep('/reg/')
+      .goNextStep('/reg/create-list')
   }
   saveProfile = () => {
     const { firstName, lastName, dob } = this.state
@@ -65,9 +66,8 @@ class NewProfile extends Component {
               {saving ? 'Saving...' : 'Save'}
             </Button>
             <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
-              {next ? 'next...' : 'Next'}
+              {goingnext ? 'next...' : 'Next'}
             </Button>
-            
           </Fragment>}
       </div>
   }
