@@ -31,10 +31,10 @@
   display: flex;
   justify-content: space-around;
   margin: var(--spacing-container) 0;
-}
+ 
 
 .links > a {
-  color: var(--link-primary);
+  color: #3717ff;
   transition: background-color 0.5s, color 0.5s;
   text-decoration: none;
 }
