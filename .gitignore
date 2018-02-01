@@ -9,6 +9,9 @@
 # production
 /build
 
+# scratch
+./.scratch/scratch-code.txt
+
 # misc
 .DS_Store
 .env.local
