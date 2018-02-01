@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import requireLogin from '../../common/hocs/requireLogin'
-import * as listsActionCreators from '../../common/state/lists/actions'
-import Loading from '../../common/components/Loading'
-import Textfield from '../../common/components/Textfield'
-import Button from '../../common/components/Button'
+import requireLogin from '../../../common/hocs/requireLogin'
+import * as listsActionCreators from '../../../common/state/lists/actions'
+import Loading from '../../../common/components/Loading'
+import Textfield from '../../../common/components/Textfield'
+import Button from '../../../common/components/Button'
 import styles from './EditLastList.module.css'
 
 const mapStateToProps = state => ({
@@ -94,4 +94,4 @@ export class CreateFirstLastList extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(EditLastList))
+export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(CreateFirstLastList))

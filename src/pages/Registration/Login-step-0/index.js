@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import { FormControlLabel } from 'material-ui/Form'
 import Checkbox from 'material-ui/Checkbox'
 
-import * as userActionCreators from '../../common/state/user/actions'
-import UserError from '../../common/state/user/error'
-import Button from '../../common/components/Button'
-import Textfield from '../../common/components/Textfield'
+import * as userActionCreators from '../../../common/state/user/actions'
+import UserError from '../../../common/state/user/error'
+import Button from '../../../common/components/Button'
+import Textfield from '../../../common/components/Textfield'
 import styles from './Login.module.css'
 
 const mapDispatchToProps = dispatch => ({

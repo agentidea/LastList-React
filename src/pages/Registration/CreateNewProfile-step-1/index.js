@@ -2,13 +2,13 @@ import React, { Component, Fragment } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import requireLogin from '../../common/hocs/requireLogin'
-import * as userActionCreators from '../../common/state/user/actions'
-import { profileSelector } from '../../common/state/user/selectors'
+import requireLogin from '../../../common/hocs/requireLogin'
+import * as userActionCreators from '../../../common/state/user/actions'
+import { profileSelector } from '../../../common/state/user/selectors'
 
-import Button from '../../common/components/Button'
-import Textfield from '../../common/components/Textfield'
-import Datepicker from '../../common/components/Datepicker'
+import Button from '../../../common/components/Button'
+import Textfield from '../../../common/components/Textfield'
+import Datepicker from '../../../common/components/Datepicker'
 import styles from './EditProfile.module.css'
 
 const mapStateToProps = state => ({
@@ -73,4 +73,4 @@ class NewProfile extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(EditProfile))
+export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(NewProfile))

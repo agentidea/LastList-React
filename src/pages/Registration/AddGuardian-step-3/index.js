@@ -65,4 +65,4 @@ class RegAddGuardian extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddGuardian)
+export default connect(null, mapDispatchToProps)(RegAddGuardian)

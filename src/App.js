@@ -25,12 +25,12 @@ import PaymentSuccess from './pages/PaymentSuccess'
 import Four04 from './pages/Four04'
 import styles from './App.module.css'
 
-import RegLogin from '/pages/Registration/Login-step-0'
-import NewProfile from '/pages/Registration/CreateNewProfile-step-1'
-import CreateFirstLastList from '/pages/Registration/CreateLastList-step-2'
-import RegAddGuardian from '/pages/Registration/AddGuardian-step-3'
-import RegPayment from '/pages/Registration/Payment-step-4'
-import RegWelcome from '/pages/registration/WelcomeMember-step-5' 
+import RegLogin from './pages/Registration/Login-step-0'
+import NewProfile from './pages/Registration/CreateNewProfile-step-1'
+import CreateFirstLastList from './pages/Registration/CreateLastList-step-2'
+import RegAddGuardian from './pages/Registration/AddGuardian-step-3'
+import RegPayment from './pages/Registration/Payment-step-4'
+import WelcomeMember from './pages/registration/WelcomeMember-step-5' 
 
 
 
@@ -77,6 +77,7 @@ class App extends Component {
                   <Route path="/reg/create-list" component={CreateFirstLastList} />
                   <Route path="/reg/add-guardian" component={RegAddGuardian} />
                   <Route path="/reg/payment" component={RegPayment} />
+                  <Route path="/reg/welcome-member" component={WelcomeMember} />
 
                   <Route default component={Four04} />
                 </Switch>

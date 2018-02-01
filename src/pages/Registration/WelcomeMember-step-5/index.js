@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Button from '../../common/components/Button'
+import Button from '../../../common/components/Button'
 
 import styles from './PaymentSuccess.module.css'
 
-export class PaymentSuccess extends Component {
+export class WelcomeMember extends Component {
   render() {
     return (
       <div className={styles.content}>
@@ -17,4 +17,4 @@ export class PaymentSuccess extends Component {
   }
 }
 
-export default PaymentSuccess
+export default WelcomeMember
