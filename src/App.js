@@ -79,7 +79,7 @@ class App extends Component {
                   <Route path="/reg/login" component={RegLogin} />
                   <Route path="/reg/create-profile" component={NewProfile} />
                   <Route path="/reg/create-list" component={CreateFirstLastList} />
-                  <Route path="/reg/add-guardian" component={RegAddGuardian} />
+                  <Route path="/reg/add-guardian" component={RegGuardians} />
                   <Route path="/reg/payment" component={RegPayment} />
                   <Route path="/reg/welcome-member" component={WelcomeMember} />
 

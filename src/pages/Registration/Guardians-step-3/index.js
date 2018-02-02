@@ -54,4 +54,4 @@ class RegGuardians extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(Guardians))
+export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(RegGuardians))
