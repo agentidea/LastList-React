@@ -52,13 +52,12 @@ class App extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn, isRegistered } = this.props
     return <Router>
         <ScrollToTop>
           <div className={styles.app}>
             <Background />
             <div className={styles.main}>
-
               <Header isLoggedIn={isLoggedIn} isRegistered={isRegistered} />
 
               <div className={styles.content}>
