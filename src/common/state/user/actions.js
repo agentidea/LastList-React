@@ -4,6 +4,7 @@ import { resetJwt, setJwt } from './utils/jwt'
 import { jwtSelector, currentUserSelector } from './selectors'
 import UserError from './error'
 
+export const LOGIN_REG_SUCCESSFULL = 'LOGIN_REGISTRATION_SUCCESSFULL'
 export const LOGIN_SUCCESSFULL = 'LOGIN_SUCCESSFULL'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SIGN_OUT = 'SIGN_OUT'

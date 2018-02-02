@@ -5,7 +5,7 @@ import logo from './logo.png'
 
 export default class Header extends Component {
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn, isRegistered } = this.props
     return (
       <header className={styles.header}>
         <div className={styles.logoContainer}>
@@ -24,7 +24,8 @@ export default class Header extends Component {
   renderLogin(isLoggedIn) {
     const label = isLoggedIn ? 'Sign Out' : 'Sign In'
     return <Fragment>
-        {isLoggedIn && <Fragment>
+        
+        {isLoggedIn && isRegistered && <Fragment>
             <Link to="/edit-profile">Profile</Link>
             <Link to="/edit-list">Your list</Link>
             <Link to="/guardians">Your guardians</Link>

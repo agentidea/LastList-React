@@ -12,3 +12,17 @@ export const profileSelector = state => {
   }
   return null
 }
+
+export const registeredSelector = state => {
+  if (state.user && state.user._id) {
+    if(state.user.flow == 'registered'){
+      return true
+    }
+    else{
+      if(state.user.flow == 'registering'){
+        return false
+      }
+    }
+  }
+  return null
+}

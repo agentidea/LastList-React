@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { loggedInSelector } from './common/state/user/selectors'
+import { registeredSelector } from './common/state/user/selectors'
 import * as userActionCreators from './common/state/user/actions'
 import ScrollToTop from './common/components/ScrollToTop'
 import Background from './common/components/Background'
@@ -36,6 +37,8 @@ import WelcomeMember from './pages/Registration/WelcomeMember-step-5'
 
 const mapStateToProps = state => ({
   isLoggedIn: loggedInSelector(state),
+  isRegistered: registeredSelector(state),
+
 })
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -55,7 +58,9 @@ class App extends Component {
           <div className={styles.app}>
             <Background />
             <div className={styles.main}>
-              <Header isLoggedIn={isLoggedIn} />
+
+              <Header isLoggedIn={isLoggedIn} isRegistered={isRegistered} />
+
               <div className={styles.content}>
                 <Switch>
                   <Route exact path="/" component={Home} />
