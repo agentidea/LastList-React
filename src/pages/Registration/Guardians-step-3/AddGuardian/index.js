@@ -31,7 +31,7 @@ class AddGuardian extends Component {
   shouldShowNextButton = () => {
     //if saved how do we tell?
     //look in state???+
-    return state.goingnext
+    return this.state.goingnext
   }
 
   render() {
