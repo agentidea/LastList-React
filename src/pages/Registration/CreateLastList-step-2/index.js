@@ -41,12 +41,13 @@ export class CreateFirstLastList extends Component {
 
          goNext = () => {
            //$to do: auto-save / prompt if dirty
-           const { location, history } = this.props
+           const { history } = this.props
            history.push('/reg/add-guardian')
          }
 
          saveButtonClicked = () => {
-            this.props.listsActions.saveUserList
+           //pass dispatch getState() ?????
+            this.props.listsActions.saveUserList()
          }
 
          render() {

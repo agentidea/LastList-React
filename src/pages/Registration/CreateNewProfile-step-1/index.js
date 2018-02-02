@@ -40,7 +40,7 @@ class NewProfile extends Component {
 
   goNext = () => {
     //$to do: auto-save / prompt if dirty
-    const { location, history } = this.props
+    const { history } = this.props
     history.push('/reg/create-list')
   }
 
