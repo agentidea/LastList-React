@@ -29,7 +29,7 @@ import styles from './App.module.css'
 import RegLogin from './pages/Registration/Login-step-0'
 import NewProfile from './pages/Registration/CreateNewProfile-step-1'
 import CreateFirstLastList from './pages/Registration/CreateLastList-step-2'
-import RegAddGuardian from './pages/Registration/AddGuardian-step-3'
+import RegGuardians from './pages/Registration/Guardians-step-3'
 import RegPayment from './pages/Registration/Payment-step-4'
 import WelcomeMember from './pages/Registration/WelcomeMember-step-5' 
 

@@ -24,6 +24,9 @@ class AddGuardian extends Component {
   render() {
     const { firstName, lastName, email, adding, error } = this.state
     return (
+      <h4>Step 3</h4>
+      <h3>Add Guardians</h3>
+
       <form className={styles.addGuardian} onSubmit={this.addGuardian}>
         <div className={styles.inputs}>
           <Textfield

@@ -26,8 +26,7 @@ class Guardians extends Component {
     const { loading, guardians } = this.props
     return (
       <div className={styles.content}>
-        <h4>Step Three</h4>
-        <h3>Nominate your guardians</h3>
+        <h3>Manage your guardians</h3>
         <p>
           Your Guardian(s) will be responsible for getting your Last List from us when the time has
           come. We’ll let them know via email that they’ve been chosen by you to fulfill this
