@@ -24,6 +24,7 @@ class AddGuardian extends Component {
   render() {
     const { firstName, lastName, email, adding, error } = this.state
     return (
+      <div className={styles.content}>
       <h4>Step 3</h4>
       <h3>Add Guardians</h3>
 
@@ -57,6 +58,7 @@ class AddGuardian extends Component {
         {error && <div className={styles.error}>{error}</div>}
         <Button>{adding ? 'Adding...' : 'Add'}</Button>
       </form>
+      </div>
     )
   }
 
