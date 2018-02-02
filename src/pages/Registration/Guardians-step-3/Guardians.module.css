@@ -1,0 +1,5 @@
+.loaderContainer {
+  position: relative;
+  height: 40px;
+  margin: var(--spacing-container) 0;
+}
