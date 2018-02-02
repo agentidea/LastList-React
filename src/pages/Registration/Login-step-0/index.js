@@ -36,13 +36,10 @@ class RegLogin extends Component {
 
   //
   // registration flow
-  // On successful login, redirect the user to the intended page.
-  // i.e. CreateNewProfile-step-2
+  // On successful login, redirect the user to CreateNewProfile-step-2
   //
   redirect() {
     const { location, history } = this.props
-    //const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
-    //const newRoute = (match && match[1]) || '/'
     history.push('/reg/create-profile')
   }
 

@@ -39,10 +39,11 @@ class NewProfile extends Component {
 
 
   goNext = () => {
-    this.setState( {goingnext: true} )
-    this.props.userActions
-      .goNextStep('/reg/create-list')
+    //$to do: auto-save / prompt if dirty
+    const { location, history } = this.props
+    history.push('/reg/create-profile')
   }
+
   saveProfile = () => {
     const { firstName, lastName, dob } = this.state
     this.setState({ saving: true })
