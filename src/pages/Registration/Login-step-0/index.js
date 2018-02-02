@@ -39,7 +39,7 @@ class RegLogin extends Component {
   // On successful login, redirect the user to CreateNewProfile-step-2
   //
   redirect() {
-    const { location, history } = this.props
+    const { history } = this.props
     history.push('/reg/create-profile')
   }
 
