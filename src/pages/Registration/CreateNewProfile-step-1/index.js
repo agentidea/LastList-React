@@ -41,7 +41,7 @@ class NewProfile extends Component {
   goNext = () => {
     //$to do: auto-save / prompt if dirty
     const { location, history } = this.props
-    history.push('/reg/create-profile')
+    history.push('/reg/create-list')
   }
 
   saveProfile = () => {
@@ -62,13 +62,14 @@ class NewProfile extends Component {
             <Textfield label="First name" placeholder="First name" value={firstName} onChange={value => this.onTextChange('firstName', value)} />
             <Textfield label="Last name" placeholder="Last name" value={lastName} onChange={value => this.onTextChange('lastName', value)} />
             <Datepicker label="Birthday" placeholder="Birthday" value={dob} onChange={this.onDateChange} />
-
-            <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-              {saving ? 'Saving...' : 'Save'}
-            </Button>
-            <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
-              {goingnext ? 'next...' : 'Next'}
-            </Button>
+            <div className={styles.buttons}>
+              <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
+                {saving ? 'Saving...' : 'Save'}
+              </Button>
+              <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
+                {goingnext ? 'next...' : 'Next'}
+              </Button>
+            </div>
           </Fragment>}
       </div>
   }
