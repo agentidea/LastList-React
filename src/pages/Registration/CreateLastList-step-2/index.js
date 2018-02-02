@@ -50,7 +50,7 @@ export class CreateFirstLastList extends Component {
          }
 
          render() {
-           const { lists, loading, saving } = this.props
+           const { lists, loading, saving, goingnext } = this.props
            return <div className={styles.content}>
                <h4>Step Two</h4>
                <h3>Create Your Last List</h3>
@@ -67,7 +67,7 @@ export class CreateFirstLastList extends Component {
                      {this.shouldShowAddSongs() && <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
                          Add another 10 songs
                        </Button>}
-                     <Button className={styles.saveBtn} onClick={saveButtonClicked} disabled={saving}>
+                     <Button className={styles.saveBtn} onClick={this.saveButtonClicked} disabled={saving}>
                        {saving ? 'Saving...' : 'Save'}
                      </Button>
 
