@@ -38,7 +38,7 @@ class AddGuardian extends Component {
   render() {
     const { firstName, lastName, email, adding, gonext, error } = this.state
     return (
-      
+      <div className={styles.content}>      
       <h3>Add Guardians</h3>
 
       <form className={styles.addGuardian} onSubmit={this.addGuardian}>
@@ -72,13 +72,16 @@ class AddGuardian extends Component {
         {error && <div className={styles.error}>{error}</div>}
         
         <div className={styles.buttons} >
-        <Button>{adding ? 'Adding...' : 'Add'}</Button>
+          <Button>{adding ? 'Adding...' : 'Add'}</Button>
 
-        {this.shouldShowNextButton() && <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
-        {goingnext ? 'next...' : 'Next'}
-        </Button>}
+          {this.shouldShowNextButton() && <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
+          {goingnext ? 'next...' : 'Next'}
+          </Button>}
         </div>
-      </form>
+        
+       </form>
+      </div>
+
     )
   }
 
