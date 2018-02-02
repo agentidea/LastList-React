@@ -19,7 +19,7 @@ class AddGuardian extends Component {
     email: '',
     adding: false,
     error: null,
-    gonext: false,
+    goingnext: false,
   }
 
   goNext = () => {
@@ -31,57 +31,56 @@ class AddGuardian extends Component {
   shouldShowNextButton = () => {
     //if saved how do we tell?
     //look in state???+
-    return true
+    return state.goingnext
   }
 
-
   render() {
-    const { firstName, lastName, email, adding, gonext, error } = this.state
+    const { firstName, lastName, email, adding, goingnext, error } = this.state
     return (
-      <div className={styles.content}>      
-      <h3>Add Guardians</h3>
+      <div className={styles.content}>
+        <h3>Add Guardians</h3>
 
-      <form className={styles.addGuardian} onSubmit={this.addGuardian}>
-        <div className={styles.inputs}>
-          <Textfield
-            type="text"
-            label="First name"
-            value={firstName}
-            required
-            placeholder="Her first name"
-            onChange={value => this.onInputChange('firstName', value)}
-          />
-          <Textfield
-            type="text"
-            label="Last name"
-            value={lastName}
-            required
-            placeholder="Her last name"
-            onChange={value => this.onInputChange('lastName', value)}
-          />
-          <Textfield
-            type="email"
-            label="Email"
-            value={email}
-            required
-            placeholder="Her email address"
-            onChange={value => this.onInputChange('email', value)}
-          />
-        </div>
-        
-        {error && <div className={styles.error}>{error}</div>}
-        
-        <div className={styles.buttons} >
-          <Button>{adding ? 'Adding...' : 'Add'}</Button>
+        <form className={styles.addGuardian} onSubmit={this.addGuardian}>
+          <div className={styles.inputs}>
+            <Textfield
+              type="text"
+              label="First name"
+              value={firstName}
+              required
+              placeholder="Her first name"
+              onChange={value => this.onInputChange('firstName', value)}
+            />
+            <Textfield
+              type="text"
+              label="Last name"
+              value={lastName}
+              required
+              placeholder="Her last name"
+              onChange={value => this.onInputChange('lastName', value)}
+            />
+            <Textfield
+              type="email"
+              label="Email"
+              value={email}
+              required
+              placeholder="Her email address"
+              onChange={value => this.onInputChange('email', value)}
+            />
+          </div>
 
-          {this.shouldShowNextButton() && <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
-          {goingnext ? 'next...' : 'Next'}
-          </Button>}
-        </div>
-        
-       </form>
+          {error && <div className={styles.error}>{error}</div>}
+
+          <div className={styles.buttons}>
+            <Button>{adding ? 'Adding...' : 'Add'}</Button>
+
+            {this.shouldShowNextButton() && (
+              <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
+                {goingnext ? 'next...' : 'Next Step Pay'}
+              </Button>
+            )}
+          </div>
+        </form>
       </div>
-
     )
   }
 
@@ -102,6 +101,7 @@ class AddGuardian extends Component {
           lastName: '',
           email: '',
           adding: false,
+          goingnext: true,
         })
       })
       .catch(error => {
