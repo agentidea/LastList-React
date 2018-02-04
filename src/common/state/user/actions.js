@@ -15,6 +15,7 @@ export const LOGIN_API = createAPIActions('LOGIN_API', 'POST')
 export const SIGNUP_API = createAPIActions('SIGNUP_API', 'POST')
 export const CONFIRM_USER_API = createAPIActions('CONFIRM_USER_API', 'POST')
 export const SAVE_PROFILE_API = createAPIActions('SAVE_PROFILE_API', 'PUT')
+export const PAY_API = createAPIActions('PAY_API', 'POST')
 
 export const signOut = () => async dispatch => {
   await resetJwt()
@@ -129,5 +130,27 @@ export const saveUserProfile = (firstName, lastName, dob) => async (dispatch, ge
     return true
   } else {
     console.error('User should be logged in to save his profile')
+  }
+}
+
+export const payForList = (amount, paymentMethod, numberListsPayingFor) => async (
+  dispatch,
+  getState
+) => {
+  const user = currentUserSelector(getState())
+  if (user) {
+    await dispatch(
+      doRequest(PAY_API, `user/payment/${user._id}`, {
+        method: 'POST',
+        body: {
+          amount,
+          paymentMethod,
+          numberListsPayingFor,
+        },
+      })
+    )
+    return true
+  } else {
+    console.error('User should be logged in to paty for lists')
   }
 }
