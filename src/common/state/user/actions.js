@@ -63,14 +63,16 @@ export const login = (email, password) => async dispatch => {
       })
     )
     const jwt = user._id // todo replace this with real JWT
+    const flow_ = user.flow
     if (jwt) {
       setJwt(jwt)
       store.set('jwtEmail', email) // temporary until we have real JWT
       dispatch({
         type: LOGIN_SUCCESSFULL,
         jwt,
+        flow_,
       })
-      return dispatch({ type: SET_CURRENT_USER, data: user })
+      return dispatch({ type: SET_CURRENT_USER, data: user, flow: flow_ })
     }
   } catch (e) {
     if (e.response && e.response.status === 404) {

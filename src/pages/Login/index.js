@@ -20,6 +20,7 @@ class Login extends Component {
     email: '',
     password: '',
     remember: true,
+    flow: null,
     error: {
       field: null,
       message: null,
@@ -36,10 +37,17 @@ class Login extends Component {
 
   // On successful login, redirect the user to the intended page.
   redirect() {
-    const { location, history } = this.props
-    const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
-    const newRoute = (match && match[1]) || '/'
-    history.push(newRoute)
+    const { location, history, flow } = this.props
+
+    if (flow === 'registered') {
+      const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
+      const newRoute = (match && match[1]) || '/'
+      history.push(newRoute)
+    }
+
+    if (flow === 'registering') {
+      history.push('/reg/create-profile')
+    }
   }
 
   onSubmit = event => {
