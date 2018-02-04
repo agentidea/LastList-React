@@ -10,6 +10,11 @@ import UserError from '../../common/state/user/error'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
+import { registeredSelector } from './common/state/user/selectors'
+
+const mapStateToProps = state => ({
+  isRegistered: registeredSelector(state),
+})
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -37,15 +42,13 @@ class Login extends Component {
 
   // On successful login, redirect the user to the intended page.
   redirect() {
-    const { location, history, flow } = this.props
+    const { location, history, isRegistered } = this.props
 
-    if (flow === 'registered') {
+    if (!isRegistered) {
       const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
       const newRoute = (match && match[1]) || '/'
       history.push(newRoute)
-    }
-
-    if (flow === 'registering') {
+    } else {
       history.push('/reg/create-profile')
     }
   }
