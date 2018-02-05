@@ -47,7 +47,7 @@ class AddGuardian extends Component {
               label="First name"
               value={firstName}
               required
-              placeholder="Her first name"
+              placeholder="First Name"
               onChange={value => this.onInputChange('firstName', value)}
             />
             <Textfield
@@ -55,7 +55,7 @@ class AddGuardian extends Component {
               label="Last name"
               value={lastName}
               required
-              placeholder="Her last name"
+              placeholder="Last Name"
               onChange={value => this.onInputChange('lastName', value)}
             />
             <Textfield
@@ -63,7 +63,7 @@ class AddGuardian extends Component {
               label="Email"
               value={email}
               required
-              placeholder="Her email address"
+              placeholder="Email Address"
               onChange={value => this.onInputChange('email', value)}
             />
           </div>
@@ -75,7 +75,7 @@ class AddGuardian extends Component {
 
             {this.shouldShowNextButton() && (
               <Button className={styles.saveBtn} onClick={this.goNext}>
-                {goingnext ? 'Next' : 'Next Step Pay'}
+                {goingnext ? 'Next' : 'Next Step Payment'}
               </Button>
             )}
           </div>

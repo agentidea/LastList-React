@@ -44,10 +44,8 @@ class EmailConfirmation extends Component {
           <p className={styles.error}>{error.message}</p>
         ) : (
           <div>
-            <p className={styles.success}>
-              Your email is now confirmed. You can login and complete registration by creating your profile, list and guardian(s).
-            </p>
-            <Button to="/reg/login">Complete Registration Login</Button>
+            <p className={styles.success}>Thanks, you can now login and create your Last List.</p>
+            <Button to="/reg/login">Get Started</Button>
           </div>
         )}
       </div>

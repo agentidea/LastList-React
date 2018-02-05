@@ -10,7 +10,7 @@ import UserError from '../../common/state/user/error'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
-import { registeredSelector } from '../../common/state/user/selectors'
+import { registeredSelector } from '../.././common/state/user/selectors'
 
 const mapStateToProps = state => ({
   isRegistered: registeredSelector(state),

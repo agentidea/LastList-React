@@ -34,13 +34,14 @@ class RegGuardians extends Component {
           important role. You can add up to 5 Guardians and change them as many times as you want
           to.
         </p>
-        <h4>Your guardians</h4>
+
         {loading ? (
           <div className={styles.loaderContainer}>
+            <h4>Your guardians</h4>
             <Loading />
           </div>
         ) : guardians.length === 0 ? (
-          <p>You don't have guardians at the moment</p>
+          <p />
         ) : (
           <GuardiansList
             guardians={guardians}

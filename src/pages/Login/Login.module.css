@@ -9,11 +9,17 @@
   width: 100%;
 }
 
+.success {
+  color: var(--success);
+  margin-top: var(--spacing-container);
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .buttons {
     grid-template-columns: initial;
   }
-  .loginButton {
+  .signupButton {
     grid-row: 1;
   }
 }

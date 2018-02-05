@@ -22,10 +22,14 @@ class NewProfile extends Component {
   state = {
     loaded: false,
     saving: false,
-    goingnext: false,
   }
 
   componentDidMount() {
+    //
+    // button next to go to create list loads disabled, but when all fields filled in and validated
+    // then enable and go next ( + save )
+    //
+
     this.setState({ ...this.props.currentProfile, loaded: true })
   }
 
@@ -37,7 +41,6 @@ class NewProfile extends Component {
     this.setState({ dob: date })
   }
 
-
   goNext = () => {
     //$to do: auto-save / prompt if dirty
     const { history } = this.props
@@ -46,6 +49,11 @@ class NewProfile extends Component {
 
   saveProfile = () => {
     const { firstName, lastName, dob } = this.state
+
+    //
+    // validate fields filled out here ???
+    //
+
     this.setState({ saving: true })
     this.props.userActions
       .saveUserProfile(firstName, lastName, dob)
@@ -54,24 +62,39 @@ class NewProfile extends Component {
   }
 
   render() {
-    const { loaded, saving, goingnext, firstName, lastName, dob } = this.state
-    return <div className={styles.content}>
-        <h4>Step One</h4>
-        <h3>About You</h3>
-        {loaded && <Fragment>
-            <Textfield label="First name" placeholder="First name" value={firstName} onChange={value => this.onTextChange('firstName', value)} />
-            <Textfield label="Last name" placeholder="Last name" value={lastName} onChange={value => this.onTextChange('lastName', value)} />
-            <Datepicker label="Birthday" placeholder="Birthday" value={dob} onChange={this.onDateChange} />
+    const { loaded, saving, firstName, lastName, dob } = this.state
+    return (
+      <div className={styles.content}>
+        <h3>STEP 1. TELL US ABOUT YOURSELF</h3>
+        {loaded && (
+          <Fragment>
+            <Textfield
+              label="First name"
+              placeholder="First name"
+              value={firstName}
+              onChange={value => this.onTextChange('firstName', value)}
+            />
+            <Textfield
+              label="Last name"
+              placeholder="Last name"
+              value={lastName}
+              onChange={value => this.onTextChange('lastName', value)}
+            />
+            <Datepicker
+              label="Birthday"
+              placeholder="Birthday"
+              value={dob}
+              onChange={this.onDateChange}
+            />
             <div className={styles.buttons}>
               <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-                {saving ? 'Saving...' : 'Save'}
-              </Button>
-              <Button className={styles.saveBtn} onClick={this.goNext} disabled={goingnext}>
-                {goingnext ? 'next...' : 'Next'}
+                {saving ? 'Saving ...' : 'Next: Create Your List'}
               </Button>
             </div>
-          </Fragment>}
+          </Fragment>
+        )}
       </div>
+    )
   }
 }
 

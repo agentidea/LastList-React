@@ -25,39 +25,39 @@ class AddGuardian extends Component {
     const { firstName, lastName, email, adding, error } = this.state
     return (
       <div className={styles.content}>
-      <h4>Step 3</h4>
-      <h3>Add Guardians</h3>
+        <h4>Step 3</h4>
+        <h3>Add Guardians</h3>
 
-      <form className={styles.addGuardian} onSubmit={this.addGuardian}>
-        <div className={styles.inputs}>
-          <Textfield
-            type="text"
-            label="First name"
-            value={firstName}
-            required
-            placeholder="Her first name"
-            onChange={value => this.onInputChange('firstName', value)}
-          />
-          <Textfield
-            type="text"
-            label="Last name"
-            value={lastName}
-            required
-            placeholder="Her last name"
-            onChange={value => this.onInputChange('lastName', value)}
-          />
-          <Textfield
-            type="email"
-            label="Email"
-            value={email}
-            required
-            placeholder="Her email address"
-            onChange={value => this.onInputChange('email', value)}
-          />
-        </div>
-        {error && <div className={styles.error}>{error}</div>}
-        <Button>{adding ? 'Adding...' : 'Add'}</Button>
-      </form>
+        <form className={styles.addGuardian} onSubmit={this.addGuardian}>
+          <div className={styles.inputs}>
+            <Textfield
+              type="text"
+              label="First name"
+              value={firstName}
+              required
+              placeholder="First Name"
+              onChange={value => this.onInputChange('firstName', value)}
+            />
+            <Textfield
+              type="text"
+              label="Last name"
+              value={lastName}
+              required
+              placeholder="Nast Name"
+              onChange={value => this.onInputChange('lastName', value)}
+            />
+            <Textfield
+              type="email"
+              label="Email"
+              value={email}
+              required
+              placeholder="Email Address"
+              onChange={value => this.onInputChange('email', value)}
+            />
+          </div>
+          {error && <div className={styles.error}>{error}</div>}
+          <Button>{adding ? 'Adding...' : 'Add'}</Button>
+        </form>
       </div>
     )
   }
