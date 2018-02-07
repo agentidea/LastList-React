@@ -1,0 +1,73 @@
+import React, { Component, Fragment } from 'react'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import requireLogin from '../../common/hocs/requireLogin'   
+
+import { Link } from 'react-router-dom'                        //hyperlink
+
+import Button from '../../common/components/Button'
+import Textfield from '../../common/components/Textfield'
+import styles from './Payment.module.css'
+
+// ??? why .... ???
+// how does the payment call call api .and load invoice.
+
+//how does btn click hit server, pay then redirect ...
+//
+
+const mapStateToProps = state => ({
+  currentProfile: profileSelector(state),
+})
+const mapDispatchToProps = dispatch => ({
+  userActions: bindActionCreators(userActionCreators, dispatch),
+})
+
+
+
+export class Payment extends Component {
+  state = {
+    loaded: false,
+    paying: false,
+  }
+
+  componentDidMount(){
+    this.setState({ ...this.props.currentProfile, loaded: true })
+    this.props.paymentActions.fetchInvoice()
+  }
+
+  render() {
+    const {invoice, loading, paying} = this.props
+    return <div className={styles.content}>
+        <h3>Finish up</h3>
+
+
+        {loaded && <Fragment>
+            <Textfield label="Number Of Sets" placeholder="" value={firstName}  />
+            <Textfield label="Amount Due" placeholder="" value={lastName} />
+            
+            <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
+              {saving ? 'Saving...' : 'Save'}
+            </Button>
+          </Fragment>}
+
+        <Link to="/payment-success">
+          <img src="/fake-payment.png" alt="Payment" />
+        </Link>
+//loaded?
+        <Fragment>
+          <div className={styles.buttons}>
+            <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
+              Back to Manage Guaridans
+            </Button>
+            <Button className={styles.saveBtn} onClick={this.props.paymentActions.makePayment()} disabled={paying}>
+              {paying ? 'paying...' : 'paid'}
+            </Button>
+          </div>
+        </Fragment>
+      </div>
+  }
+}
+
+export default Payment

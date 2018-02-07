@@ -49,7 +49,7 @@ class RegGuardians extends Component {
           />
         )}
         <h4>Add a guardian</h4>
-        <AddGuardian />
+        <AddGuardian history={this.props.history} />
       </div>
     )
   }
