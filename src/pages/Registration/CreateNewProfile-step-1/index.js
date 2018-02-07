@@ -22,6 +22,7 @@ class NewProfile extends Component {
   state = {
     loaded: false,
     saving: false,
+    hasNotSaved: true,
   }
 
   componentDidMount() {
@@ -57,12 +58,19 @@ class NewProfile extends Component {
     this.setState({ saving: true })
     this.props.userActions
       .saveUserProfile(firstName, lastName, dob)
-      .then(() => this.setState({ saving: false }))
+      .then(() => this.setState({ saving: false, hasNotSaved: false }))
       .catch(() => this.setState({ saving: false }))
   }
 
   render() {
-    const { loaded, saving, firstName, lastName, dob } = this.state
+    const { loaded, saving, firstName, lastName, dob, hasNotSaved } = this.state
+
+    //?? here we check if user has saved profile, if so enable next button ...
+    var svd = hasNotSaved
+    if (firstName !== null && lastName !== null && dob !== null) {
+      svd = false
+    }
+
     return (
       <div className={styles.content}>
         <h3>STEP 1. TELL US ABOUT YOURSELF</h3>
@@ -88,7 +96,10 @@ class NewProfile extends Component {
             />
             <div className={styles.buttons}>
               <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-                {saving ? 'Saving ...' : 'Next: Create Your List'}
+                {saving ? 'Saving ...' : 'Save'}
+              </Button>
+              <Button className={styles.saveBtn} onClick={this.goNext} disabled={svd}>
+                {saving ? 'going next ...' : 'Next: Create Your List'}
               </Button>
             </div>
           </Fragment>

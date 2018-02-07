@@ -2,9 +2,20 @@
   display: flex;
   flex-direction: column;
 }
-.addGuardian button {
-  align-self: flex-end;
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
+
+.addGuardian button {
+  margin-left: auto;
+}
+
+.next button {
+  margin-left: auto;
+}
+
 .inputs {
   display: grid;
   grid-gap: var(--spacing-elements);

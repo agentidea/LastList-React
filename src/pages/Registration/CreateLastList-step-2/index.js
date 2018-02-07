@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
   lists: state.lists.lists,
   loading: state.lists.loading,
   saving: state.lists.saving,
-  goingnext: false,
 })
 const mapDispatchToProps = dispatch => ({
   listsActions: bindActionCreators(listsActionCreators, dispatch),
@@ -33,12 +32,6 @@ export class CreateFirstLastList extends Component {
     return false
   }
 
-  shouldShowNextButton = () => {
-    //if saved how do we tell?
-    //look in state???+
-    return true
-  }
-
   goNext = () => {
     //$to do: auto-save / prompt if dirty
     const { history } = this.props
@@ -51,7 +44,8 @@ export class CreateFirstLastList extends Component {
   }
 
   render() {
-    const { lists, loading, saving, goingnext } = this.props
+    const { lists, loading, saving } = this.props
+
     return (
       <div className={styles.content}>
         <h3>STEP TWO: CREATE YOUR LAST LIST</h3>
@@ -74,12 +68,12 @@ export class CreateFirstLastList extends Component {
                 </Button>
               )}
 
-              <Button
-                className={styles.saveBtn}
-                onClick={this.saveButtonClicked}
-                disabled={goingnext}
-              >
-                {saving ? 'Saving...' : 'Next: Add Your Guardians'}
+              <Button className={styles.saveBtn} onClick={this.saveButtonClicked} disabled={saving}>
+                {saving ? 'Saving...' : 'Save'}
+              </Button>
+
+              <Button className={styles.saveBtn} onClick={this.goNext}>
+                Next: Add Guardian
               </Button>
             </div>
           </Fragment>

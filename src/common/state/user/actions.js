@@ -63,19 +63,19 @@ export const login = (email, password) => async dispatch => {
       })
     )
     const jwt = user._id // todo replace this with real JWT
-    const flow_ = user.flow
+    const flow = user.flow
     if (jwt) {
       setJwt(jwt)
       store.set('jwtEmail', email) // temporary until we have real JWT
       dispatch({
         type: LOGIN_SUCCESSFULL,
         jwt,
-        flow_,
+        data: user,
       })
-      return dispatch({ type: SET_CURRENT_USER, data: user, flow: flow_ })
+      return dispatch({ type: SET_CURRENT_USER, data: user })
     }
   } catch (e) {
-    if (e.response && e.response.status === 404) {
+    if (e.response && e.response.status === 409) {
       const message = e.response.data.message || 'User not found.'
       throw new UserError(message, 'email')
     }
@@ -153,6 +153,6 @@ export const payForList = (amount, paymentMethod, numberListsPayingFor) => async
     )
     return true
   } else {
-    console.error('User should be logged in to paty for lists')
+    console.error('User should be logged in to pay for lists')
   }
 }

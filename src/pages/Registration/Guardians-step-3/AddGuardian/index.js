@@ -24,6 +24,7 @@ class AddGuardian extends Component {
 
   goNext = () => {
     //$to do: auto-save / prompt if dirty
+    //$to do: why is history undefined here????
     const { history } = this.props
     history.push('/reg/payment')
   }
@@ -31,7 +32,8 @@ class AddGuardian extends Component {
   shouldShowNextButton = () => {
     //if saved list how do we tell?
     //look in state???+
-    return this.state.goingnext
+    //return this.state.goingnext
+    return true
   }
 
   render() {
@@ -74,8 +76,8 @@ class AddGuardian extends Component {
             <Button>{adding ? 'Adding...' : 'Add'}</Button>
 
             {this.shouldShowNextButton() && (
-              <Button className={styles.saveBtn} onClick={this.goNext}>
-                {goingnext ? 'Next' : 'Next Step Payment'}
+              <Button className={styles.next} onClick={this.goNext}>
+                {goingnext ? 'Next' : 'Next: Pay'}
               </Button>
             )}
           </div>

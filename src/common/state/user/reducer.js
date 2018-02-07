@@ -9,6 +9,7 @@ const initialState = {
   lastName: null,
   dob: null,
   states: null,
+  flow: null,
   payments: [],
 }
 
@@ -18,6 +19,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         jwt: action.jwt,
+        ...action.data,
       }
     case SIGN_OUT:
       return {

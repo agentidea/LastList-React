@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import UserError from '../../../common/state/user/error'
 
 import styles from './Payment.module.css'
 import Button from '../../../common/components/Button'
+
+import * as userActionCreators from '../../../common/state/user/actions'
+
+const mapDispatchToProps = dispatch => ({
+  userActions: bindActionCreators(userActionCreators, dispatch),
+})
 
 export class RegPayment extends Component {
   state = {
@@ -31,6 +39,8 @@ export class RegPayment extends Component {
   onSubmit = event => {
     event.preventDefault()
     const { amount, paymentMethod, numberListsPayingFor, error } = this.state
+    var why = false
+
     this.props.userActions
       .payForList(amount, paymentMethod, numberListsPayingFor)
       .then(resp => {
@@ -56,7 +66,7 @@ export class RegPayment extends Component {
         </Link>
 
         <form className={styles.content} onSubmit={this.onSubmit}>
-          <Button className={styles.loginButton}>Pay</Button>
+          <Button className={styles.loginButton}>Submit Payment</Button>
         </form>
 
         <p className={styles.error}>{error.message}</p>
@@ -65,4 +75,5 @@ export class RegPayment extends Component {
   }
 }
 
-export default RegPayment
+//export default RegPayment
+export default connect(null, mapDispatchToProps)(RegPayment)

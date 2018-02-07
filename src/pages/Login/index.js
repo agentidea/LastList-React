@@ -10,11 +10,6 @@ import UserError from '../../common/state/user/error'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
-import { registeredSelector } from '../.././common/state/user/selectors'
-
-const mapStateToProps = state => ({
-  isRegistered: registeredSelector(state),
-})
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -25,7 +20,7 @@ class Login extends Component {
     email: '',
     password: '',
     remember: true,
-    flow: null,
+    user: null,
     error: {
       field: null,
       message: null,
@@ -41,15 +36,20 @@ class Login extends Component {
   }
 
   // On successful login, redirect the user to the intended page.
-  redirect() {
-    const { location, history, isRegistered } = this.props
+  redirect(flow) {
+    const { location, history } = this.props
 
-    if (!isRegistered) {
-      const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
-      const newRoute = (match && match[1]) || '/'
-      history.push(newRoute)
-    } else {
+    if (flow === 'registering') {
+      //continue to register phase ...
       history.push('/reg/create-profile')
+    } else {
+      if (flow === 'registered') {
+        const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
+        const newRoute = (match && match[1]) || '/'
+        history.push(newRoute)
+      } else {
+        console.error('unknow flow ' + flow)
+      }
     }
   }
 
@@ -59,7 +59,9 @@ class Login extends Component {
     this.props.userActions
       .login(email, password)
       .then(resp => {
-        this.redirect()
+        //hack to get flow for redirect
+        var flow = resp.data.flow
+        this.redirect(flow)
       })
       .catch(error => {
         if (error instanceof UserError) {
