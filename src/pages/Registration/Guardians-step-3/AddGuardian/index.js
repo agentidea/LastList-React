@@ -77,7 +77,7 @@ class AddGuardian extends Component {
 
             {this.shouldShowNextButton() && (
               <Button className={styles.next} onClick={this.goNext}>
-                {goingnext ? 'Next' : 'Next: Pay'}
+                {goingnext ? 'Next' : 'Next: Payment'}
               </Button>
             )}
           </div>

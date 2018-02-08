@@ -22,7 +22,13 @@ class NewProfile extends Component {
   state = {
     loaded: false,
     saving: false,
-    hasNotSaved: true,
+    saved: false,
+    firstName: '',
+    lastName: '',
+    error: {
+      field: null,
+      message: null,
+    },
   }
 
   componentDidMount() {
@@ -34,8 +40,8 @@ class NewProfile extends Component {
     this.setState({ ...this.props.currentProfile, loaded: true })
   }
 
-  onTextChange = (field, value) => {
-    this.setState({ [field]: value })
+  onChange = (field, value) => {
+    this.setState({ [field]: value, error: { field: null } })
   }
 
   onDateChange = date => {
@@ -50,26 +56,31 @@ class NewProfile extends Component {
 
   saveProfile = () => {
     const { firstName, lastName, dob } = this.state
-
-    //
-    // validate fields filled out here ???
-    //
-
     this.setState({ saving: true })
     this.props.userActions
       .saveUserProfile(firstName, lastName, dob)
-      .then(() => this.setState({ saving: false, hasNotSaved: false }))
+      .then(() => this.setState({ saving: false, saved: true }))
       .catch(() => this.setState({ saving: false }))
   }
 
-  render() {
-    const { loaded, saving, firstName, lastName, dob, hasNotSaved } = this.state
-
-    //?? here we check if user has saved profile, if so enable next button ...
-    var svd = hasNotSaved
-    if (firstName !== null && lastName !== null && dob !== null) {
-      svd = false
+  shouldShowNextButton() {
+    if (this.state.saved === true) {
+      //just saved!
+      return true
     }
+    //look for previously created profile state
+    var serverStates = this.props.user.states
+    if (serverStates && serverStates.length > 0) {
+      const hasProfile = serverStates.find(item => item === 'created_profile')
+      return hasProfile === 'created_profile'
+    }
+    return false
+  }
+
+  render() {
+    const { loaded, saving, firstName, lastName, dob, saved, error } = this.state
+    const errorFirstName = error.field === 'firstName' ? error.message : null
+    const errorLastName = error.field === 'lastName' ? error.message : null
 
     return (
       <div className={styles.content}>
@@ -79,12 +90,16 @@ class NewProfile extends Component {
             <Textfield
               label="First name"
               placeholder="First name"
+              required
+              error={errorFirstName}
               value={firstName}
               onChange={value => this.onTextChange('firstName', value)}
             />
             <Textfield
               label="Last name"
               placeholder="Last name"
+              required
+              error={errorLastName}
               value={lastName}
               onChange={value => this.onTextChange('lastName', value)}
             />
@@ -94,13 +109,17 @@ class NewProfile extends Component {
               value={dob}
               onChange={this.onDateChange}
             />
+
             <div className={styles.buttons}>
               <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
                 {saving ? 'Saving ...' : 'Save'}
               </Button>
-              <Button className={styles.saveBtn} onClick={this.goNext} disabled={svd}>
-                {saving ? 'going next ...' : 'Next: Create Your List'}
-              </Button>
+
+              {this.shouldShowNextButton() && (
+                <Button className={styles.nextBtn} onClick={this.goNext}>
+                  Next: Create Your List
+                </Button>
+              )}
             </div>
           </Fragment>
         )}

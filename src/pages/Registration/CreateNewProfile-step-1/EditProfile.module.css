@@ -3,5 +3,13 @@
   flex-direction: column;
 }
 .saveBtn {
+  align-self: flex-start;
+}
+
+.nextBtn {
   align-self: flex-end;
+}
+
+.error {
+  border: 1px solid red;
 }

@@ -7,6 +7,7 @@ export const profileSelector = state => {
     return {
       firstName: state.user.firstName,
       lastName: state.user.lastName,
+      staytz: state.user.states,
       dob: state.user.dob ? new Date(state.user.dob) : new Date(),
     }
   }
@@ -15,11 +16,10 @@ export const profileSelector = state => {
 
 export const registeredSelector = state => {
   if (state.user && state.user._id) {
-    if(state.user.flow === 'registered'){
+    if (state.user.flow === 'registered') {
       return true
-    }
-    else{
-      if(state.user.flow === 'registering'){
+    } else {
+      if (state.user.flow === 'registering') {
         return false
       }
     }

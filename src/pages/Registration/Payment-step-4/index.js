@@ -39,7 +39,6 @@ export class RegPayment extends Component {
   onSubmit = event => {
     event.preventDefault()
     const { amount, paymentMethod, numberListsPayingFor, error } = this.state
-    var why = false
 
     this.props.userActions
       .payForList(amount, paymentMethod, numberListsPayingFor)
@@ -61,6 +60,7 @@ export class RegPayment extends Component {
     return (
       <div className={styles.content}>
         <h3>Finish up</h3>
+
         <Link to="/payment-success">
           <img src="/fake-payment.png" alt="Payment" />
         </Link>
