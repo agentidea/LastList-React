@@ -6,6 +6,7 @@ import requireLogin from '../../../common/hocs/requireLogin'
 import * as userActionCreators from '../../../common/state/user/actions'
 import { profileSelector } from '../../../common/state/user/selectors'
 
+import UserError from '../../../common/state/user/error'
 import Button from '../../../common/components/Button'
 import Textfield from '../../../common/components/Textfield'
 import Datepicker from '../../../common/components/Datepicker'
@@ -40,7 +41,7 @@ class NewProfile extends Component {
     this.setState({ ...this.props.currentProfile, loaded: true })
   }
 
-  onChange = (field, value) => {
+  onTextChange = (field, value) => {
     this.setState({ [field]: value, error: { field: null } })
   }
 
@@ -60,7 +61,14 @@ class NewProfile extends Component {
     this.props.userActions
       .saveUserProfile(firstName, lastName, dob)
       .then(() => this.setState({ saving: false, saved: true }))
-      .catch(() => this.setState({ saving: false }))
+      .catch(error => {
+        if (error instanceof UserError) {
+          const { field, message } = error
+          this.setState({ error: { field, message }, saving: false })
+        } else {
+          this.setState({ error: { field: 'lastName', message: 'Unknown error' }, saving: false })
+        }
+      })
   }
 
   shouldShowNextButton() {

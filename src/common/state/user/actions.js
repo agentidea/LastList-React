@@ -119,17 +119,26 @@ export const confirmAccount = confirmationCode => async dispatch => {
 export const saveUserProfile = (firstName, lastName, dob) => async (dispatch, getState) => {
   const user = currentUserSelector(getState())
   if (user) {
-    await dispatch(
-      doRequest(SAVE_PROFILE_API, `user/profile/${user._id}`, {
-        method: 'PUT',
-        body: {
-          firstName,
-          lastName,
-          dob: dob.toISOString(),
-        },
-      })
-    )
-    return true
+    try {
+      const result = await dispatch(
+        doRequest(SAVE_PROFILE_API, `user/profile/${user._id}`, {
+          method: 'PUT',
+          body: {
+            firstName,
+            lastName,
+            dob: dob.toISOString(),
+          },
+        })
+      )
+      return result
+    } catch (e) {
+      if (e.response && e.response.status === 409) {
+        const message = e.response.data.message || 'Unknown error'
+        const field = e.response.data.field
+        throw new UserError(message, field)
+      }
+      throw e
+    }
   } else {
     console.error('User should be logged in to save his profile')
   }
