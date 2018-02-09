@@ -64,7 +64,7 @@ class RegLogin extends Component {
   render() {
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
-        <h3>Complete Registraion with Last List</h3>
+        <h3>Complete Registration</h3>
         {this.renderInputs()}
         <FormControlLabel
           control={
@@ -76,7 +76,6 @@ class RegLogin extends Component {
           label="Remember me"
         />
         <div className={styles.buttons}>
-
           <Button className={styles.loginButton}>Sign In</Button>
         </div>
         <p>

@@ -25,6 +25,7 @@
   padding: var(--spacing-container);
   flex-grow: 1;
 }
+
 @media (max-width: 960px) {
   .content {
     width: 100%;

@@ -29,15 +29,13 @@ class RegGuardians extends Component {
         <h4>Step Three</h4>
         <h3>Nominate your guardians</h3>
         <p>
-          Your Guardian(s) will be responsible for getting your Last List from us when the time has
-          come. We’ll let them know via email that they’ve been chosen by you to fulfill this
-          important role. You can add up to 5 Guardians and change them as many times as you want
-          to.
+          Your Guardian(s) are responsible for getting your Last List from us when the time has
+          come. We’ll let them know via email that they’ve been chosen to fulfill this important
+          role. You can add up to 5 Guardians and change them as many times as you want to.
         </p>
 
         {loading ? (
           <div className={styles.loaderContainer}>
-            <h4>Your guardians</h4>
             <Loading />
           </div>
         ) : guardians.length === 0 ? (
@@ -48,7 +46,7 @@ class RegGuardians extends Component {
             onRemoveGuardian={uuid => this.props.guardiansActions.removeGuardian(uuid)}
           />
         )}
-        <h4>Add a guardian</h4>
+
         <AddGuardian history={this.props.history} />
       </div>
     )

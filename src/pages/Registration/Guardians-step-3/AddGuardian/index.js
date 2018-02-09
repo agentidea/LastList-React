@@ -40,7 +40,7 @@ class AddGuardian extends Component {
     const { firstName, lastName, email, adding, goingnext, error } = this.state
     return (
       <div className={styles.content}>
-        <h3>Add Guardians</h3>
+        <h4>Add Guardians</h4>
 
         <form className={styles.addGuardian} onSubmit={this.addGuardian}>
           <div className={styles.inputs}>

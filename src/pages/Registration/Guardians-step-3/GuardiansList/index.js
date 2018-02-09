@@ -21,19 +21,23 @@ export default class GuardiansList extends Component {
   render() {
     const { guardians } = this.props
     return (
-      <ul>
-        {guardians.map(g => (
-          <li key={g.uuid}>
-            {g.firstName} {g.lastName} ({g.email})
-            <Tooltip id="tooltip-top" title="Remove" placement="right">
-              <span className={styles.deleteIcon} onClick={() => this.removeGuardian(g)}>
-                ✕
-              </span>
-            </Tooltip>
-          </li>
-        ))}
-        {this.renderRemoveDialog()}
-      </ul>
+      <div>
+        <h4>Current Guardians</h4>
+
+        <ul>
+          {guardians.map(g => (
+            <li key={g.uuid}>
+              {g.firstName} {g.lastName} ({g.email})
+              <Tooltip id="tooltip-top" title="Remove" placement="right">
+                <span className={styles.deleteIcon} onClick={() => this.removeGuardian(g)}>
+                  ✕
+                </span>
+              </Tooltip>
+            </li>
+          ))}
+          {this.renderRemoveDialog()}
+        </ul>
+      </div>
     )
   }
 

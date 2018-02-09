@@ -50,9 +50,8 @@ export class CreateFirstLastList extends Component {
       <div className={styles.content}>
         <h3>STEP TWO: CREATE YOUR LAST LIST</h3>
         <p>
-          Get started by curating a set of 10 songs for 99&#162;. You might have loads of songs that
-          you love, so your Last List can include as many sets as you like and you can edit it
-          whenever you want to.
+          Get started by curating a set of 10 songs for $1. Your Last List can include as many sets
+          as you like and you can edit it whenever you want to.
         </p>
         {loading ? (
           <div className={styles.loaderContainer}>
