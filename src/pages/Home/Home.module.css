@@ -33,12 +33,6 @@
   margin: var(--spacing-container) 0;
 }
 
-.links > a {
-  color: #3717ff;
-  transition: background-color 0.5s, color 0.5s;
-  text-decoration: none;
-}
-
 @media (max-width: 600px) {
   .links {
     display: flex;
