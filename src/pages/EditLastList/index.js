@@ -38,8 +38,8 @@ export class EditLastList extends Component {
       <div className={styles.content}>
         <h3>Manage Your Last List</h3>
         <p>
-          Last List can include as many sets as you like and you can edit it
-          whenever you want to.  If you want to add more songs add a new set for $1.
+          Your Last List can include as many sets as you like and you can edit it whenever you want
+          to. Add a new set for $1.
         </p>
         {loading ? (
           <div className={styles.loaderContainer}>
@@ -51,7 +51,7 @@ export class EditLastList extends Component {
             <div className={styles.buttons}>
               {this.shouldShowAddSongs() && (
                 <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
-                  Add another 10 songs
+                  Add Another 10 Songs
                 </Button>
               )}
               <Button

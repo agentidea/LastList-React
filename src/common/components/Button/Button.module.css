@@ -7,6 +7,7 @@
   color: var(--color-link-2);
   font-size: var(--font-size);
   font-family: var(--font-family);
+  font-weight: bold;
   transition: background-color 0.5s, color 0.5s;
   margin: 0;
   text-decoration: none;

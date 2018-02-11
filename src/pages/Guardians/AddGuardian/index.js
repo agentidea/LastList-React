@@ -25,9 +25,6 @@ class AddGuardian extends Component {
     const { firstName, lastName, email, adding, error } = this.state
     return (
       <div className={styles.content}>
-        <h4>Step 3</h4>
-        <h3>Add Guardians</h3>
-
         <form className={styles.addGuardian} onSubmit={this.addGuardian}>
           <div className={styles.inputs}>
             <Textfield
@@ -43,7 +40,7 @@ class AddGuardian extends Component {
               label="Last name"
               value={lastName}
               required
-              placeholder="Nast Name"
+              placeholder="Last Name"
               onChange={value => this.onInputChange('lastName', value)}
             />
             <Textfield

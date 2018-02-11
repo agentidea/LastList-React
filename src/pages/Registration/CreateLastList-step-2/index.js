@@ -63,7 +63,7 @@ export class CreateFirstLastList extends Component {
             <div className={styles.buttons}>
               {this.shouldShowAddSongs() && (
                 <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
-                  Add another 10 songs
+                  Add Another 10 Songs
                 </Button>
               )}
 
@@ -72,7 +72,7 @@ export class CreateFirstLastList extends Component {
               </Button>
 
               <Button className={styles.saveBtn} onClick={this.goNext}>
-                Next: Add Guardian
+                Next: Add Guardians
               </Button>
             </div>
           </Fragment>

@@ -63,3 +63,7 @@ h6 {
 p {
   letter-spacing: 2.6px;
 }
+
+.spaceHack {
+  height: 55px;
+}

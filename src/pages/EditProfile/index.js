@@ -53,20 +53,20 @@ class EditProfile extends Component {
         {loaded && (
           <Fragment>
             <Textfield
-              label="First name"
-              placeholder="First name"
+              label="First Name"
+              placeholder="First Name"
               value={firstName}
               onChange={value => this.onTextChange('firstName', value)}
             />
             <Textfield
-              label="Last name"
-              placeholder="Last name"
+              label="Last Name"
+              placeholder="Last Name"
               value={lastName}
               onChange={value => this.onTextChange('lastName', value)}
             />
             <Datepicker
-              label="Birthday"
-              placeholder="Birthday"
+              label="Date of Birth"
+              placeholder="Date of Birth"
               value={dob}
               onChange={this.onDateChange}
             />

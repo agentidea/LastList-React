@@ -26,12 +26,11 @@ class RegGuardians extends Component {
     const { loading, guardians } = this.props
     return (
       <div className={styles.content}>
-        <h4>Step Three</h4>
-        <h3>Nominate your guardians</h3>
+        <h3>STEP 3: NOMINATE YOUR GUARDIANS</h3>
         <p>
-          Your Guardian(s) are responsible for getting your Last List from us when the time has
-          come. We’ll let them know via email that they’ve been chosen to fulfill this important
-          role. You can add up to 5 Guardians and change them as many times as you want to.
+          Your Guardians are responsible for getting your Last List from us when the time has come.
+          We’ll let them know that they’ve been chosen to fulfill this important role. You can add
+          up to 5 Guardians and change them as many times as you want to.
         </p>
 
         {loading ? (

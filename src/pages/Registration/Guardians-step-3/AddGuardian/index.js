@@ -31,7 +31,7 @@ class AddGuardian extends Component {
 
   shouldShowNextButton = () => {
     //if saved list how do we tell?
-    //look in state???+
+    //look in state if num guardian are added
     //return this.state.goingnext
     return true
   }
@@ -73,11 +73,11 @@ class AddGuardian extends Component {
           {error && <div className={styles.error}>{error}</div>}
 
           <div className={styles.buttons}>
-            <Button>{adding ? 'Adding...' : 'Add'}</Button>
+            <Button>{adding ? 'Adding...' : 'Add Another Guardian'}</Button>
 
             {this.shouldShowNextButton() && (
               <Button className={styles.next} onClick={this.goNext}>
-                {goingnext ? 'Next' : 'Next: Payment'}
+                {goingnext ? 'Next: Payment' : 'Next: Payment'}
               </Button>
             )}
           </div>

@@ -96,24 +96,24 @@ class NewProfile extends Component {
         {loaded && (
           <Fragment>
             <Textfield
-              label="First name"
-              placeholder="First name"
+              label="First Name"
+              placeholder="First Name"
               required
               error={errorFirstName}
               value={firstName}
               onChange={value => this.onTextChange('firstName', value)}
             />
             <Textfield
-              label="Last name"
-              placeholder="Last name"
+              label="Last Name"
+              placeholder="Last Name"
               required
               error={errorLastName}
               value={lastName}
               onChange={value => this.onTextChange('lastName', value)}
             />
             <Datepicker
-              label="Birthday"
-              placeholder="Birthday"
+              label="Date of Birth"
+              placeholder="Date of Birth"
               value={dob}
               onChange={this.onDateChange}
             />
@@ -125,7 +125,7 @@ class NewProfile extends Component {
 
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
-                  Next: Create Your List
+                  Next: Create Your Last List
                 </Button>
               )}
             </div>

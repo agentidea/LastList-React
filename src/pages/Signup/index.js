@@ -43,8 +43,7 @@ class Signup extends Component {
       .then(resp => {
         this.setState({
           creating: false,
-          successMessage:
-            'Your account has been created. Please check your inbox to confirm your email.',
+          successMessage: "Check your inbox. We've sent you an email to confirm your account.",
         })
       })
       .catch(error => {
