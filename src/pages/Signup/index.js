@@ -33,6 +33,11 @@ class Signup extends Component {
     this.setState({ [field]: value, error: { field: null } })
   }
 
+  redirect() {
+    const { history } = this.props
+    history.push('/signup-confirmation')
+  }
+
   onSubmit = event => {
     event.preventDefault()
     this.setState({ creating: true, successMessage: null, error: { field: null } })
@@ -40,12 +45,7 @@ class Signup extends Component {
     const { email, password } = this.state
     this.props.userActions
       .signup(email, password)
-      .then(resp => {
-        this.setState({
-          creating: false,
-          successMessage: "Check your inbox. We've sent you an email to confirm your account.",
-        })
-      })
+      .then(resp => this.redirect())
       .catch(error => {
         if (error instanceof UserError) {
           const { field, message } = error

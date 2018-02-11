@@ -21,6 +21,7 @@ import Guardians from './pages/Guardians'
 import LastList from './pages/LastList'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import SignupConfirmation from './pages/SignupConfirmation'
 import Payment from './pages/Payment'
 import PaymentSuccess from './pages/PaymentSuccess'
 import Four04 from './pages/Four04'
@@ -31,14 +32,11 @@ import NewProfile from './pages/Registration/CreateNewProfile-step-1'
 import CreateFirstLastList from './pages/Registration/CreateLastList-step-2'
 import RegGuardians from './pages/Registration/Guardians-step-3'
 import RegPayment from './pages/Registration/Payment-step-4'
-import WelcomeMember from './pages/Registration/WelcomeMember-step-5' 
-
-
+import WelcomeMember from './pages/Registration/WelcomeMember-step-5'
 
 const mapStateToProps = state => ({
   isLoggedIn: loggedInSelector(state),
   isRegistered: registeredSelector(state),
-
 })
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -53,7 +51,8 @@ class App extends Component {
 
   render() {
     const { isLoggedIn, isRegistered } = this.props
-    return <Router>
+    return (
+      <Router>
         <ScrollToTop>
           <div className={styles.app}>
             <Background />
@@ -75,6 +74,7 @@ class App extends Component {
                   <Route path="/payment" component={Payment} />
                   <Route path="/payment-success" component={PaymentSuccess} />
                   <Route path="/signup" component={Signup} />
+                  <Route path="/signup-confirmation" component={SignupConfirmation} />
 
                   <Route path="/reg/login" component={RegLogin} />
                   <Route path="/reg/create-profile" component={NewProfile} />
@@ -91,6 +91,7 @@ class App extends Component {
           </div>
         </ScrollToTop>
       </Router>
+    )
   }
 }
 
