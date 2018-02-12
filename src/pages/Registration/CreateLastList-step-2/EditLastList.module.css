@@ -14,7 +14,11 @@
   justify-content: space-between;
 }
 .saveBtn {
-  margin-left: auto;
+  align-self: flex-start;
+}
+
+.nextBtn {
+  align-self: flex-end;
 }
 .loaderContainer {
   position: relative;

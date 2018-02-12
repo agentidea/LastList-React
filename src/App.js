@@ -12,6 +12,9 @@ import Header from './common/components/Header'
 import Footer from './common/components/Footer'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
+import Policies from './pages/Policies'
+import Terms from './pages/TermsAndConditions'
+
 import EditLastList from './pages/EditLastList'
 import EditProfile from './pages/EditProfile'
 import EmailConfirmation from './pages/EmailConfirmation'
@@ -31,6 +34,7 @@ import RegLogin from './pages/Registration/Login-step-0'
 import NewProfile from './pages/Registration/CreateNewProfile-step-1'
 import CreateFirstLastList from './pages/Registration/CreateLastList-step-2'
 import RegGuardians from './pages/Registration/Guardians-step-3'
+import RegPrePayment from './pages/Registration/PrePayment-step-4a'
 import RegPayment from './pages/Registration/Payment-step-4'
 import WelcomeMember from './pages/Registration/WelcomeMember-step-5'
 
@@ -64,6 +68,9 @@ class App extends Component {
                   <Route exact path="/" component={Home} />
                   <Route path="/confirmation/:code" component={EmailConfirmation} />
                   <Route path="/contact" component={Contact} />
+                  <Route path="/terms" component={Terms} />
+                  <Route path="/policies" component={Policies} />
+
                   <Route path="/edit-list" component={EditLastList} />
                   <Route path="/edit-profile" component={EditProfile} />
                   <Route path="/faq" component={Faq} />
@@ -75,14 +82,14 @@ class App extends Component {
                   <Route path="/payment-success" component={PaymentSuccess} />
                   <Route path="/signup" component={Signup} />
                   <Route path="/signup-confirmation" component={SignupConfirmation} />
-
                   <Route path="/reg/login" component={RegLogin} />
                   <Route path="/reg/create-profile" component={NewProfile} />
                   <Route path="/reg/create-list" component={CreateFirstLastList} />
                   <Route path="/reg/add-guardian" component={RegGuardians} />
+
+                  <Route path="/reg/pre-payment" component={RegPrePayment} />
                   <Route path="/reg/payment" component={RegPayment} />
                   <Route path="/reg/welcome-member" component={WelcomeMember} />
-
                   <Route default component={Four04} />
                 </Switch>
               </div>

@@ -1,0 +1,14 @@
+.invoiceTable {
+  width: 100%;
+  margin-top: var(--spacing-container);
+}
+
+.invoiceTable thead th {
+  text-align: left;
+  padding-bottom: var(--spacing-container);
+}
+
+.invoiceTable tbody td {
+  color: var(--color-link-1);
+  padding-bottom: 30px;
+}

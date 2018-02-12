@@ -71,7 +71,7 @@ export class CreateFirstLastList extends Component {
                 {saving ? 'Saving...' : 'Save'}
               </Button>
 
-              <Button className={styles.saveBtn} onClick={this.goNext}>
+              <Button className={styles.nextBtn} onClick={this.goNext}>
                 Next: Add Guardians
               </Button>
             </div>

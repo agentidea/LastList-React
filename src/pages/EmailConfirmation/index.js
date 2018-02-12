@@ -39,7 +39,7 @@ class EmailConfirmation extends Component {
       <div className={styles.content}>
         <div className={styles.spaceHack}>&nbsp;</div>
 
-        <h3>THANKS! YOU'RE ALL SET</h3>
+        <h3>GREAT! YOU'RE ALL SET</h3>
         {confirming ? (
           <Loading />
         ) : error ? (

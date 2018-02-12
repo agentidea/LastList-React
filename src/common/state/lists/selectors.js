@@ -7,3 +7,14 @@ export const listsForServerSelector = state => {
     })
     .filter(list => list.length > 0)
 }
+
+// export const listInvoiceSelector = state => {
+//   if (state.user && state.user.invoice) {
+//     return {
+//       songsTotal: state.user.invoice.totalSongs,
+//       setCost: state.user.invoice.listCost,
+//       totalCost: state.user.invoice.due,
+//     }
+//   }
+//   return null
+// }

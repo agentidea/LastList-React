@@ -1,0 +1,20 @@
+.intro {
+  text-align: center;
+}
+
+.loaderContainer {
+  position: relative;
+  margin-top: 50px;
+  height: 50px;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error {
+  color: var(--error);
+  text-align: center;
+}

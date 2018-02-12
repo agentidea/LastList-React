@@ -8,12 +8,12 @@
   justify-content: space-between;
 }
 
-.addGuardian button {
-  margin-left: auto;
+.addGuardianBtn {
+  align-self: flex-start;
 }
 
-.next button {
-  margin-left: auto;
+.nextBtn {
+  align-self: flex-end;
 }
 
 .inputs {
