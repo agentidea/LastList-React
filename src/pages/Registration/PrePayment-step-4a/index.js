@@ -63,8 +63,8 @@ class RegPrePayment extends Component {
 
     return (
       <div className={styles.content}>
-        <h3>FINISH UP</h3>
-        <p>Checkout with a credit card or Apple Pay and you're done!</p>
+        <h3>SUMMARY</h3>
+
         <h4> Your Last List</h4>
         <h4>{loadingInvoice ? 'loading' : <Invoice invoice={invoice} />}</h4>
 
@@ -77,9 +77,12 @@ class RegPrePayment extends Component {
         ) : (
           <GuardiansList guardians={guardians} />
         )}
-        <Button className={styles.next} onClick={this.goNext}>
-          {goingnext ? 'Next: Payment' : 'Next: Payment'}
-        </Button>
+
+        <div className={styles.buttons}>
+          <Button className={styles.nextBtn} onClick={this.goNext}>
+            {goingnext ? 'Next: Payment' : 'Next: Payment'}
+          </Button>
+        </div>
       </div>
     )
   }

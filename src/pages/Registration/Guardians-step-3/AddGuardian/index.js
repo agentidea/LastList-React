@@ -109,12 +109,8 @@ class AddGuardian extends Component {
         })
       })
       .catch(error => {
-        if (error instanceof UserError) {
-          const { message } = error
-          this.setState({ error: message, adding: false })
-        } else {
-          this.setState({ error: 'Unknown error', adding: false })
-        }
+        var message = error.response.data.message
+        this.setState({ error: message, adding: false })
       })
   }
 }

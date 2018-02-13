@@ -45,13 +45,19 @@ export class GuardianAccess extends Component {
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
         <h3>ACCESS YOUR LOVED ONE'S LAST LIST</h3>
+        <p>Thanks for being a Last List Guardian. We’re very sorry for your loss. </p>
+
         <p>
-          Thanks for being a Last List Guardian. We’re very sorry for your loss. Please enter your
-          email address to receive a link that will allow you to access your loved one's favorite
-          songs.
+          Please enter your email address to receive a link that will allow you to access your loved
+          one's favorite songs.
         </p>
+
+        <div className={styles.spaceHack}>&nbsp;</div>
+
         {success ? (
-          <div className={styles.success}>An email was sent to your inbox.</div>
+          <div className={styles.success}>
+            Check your inbox or spam folder for an email from us.
+          </div>
         ) : (
           this.renderForm()
         )}

@@ -8,13 +8,17 @@ export default class GuardiansList extends Component {
       <div>
         <h4>Your Guardians</h4>
 
-        <ul>
-          {guardians.map(g => (
-            <li key={g.uuid}>
-              {g.firstName} {g.lastName} {g.email}
-            </li>
-          ))}
-        </ul>
+        <table className={styles.guardianTable}>
+          <tbody>
+            {guardians.map(g => (
+              <tr key={g.uuid}>
+                <td> {g.firstName} </td> <td> {g.lastName}</td> <td> {g.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <ul />
       </div>
     )
   }

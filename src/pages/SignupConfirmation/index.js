@@ -8,7 +8,7 @@ export class SignupConfirmation extends Component {
       <div className={styles.content}>
         <div className={styles.spaceHack}>&nbsp;</div>
         <h3>THANKS!</h3>
-        <p>Check your inbox. We've sent you an email to confirm your account.</p>
+        <p>Check your inbox or spam folder. We've sent you an email to confirm your account.</p>
       </div>
     )
   }

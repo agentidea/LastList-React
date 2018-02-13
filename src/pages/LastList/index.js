@@ -45,7 +45,7 @@ export class LastList extends Component {
     const { firstName, lastName } = this.state
     return (
       <div>
-        <h3>{`${firstName} ${lastName}`} Last list</h3>
+        <h3>{`${firstName} ${lastName}'s`} Last list</h3>
         {this.renderLists()}
       </div>
     )
@@ -64,8 +64,7 @@ export class LastList extends Component {
     return (
       <Fragment>
         <p className={styles.intro}>
-          Here are the songs {`${firstName} ${lastName}`} has chosen to have played at their
-          memorial, wake or funeral, and share with their loved ones. We've emailed you a copy for
+          Here are the songs {`${firstName}`} chose to share with you. We've emailed you a copy for
           your records.
         </p>
         <div className={styles.headerWrapper}>

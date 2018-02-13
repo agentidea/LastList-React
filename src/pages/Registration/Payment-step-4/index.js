@@ -60,10 +60,16 @@ export class RegPayment extends Component {
     return (
       <div className={styles.content}>
         <h3>Finish up</h3>
+        <p>Checkout with a credit card or Apple Pay and you're done!</p>
 
+        <div className={styles.spaceHack}>&nbsp;</div>
         <Link to="/payment-success">
           <img src="/fake-payment.png" alt="Payment" />
         </Link>
+
+        <div className={styles.spaceHack}>&nbsp;</div>
+
+        <div className={styles.spaceHack}>&nbsp;</div>
 
         <form className={styles.content} onSubmit={this.onSubmit}>
           <Button className={styles.loginButton}>Submit Payment</Button>
