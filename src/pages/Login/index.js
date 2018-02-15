@@ -112,7 +112,7 @@ class Login extends Component {
           value={email}
           required
           error={errorEmail}
-          placeholder="Your email address"
+          placeholder="Email Address"
           onChange={value => this.onChange('email', value)}
         />
         <Textfield
@@ -120,7 +120,7 @@ class Login extends Component {
           label="Password"
           value={password}
           error={errorPw}
-          placeholder="Your password"
+          placeholder="Password"
           required
           onChange={value => this.onChange('password', value)}
         />

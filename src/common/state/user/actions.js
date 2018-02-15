@@ -63,7 +63,6 @@ export const login = (email, password) => async dispatch => {
       })
     )
     const jwt = user._id // todo replace this with real JWT
-    const flow = user.flow
     if (jwt) {
       setJwt(jwt)
       store.set('jwtEmail', email) // temporary until we have real JWT
@@ -101,16 +100,37 @@ export const signup = (email, password) => async dispatch => {
   }
 }
 
+// export const confirmAccount = confirmationCode => async dispatch => {
+//   try {
+//     const user = await dispatch(
+//       doRequest(CONFIRM_USER_API, `user/confirmEmail/${confirmationCode}`)
+//     )
+//     return user
+//   } catch (e) {
+//     if (e.response && e.response.data) {
+//       const message = e.response.data.message
+//       throw new UserError(message)
+//     }
+//     throw e
+//   }
+// }
 export const confirmAccount = confirmationCode => async dispatch => {
   try {
     const user = await dispatch(
       doRequest(CONFIRM_USER_API, `user/confirmEmail/${confirmationCode}`)
     )
-    return user
+    const jwt = user._id // todo replace this with real JWT
+    const email = user.email //temp solution for now
+    if (jwt) {
+      setJwt(jwt)
+      store.set('jwtEmail', email) // temporary until we have real JWT
+      dispatch({ type: LOGIN_SUCCESSFULL, jwt, data: user })
+      return dispatch({ type: SET_CURRENT_USER, data: user })
+    }
   } catch (e) {
-    if (e.response && e.response.data) {
-      const message = e.response.data.message
-      throw new UserError(message)
+    if (e.response && e.response.status === 409) {
+      const message = e.response.data.message || 'User not found.'
+      throw new UserError(message, 'email')
     }
     throw e
   }
