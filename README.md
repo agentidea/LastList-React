@@ -1,5 +1,5 @@
 # LastList-React
-React frontend to LastList-Server's REST api.
+React web frontend to LastList-Server's REST api.
 
 
 

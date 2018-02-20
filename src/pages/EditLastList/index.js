@@ -38,8 +38,8 @@ export class EditLastList extends Component {
       <div className={styles.content}>
         <h3>Manage Your Last List</h3>
         <p>
-          Your Last List can include as many sets as you like and you can edit it whenever you want
-          to. Add a new set for $1.
+          One of your ‘favorites’ not doing it for you anymore? You can make as many changes as you
+          like and add a set of 10 songs for $1.
         </p>
         {loading ? (
           <div className={styles.loaderContainer}>

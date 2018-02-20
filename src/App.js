@@ -70,7 +70,6 @@ class App extends Component {
                   <Route path="/contact" component={Contact} />
                   <Route path="/terms" component={Terms} />
                   <Route path="/policies" component={Policies} />
-
                   <Route path="/edit-list" component={EditLastList} />
                   <Route path="/edit-profile" component={EditProfile} />
                   <Route path="/faq" component={Faq} />
@@ -82,11 +81,9 @@ class App extends Component {
                   <Route path="/payment-success" component={PaymentSuccess} />
                   <Route path="/signup" component={Signup} />
                   <Route path="/signup-confirmation" component={SignupConfirmation} />
-                  <Route path="/reg/login" component={RegLogin} />
                   <Route path="/reg/create-profile" component={NewProfile} />
                   <Route path="/reg/create-list" component={CreateFirstLastList} />
                   <Route path="/reg/add-guardian" component={RegGuardians} />
-
                   <Route path="/reg/pre-payment" component={RegPrePayment} />
                   <Route path="/reg/payment" component={RegPayment} />
                   <Route path="/reg/welcome-member" component={WelcomeMember} />

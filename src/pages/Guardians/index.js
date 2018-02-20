@@ -28,9 +28,8 @@ class Guardians extends Component {
       <div className={styles.content}>
         <h3>Manage your guardians</h3>
         <p>
-          Your Guardians will be responsible for getting your Last List from us when the time has
-          come. We’ll let them know that they’ve been chosen to fulfill this important role. You can
-          add up to 5 Guardians and change them as many times as you want to.
+          Your Guardians are responsible for getting your Last List from us when the time has come.
+          You can change them as many times as you want to.
         </p>
         <h4>Your guardians</h4>
         {loading ? (

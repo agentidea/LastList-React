@@ -74,7 +74,7 @@ class AddGuardian extends Component {
 
           <div className={styles.buttons}>
             <Button className={styles.addGuardianBtn}>
-              {adding ? 'Adding...' : 'Add Another Guardian'}
+              {adding ? 'Adding...' : 'Add Guardian'}
             </Button>
 
             {this.shouldShowNextButton() && (

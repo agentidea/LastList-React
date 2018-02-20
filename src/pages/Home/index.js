@@ -10,17 +10,14 @@ export class Home extends Component {
         <div className={styles.text}>
           <h2>Say goodbye with songs</h2>
           <p>
-            Music connects us all on deeply emotional level. Just a few familiar chords can take you
-            straight back to another place and time.
+            Music connects us all on a deeply emotional level. Just think how a few familiar chords
+            can remind you of the most important people, <br />places and times in your life?
           </p>
           <p>
-            Last List is a playlist you create for your loved ones to you remember you by - a
-            selection of your favorite songs that can be played at your memorial, wake or funeral,
-            and shared with those you care about when you’re no longer around.
-          </p>
-          <p>
-            It’s a chance for you to leave family and friends with a lasting musical testimonial of
-            your life.
+            Last List is a playlist of your favorite songs you leave behind for your loved ones when
+            you pass away. It can be played at your memorial, wake or funeral, and shared with the
+            people you love. It’ll be a unique soundtrack of your life and an amazing way for people
+            to remember you when you’re gone.
           </p>
           <div className={styles.spaceHack}>&nbsp;</div>
           <Button to="/signup" vspace>
@@ -40,20 +37,19 @@ export class Home extends Component {
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
-                Add the names of up to 5 Guardians of your list. We’ll let them know they’ve been
-                chosen and what they have to do to when you’ve passed away.
-              </span>
-            </li>
-            <li className={styles.listItem}>
-              <span className={styles.listItemText}>
-                You can edit your Last List and Guardian(s) whenever you feel like it. We’ll store
-                your Last List for you until the time has come.
+                Add the names of up to 5 Guardians of your playlist. We’ll let them know they’ve
+                been chosen and exactly how get your Last List from us when the time comes.
               </span>
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
                 Finish up by checking out with a credit card or Apple Pay.
               </span>
+            </li>
+            <li className={styles.listItem}>
+              <span className={styles.listItemText} />
+              We’ll store your Last List for you. You can edit your songs and Guardians whenever you
+              feel like it.
             </li>
           </ul>
         </div>

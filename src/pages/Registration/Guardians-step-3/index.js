@@ -28,9 +28,19 @@ class RegGuardians extends Component {
       <div className={styles.content}>
         <h3>STEP 3: NOMINATE YOUR GUARDIANS</h3>
         <p>
-          Your Guardians are responsible for getting your Last List from us when the time has come.
-          We’ll let them know that they’ve been chosen to fulfill this important role. You can add
-          up to 5 Guardians and change them as many times as you want to.
+          Your Guardians are a very important part of the process. They’re the people you trust to
+          step up and get your Last List from us when you head into the great beyond.
+        </p>
+        <p>
+          You can add up to 5 Guardians and change them whenever you feel like it. (You never know,
+          your best friend might decide to renounce technology.)
+        </p>
+        <p>
+          {' '}
+          We’ll send your Guardians an email telling them they've been chosen and exactly what they
+          have to do to get your Last List from us when you’re no longer around. We can’t stop them
+          from taking a sneak peak at your Last List, and you probably won’t mind, but we'll cc you
+          on the email anyway so you can chat to them about it.
         </p>
 
         {loading ? (

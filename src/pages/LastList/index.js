@@ -64,9 +64,38 @@ export class LastList extends Component {
     return (
       <Fragment>
         <p className={styles.intro}>
-          Here are the songs {`${firstName}`} chose to share with you. We've emailed you a copy for
-          your records.
+          Here are {`${firstName} ${lastName}`} ’s favorite songs that they want played at their
+          funeral, wake or memorial and shared with the people they love now that they’re gone.
+          (We’ve emailed you a copy too.)
         </p>
+        <p className={styles.intro}>
+          You now have the very important role of carrying out their musical wishes.
+        </p>
+        <p className={styles.intro}> Here's how:</p>
+
+        <ul>
+          <li>
+            <b>Make a playlist of these songs </b>
+            <br />
+            If you don’t have all of the songs, ask friends or family or use Playlist-converter.net,
+            iTunes, Spotify, Pandora or another music streaming service.
+          </li>
+
+          <li>
+            <b>Save the list onto a thumb drive, smartphone, computer or other digital device </b>
+            <br />
+            You can even go old school and burn them onto a CD!
+          </li>
+
+          <li>
+            <b>Make sure that this Last List is played at your loved one's final celebration </b>
+            Whether it’s a pizza party, wake, memorial or cremation.{' '}
+          </li>
+          <li>
+            <b>Share this Last List with your people.</b>
+          </li>
+        </ul>
+
         <div className={styles.headerWrapper}>
           <h4>Last List</h4>
           {songs && (

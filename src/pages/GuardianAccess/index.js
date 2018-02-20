@@ -44,13 +44,10 @@ export class GuardianAccess extends Component {
     const { success } = this.state
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
-        <h3>ACCESS YOUR LOVED ONE'S LAST LIST</h3>
-        <p>Thanks for being a Last List Guardian. We’re very sorry for your loss. </p>
+        <h3>YOUR LOVED ONE'S LAST LIST</h3>
+        <p>Thanks for being a Last List Guardian. We’re so sorry for your loss. </p>
 
-        <p>
-          Please enter your email address to receive a link that will allow you to access your loved
-          one's favorite songs.
-        </p>
+        <p>Please enter your email address below to access your loved one’s favorite songs.</p>
 
         <div className={styles.spaceHack}>&nbsp;</div>
 
