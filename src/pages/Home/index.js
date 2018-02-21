@@ -11,7 +11,7 @@ export class Home extends Component {
           <h2>Say goodbye with songs</h2>
           <p>
             Music connects us all on a deeply emotional level. Just think how a few familiar chords
-            can remind you of the most important people, places and times in your life?
+            can remind you of the most important people, places and times in your life.
           </p>
           <p>
             Last List is a playlist of your favorite songs you leave behind for your loved ones when

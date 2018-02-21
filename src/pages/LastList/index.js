@@ -64,14 +64,12 @@ export class LastList extends Component {
     return (
       <Fragment>
         <p className={styles.intro}>
-          Here are {`${firstName} ${lastName}`} ’s favorite songs that they want played at their
-          funeral, wake or memorial and shared with the people they love now that they’re gone.
-          (We’ve emailed you a copy too.)
+          Here is a list of {`${firstName}`} ’s favorite songs. We’ve emailed you a copy too.
         </p>
         <p className={styles.intro}>
           You now have the very important role of carrying out their musical wishes.
         </p>
-        <p className={styles.intro}> Here's how:</p>
+        <p className={styles.paraLeft}> Here's how:</p>
 
         <ul>
           <li>
@@ -92,7 +90,7 @@ export class LastList extends Component {
             Whether it’s a pizza party, wake, memorial or cremation.{' '}
           </li>
           <li>
-            <b>Share this Last List with your people.</b>
+            <b>Share this Last List with others.</b>
           </li>
         </ul>
 
