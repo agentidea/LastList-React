@@ -1,6 +1,24 @@
 .content {
   text-align: center;
 }
+div .circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 100px;
+  text-align: center;
+  background: var(--theme-color);
+}
+
+div .containerCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .loginButton {
   text-justify: right;
 }

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import UserError from '../../../common/state/user/error'
 
+import requireLogin from '../../../common/hocs/requireLogin'
 import styles from './Payment.module.css'
 import Button from '../../../common/components/Button'
+
+import apiRequest from '../../../common/utils/api'
 
 import * as userActionCreators from '../../../common/state/user/actions'
 
@@ -13,15 +16,35 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
 })
 
+const mapStateToProps = state => ({
+  invoice: state.invoice,
+})
+
 export class RegPayment extends Component {
   state = {
-    amount: 1,
+    amount: -1,
     paymentMethod: 'stripe',
-    numberListsPayingFor: 1,
-    error: {
-      field: null,
-      message: null,
-    },
+    numberListsPayingFor: -1,
+    error: { field: null, message: null },
+  }
+
+  componentDidMount() {
+    var jwt = this.props.user.jwt
+    this.getInvoice(jwt)
+  }
+
+  async getInvoice(id) {
+    try {
+      this.setState({ loadingInvoice: true })
+      const data = await apiRequest(`user/invoice/${id}`, id)
+      this.setState({ invoice: data.invoice, loadingInvoice: false })
+    } catch (e) {
+      let message = 'Unknown error ' + e.message
+      if (e.response && e.response.data && e.response.data.error_type) {
+        message = e.response.data.message
+      }
+      this.setState({ loadingInvoice: false, error: message })
+    }
   }
 
   shouldShowNextButton = () => {
@@ -56,30 +79,34 @@ export class RegPayment extends Component {
   }
 
   render() {
-    const { error } = this.state
-    return (
-      <div className={styles.content}>
-        <h3>Finish up</h3>
-        <p>Checkout with a credit card or Apple Pay and you're done!</p>
+    const { invoice, error } = this.state
 
-        <div className={styles.spaceHack}>&nbsp;</div>
-        <Link to="/payment-success">
+    if (invoice === undefined) {
+      return <div>no invoice</div>
+    } else {
+      return (
+        <div className={styles.content}>
+          <h3>Step 5: Finish up</h3>
+          <p>Checkout with a credit card or Apple Pay and you're done!</p>
+
+          <div className={styles.spaceHack}>&nbsp;</div>
+
+          <div className={styles.containerCenter}>
+            <div className={styles.circle}> ${invoice.due}</div>
+          </div>
+          <div className={styles.spaceHack}>&nbsp;</div>
           <img src="/fake-payment.png" alt="Payment" />
-        </Link>
+          <div className={styles.spaceHack}>&nbsp;</div>
 
-        <div className={styles.spaceHack}>&nbsp;</div>
+          <form className={styles.content} onSubmit={this.onSubmit}>
+            <Button className={styles.loginButton}>Submit Payment</Button>
+          </form>
 
-        <div className={styles.spaceHack}>&nbsp;</div>
-
-        <form className={styles.content} onSubmit={this.onSubmit}>
-          <Button className={styles.loginButton}>Submit Payment</Button>
-        </form>
-
-        <p className={styles.error}>{error.message}</p>
-      </div>
-    )
+          <p className={styles.error}>{error.message}</p>
+        </div>
+      )
+    }
   }
 }
 
-//export default RegPayment
-export default connect(null, mapDispatchToProps)(RegPayment)
+export default connect(mapStateToProps, mapDispatchToProps)(requireLogin(RegPayment))

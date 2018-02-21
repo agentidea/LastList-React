@@ -140,7 +140,7 @@ class NewProfile extends Component {
 
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
-                  Next: Create Your Last List
+                  Next: Add Songs
                 </Button>
               )}
             </div>

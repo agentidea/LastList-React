@@ -63,7 +63,7 @@ class RegPrePayment extends Component {
 
     return (
       <div className={styles.content}>
-        <h3>SUMMARY</h3>
+        <h3>STEP 4: SUMMARY</h3>
 
         <h4> Your Last List</h4>
         <h4>{loadingInvoice ? 'loading' : <Invoice invoice={invoice} />}</h4>
@@ -80,7 +80,7 @@ class RegPrePayment extends Component {
 
         <div className={styles.buttons}>
           <Button className={styles.nextBtn} onClick={this.goNext}>
-            {goingnext ? 'Next: Payment' : 'Next: Payment'}
+            {goingnext ? 'Next: Finish Up' : 'Next: Finish Up'}
           </Button>
         </div>
       </div>

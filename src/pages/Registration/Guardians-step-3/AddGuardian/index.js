@@ -33,14 +33,18 @@ class AddGuardian extends Component {
     //if saved list how do we tell?
     //look in state if num guardian are added
     //return this.state.goingnext
-    return true
+    const { guardians } = this.props
+    if (guardians && guardians.length > 0) {
+      return true
+    }
+    return false
   }
 
   render() {
     const { firstName, lastName, email, adding, goingnext, error } = this.state
     return (
       <div className={styles.content}>
-        <h4>Add Guardians</h4>
+        <h4>Add Guardian</h4>
 
         <form className={styles.addGuardian} onSubmit={this.addGuardian}>
           <div className={styles.inputs}>
@@ -79,7 +83,7 @@ class AddGuardian extends Component {
 
             {this.shouldShowNextButton() && (
               <Button className={styles.nextBtn} onClick={this.goNext}>
-                {goingnext ? 'Next: Payment' : 'Next: Payment'}
+                {goingnext ? 'Next: Summary' : 'Next: Summary'}
               </Button>
             )}
           </div>

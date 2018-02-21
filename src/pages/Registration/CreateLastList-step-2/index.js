@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
 export class CreateFirstLastList extends Component {
   componentDidMount() {
     this.props.listsActions.fetchUserLists()
+    this.setState({ ...this.props.currentProfile, loaded: true }) // see if user had previously saved a list ( aka edit_list )
   }
 
   shouldShowAddSongs = () => {
@@ -41,6 +42,17 @@ export class CreateFirstLastList extends Component {
   saveButtonClicked = () => {
     //pass dispatch getState() ?????
     this.props.listsActions.saveUserList()
+    //this.state.saved == true
+  }
+
+  shouldShowNextButton() {
+    //look for previously saved a list
+    var serverStates = this.props.user.states
+    if (serverStates && serverStates.length > 0) {
+      const hasList = serverStates.find(item => item === 'edit_list')
+      return hasList === 'edit_list'
+    }
+    return false
   }
 
   render() {
@@ -72,9 +84,11 @@ export class CreateFirstLastList extends Component {
                 {saving ? 'Saving...' : 'Save'}
               </Button>
 
-              <Button className={styles.nextBtn} onClick={this.goNext}>
-                Next: Add Guardians
-              </Button>
+              {this.shouldShowNextButton() && (
+                <Button className={styles.nextBtn} onClick={this.goNext}>
+                  Next: Nominate Guardians
+                </Button>
+              )}
             </div>
           </Fragment>
         )}
