@@ -5,11 +5,12 @@
 
 .buttons {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
 .saveBtn {
-  align-self: flex-start;
+  align-self: flex-end;
 }
 
 .nextBtn {

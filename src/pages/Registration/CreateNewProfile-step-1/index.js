@@ -24,6 +24,7 @@ class NewProfile extends Component {
     loaded: false,
     saving: false,
     saved: false,
+    dobDirty: false,
     firstName: '',
     lastName: '',
     error: {
@@ -46,7 +47,7 @@ class NewProfile extends Component {
   }
 
   onDateChange = date => {
-    this.setState({ dob: date })
+    this.setState({ dob: date, dobDirty: true })
   }
 
   goNext = () => {
@@ -64,11 +65,23 @@ class NewProfile extends Component {
       .catch(error => {
         if (error instanceof UserError) {
           const { field, message } = error
-          this.setState({ error: { field, message }, saving: false })
+          this.setState({ error: { field, message }, saving: false, dirty: false })
         } else {
           this.setState({ error: { field: 'lastName', message: 'Unknown error' }, saving: false })
         }
       })
+  }
+  shouldShowSaveButton() {
+    const { firstName, lastName, dobDirty, saved } = this.state
+
+    if (saved !== null && saved) return false
+    if (firstName === null || lastName === null) return false
+
+    if (firstName.length > 0 && lastName.length > 0 && dobDirty) {
+      return true
+    } else {
+      return false
+    }
   }
 
   shouldShowNextButton() {
@@ -86,7 +99,7 @@ class NewProfile extends Component {
   }
 
   render() {
-    const { loaded, saving, firstName, lastName, dob, saved, error } = this.state
+    const { loaded, saving, firstName, lastName, dob, error } = this.state
     const errorFirstName = error.field === 'firstName' ? error.message : null
     const errorLastName = error.field === 'lastName' ? error.message : null
 
@@ -119,9 +132,11 @@ class NewProfile extends Component {
             />
 
             <div className={styles.buttons}>
-              <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-                {saving ? 'Saving ...' : 'Save'}
-              </Button>
+              {this.shouldShowSaveButton() && (
+                <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
+                  {saving ? 'Saving ...' : 'Save'}
+                </Button>
+              )}
 
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
