@@ -38,10 +38,10 @@ class RegGuardians extends Component {
         <p>
           <b>
             We’ll send your Guardians an email telling them they've been chosen and exactly what
-            they have to do to get your Last List from us when you kick the bucket.
-          </b>{' '}
-          We can’t stop them from taking a sneak peak at your Last List, and you probably won’t
-          mind, but we'll cc you on the email anyway so you can chat to them about it.
+            they have to do to get your Last List from us.
+          </b>
+          We can’t stop them from taking a sneak peak, and you probably won’t mind, but we'll cc you
+          on the email anyway so you can chat to them about it.
         </p>
 
         {loading ? (

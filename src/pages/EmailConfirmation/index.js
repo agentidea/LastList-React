@@ -37,13 +37,15 @@ class EmailConfirmation extends Component {
     const { confirming, error } = this.state
     return (
       <div className={styles.content}>
-        <h3>OOPS! SOMETHING WENT WRONG</h3>
         <div className={styles.spaceHack}>&nbsp;</div>
 
         {confirming ? (
           <Loading />
         ) : error ? (
-          <p className={styles.error}>{error.message}</p>
+          <div>
+            <h3>OOPS! SOMETHING WENT WRONG</h3>
+            <p className={styles.error}>{error.message}</p>
+          </div>
         ) : (
           <div>
             <h3>GREAT! YOU'RE ALL SET</h3>

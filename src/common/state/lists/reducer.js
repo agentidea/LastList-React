@@ -66,6 +66,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         saving: true,
+        saved: true,
       }
     case SAVE_LIST_API.SUCCESS:
     case SAVE_LIST_API.FAILURE:
