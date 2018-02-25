@@ -42,7 +42,6 @@ export const getCurrentUser = () => async (dispatch, getState) => {
       )
 
       dispatch({ type: SET_CURRENT_USER, data: user })
-      return user
     } catch (e) {
       if (e.response && e.response.status === 401) {
         await dispatch(signOut())
@@ -51,7 +50,6 @@ export const getCurrentUser = () => async (dispatch, getState) => {
       }
     }
   }
-  return null
 }
 
 export const login = (email, password) => async dispatch => {
