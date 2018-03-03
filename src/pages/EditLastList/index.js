@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import requireLogin from '../../common/hocs/requireLogin'
 import * as listsActionCreators from '../../common/state/lists/actions'
 import Loading from '../../common/components/Loading'
-import Textfield from '../../common/components/Textfield'
+import SongInput from '../../common/components/SongInput'
 import Button from '../../common/components/Button'
 import styles from './EditLastList.module.css'
 
@@ -36,7 +36,7 @@ export class EditLastList extends Component {
     const { lists, loading, saving } = this.props
     return (
       <div className={styles.content}>
-        <h3>Manage Your Last List</h3>
+        <h3>Manage Your Last Lists</h3>
         <p>
           One of your ‘favorites’ not doing it for you anymore? You can make as many changes as you
           like and add a set of 10 songs for $1.
@@ -72,20 +72,17 @@ export class EditLastList extends Component {
     return (
       <div key={listIndex} className={styles.list}>
         {list.map((item, index) => (
-          <div key={index} className={styles.listRow}>
-            <Textfield
-              label={index === 0 ? 'Artist Name' : null}
-              placeholder="Artist Name"
-              value={item.artistName}
-              onChange={value => this.props.listsActions.setListItemArtist(listIndex, index, value)}
-            />
-            <Textfield
-              label={index === 0 ? 'Song Title' : null}
-              placeholder="Song Title"
-              value={item.songName}
-              onChange={value => this.props.listsActions.setListItemSong(listIndex, index, value)}
-            />
-          </div>
+          <SongInput
+            key={index}
+            isFirst={index === 0}
+            artistName={item.artistName}
+            songName={item.songName}
+            onBothChanged={item => this.props.listsActions.setListItem(listIndex, index, item)}
+            onArtistChange={value =>
+              this.props.listsActions.setListItemArtist(listIndex, index, value)
+            }
+            onSongChange={value => this.props.listsActions.setListItemSong(listIndex, index, value)}
+          />
         ))}
       </div>
     )

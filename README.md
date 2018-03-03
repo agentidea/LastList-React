@@ -2,7 +2,6 @@
 React web frontend to LastList-Server's REST api.
 
 
-
 ## Install `nvm` first
 
 as non-sudo
