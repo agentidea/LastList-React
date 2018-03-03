@@ -9,6 +9,7 @@ import styles from './SongInput.module.css'
 
 const renderInput = ({ onChange, ref, ...rest }) => (
   <Textfield
+    noMargin
     onChange={(v, e) => onChange(e)} // autosuggest needs to original event
     innerRef={ref}
     {...rest}
@@ -76,6 +77,13 @@ export class SongInput extends Component {
             label: isFirst ? 'Artist Name' : null,
             placeholder: 'Artist Name',
             onChange: this.onArtistChange,
+          }}
+          theme={{
+            container: styles.autoSuggestContainer,
+            suggestionsContainerOpen: styles.suggestionsContainerOpen,
+            suggestionsList: styles.suggestionsList,
+            suggestion: styles.suggestion,
+            suggestionHighlighted: styles.suggestionHighlighted,
           }}
         />
         <Textfield
