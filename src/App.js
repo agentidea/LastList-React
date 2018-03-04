@@ -29,8 +29,6 @@ import Payment from './pages/Payment'
 import PaymentSuccess from './pages/PaymentSuccess'
 import Four04 from './pages/Four04'
 import styles from './App.module.css'
-
-import RegLogin from './pages/Registration/Login-step-0'
 import NewProfile from './pages/Registration/CreateNewProfile-step-1'
 import CreateFirstLastList from './pages/Registration/CreateLastList-step-2'
 import RegGuardians from './pages/Registration/Guardians-step-3'
