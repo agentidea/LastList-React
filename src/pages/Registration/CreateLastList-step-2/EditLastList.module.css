@@ -7,6 +7,10 @@
   display: flex;
   justify-content: space-between;
 }
+.backBtn {
+  align-self: flex-start;
+}
+
 .saveBtn {
   align-self: flex-start;
 }

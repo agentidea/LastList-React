@@ -19,6 +19,14 @@ div .containerCenter {
   justify-content: center;
 }
 
-.loginButton {
-  text-justify: right;
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.backBtn {
+  align-self: flex-start;
+}
+
+.paymentButton {
+  align-self: flex-end;
 }

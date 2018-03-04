@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-//import { Link } from 'react-router-dom'
 import UserError from '../../../common/state/user/error'
-
 import requireLogin from '../../../common/hocs/requireLogin'
 import styles from './Payment.module.css'
 import Button from '../../../common/components/Button'
-
-import apiRequest from '../../../common/utils/api'
 
 import * as userActionCreators from '../../../common/state/user/actions'
 
@@ -17,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  invoice: state.invoice,
+  invoice: state.invoice.data,
 })
 
 export class RegPayment extends Component {
@@ -28,23 +24,9 @@ export class RegPayment extends Component {
     error: { field: null, message: null },
   }
 
-  componentDidMount() {
-    var jwt = this.props.user.jwt
-    this.getInvoice(jwt)
-  }
-
-  async getInvoice(id) {
-    try {
-      this.setState({ loadingInvoice: true })
-      const data = await apiRequest(`user/invoice/${id}`, id)
-      this.setState({ invoice: data.invoice, loadingInvoice: false })
-    } catch (e) {
-      let message = 'Unknown error ' + e.message
-      if (e.response && e.response.data && e.response.data.error_type) {
-        message = e.response.data.message
-      }
-      this.setState({ loadingInvoice: false, error: message })
-    }
+  goBack = () => {
+    const { history } = this.props
+    history.goBack()
   }
 
   shouldShowNextButton = () => {
@@ -59,8 +41,7 @@ export class RegPayment extends Component {
     history.push('/reg/welcome-member')
   }
 
-  onSubmit = event => {
-    event.preventDefault()
+  payForList = () => {
     const { amount, paymentMethod, numberListsPayingFor, error } = this.state
 
     this.props.userActions
@@ -79,7 +60,8 @@ export class RegPayment extends Component {
   }
 
   render() {
-    const { invoice, error } = this.state
+    const { invoice } = this.props
+    const { error } = this.state
 
     if (invoice === undefined) {
       return <div>no invoice</div>
@@ -98,9 +80,14 @@ export class RegPayment extends Component {
           <img src="/fake-payment.png" alt="Payment" />
           <div className={styles.spaceHack}>&nbsp;</div>
 
-          <form className={styles.content} onSubmit={this.onSubmit}>
-            <Button className={styles.loginButton}>Submit Payment</Button>
-          </form>
+          <div className={styles.buttons}>
+            <Button className={styles.backBtn} onClick={this.goBack}>
+              Back
+            </Button>
+            <Button className={styles.paymentBtn} onClick={this.payForList}>
+              Submit Payment
+            </Button>
+          </div>
 
           <p className={styles.error}>{error.message}</p>
         </div>

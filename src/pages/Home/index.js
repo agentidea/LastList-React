@@ -10,14 +10,14 @@ export class Home extends Component {
         <div className={styles.text}>
           <h2>Say goodbye with songs</h2>
           <p>
-            Music connects us all on a deeply emotional level. Just think how a few familiar chords
-            can remind you of the most important people, places and times in your life.
+            Music connects us all on a deeply e'motional level. A few familiar chords can remind you
+            of the most important people, places and times in your life.
           </p>
           <p>
-            Last List is a playlist of your favorite songs you leave behind for your loved ones when
-            you pass away. It can be played at your memorial, wake or funeral, and shared with the
-            people you love. It’ll be a unique soundtrack of your life and an amazing way for people
-            to remember you when you’re gone.
+            Last List is a playlist of your favorite songs you leave behind when you pass away. It
+            can be played at your memorial, wake or funeral, and shared with the people you love.
+            It's a unique soundtrack of your life and an amazing way for people to remember you when
+            you’re gone.
           </p>
           <div className={styles.spaceHack}>&nbsp;</div>
           <Button to="/signup" vspace>
@@ -38,7 +38,7 @@ export class Home extends Component {
             <li className={styles.listItem}>
               <span className={styles.listItemText}>
                 Add the names of up to 5 Guardians of your playlist. We’ll let them know they’ve
-                been chosen and exactly how get your Last List from us when the time comes.
+                been chosen and what they have to do when you leave this world.
               </span>
             </li>
             <li className={styles.listItem}>

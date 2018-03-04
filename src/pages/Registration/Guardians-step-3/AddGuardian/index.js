@@ -29,6 +29,11 @@ class AddGuardian extends Component {
     history.push('/reg/pre-payment')
   }
 
+  goBack = () => {
+    const { history } = this.props
+    history.goBack()
+  }
+
   shouldShowNextButton = () => {
     //if saved list how do we tell?
     //look in state if num guardian are added
@@ -77,6 +82,10 @@ class AddGuardian extends Component {
           {error && <div className={styles.error}>{error}</div>}
 
           <div className={styles.buttons}>
+            <Button className={styles.backBtn} onClick={this.goBack}>
+              Back
+            </Button>
+
             <Button className={styles.addGuardianBtn}>
               {adding ? 'Adding...' : 'Add Guardian'}
             </Button>

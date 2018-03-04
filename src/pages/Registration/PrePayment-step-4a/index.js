@@ -32,6 +32,11 @@ class RegPrePayment extends Component {
     history.push('/reg/payment')
   }
 
+  goBack = () => {
+    const { history } = this.props
+    history.goBack()
+  }
+
   componentDidMount() {
     this.props.invoiceActions.getInvoice()
   }
@@ -50,6 +55,9 @@ class RegPrePayment extends Component {
         <GuardiansList guardians={guardians} />
 
         <div className={styles.buttons}>
+          <Button className={styles.backBtn} onClick={this.goBack}>
+            Back
+          </Button>
           <Button className={styles.nextBtn} onClick={this.goNext}>
             {goingnext ? 'Next: Finish Up' : 'Next: Finish Up'}
           </Button>

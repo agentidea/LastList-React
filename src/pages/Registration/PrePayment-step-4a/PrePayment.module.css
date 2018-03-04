@@ -1,6 +1,10 @@
 .buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.backBtn {
+  align-self: flex-start;
 }
 
 .nextBtn {

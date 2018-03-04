@@ -11,7 +11,9 @@
 .addGuardianBtn {
   align-self: flex-start;
 }
-
+.backBtn {
+  align-self: flex-start;
+}
 .nextBtn {
   align-self: flex-end;
 }

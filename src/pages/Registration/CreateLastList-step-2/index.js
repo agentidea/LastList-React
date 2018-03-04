@@ -40,6 +40,15 @@ export class CreateFirstLastList extends Component {
     history.push('/reg/add-guardian')
   }
 
+  goBack = () => {
+    const { history } = this.props
+    history.goBack()
+  }
+
+  shouldShowBackButton() {
+    return false
+  }
+
   saveButtonClicked = () => {
     //pass dispatch getState() ?????
     this.props.listsActions.saveUserList()
@@ -78,6 +87,12 @@ export class CreateFirstLastList extends Component {
           <Fragment>
             <div>{lists.map((l, i) => this.renderList(l, i))}</div>
             <div className={styles.buttons}>
+              {this.shouldShowBackButton() && (
+                <Button className={styles.backBtn} onClick={this.goBack}>
+                  Back
+                </Button>
+              )}
+
               {this.shouldShowAddSongs() && (
                 <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
                   Add Another 10 Songs
