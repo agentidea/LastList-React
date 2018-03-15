@@ -10,7 +10,7 @@ export class Home extends Component {
         <div className={styles.text}>
           <h2>Say goodbye with songs</h2>
           <p>
-            Music connects us all on a deeply e'motional level. A few familiar chords can remind you
+            Music connects us all on a deeply emotional level. A few familiar chords can remind you
             of the most important people, places and times in your life.
           </p>
           <p>
