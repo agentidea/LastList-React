@@ -10,6 +10,8 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+    <script src="https://js.stripe.com/v3/"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -21,6 +23,126 @@
     -->
     <title>Last List</title>
   </head>
+
+
+  <style>
+    .Modal {
+      position: relative;
+      margin: 0 auto;
+      top: 100px;
+      max-width: 426px;
+      height: 686px;
+      background-color: #fafcfe;
+      border: solid 4px #3917fe;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .Modal:focus {
+      outline: none;
+    }
+
+    .Overlay {
+      position: absolute;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .stripeTopHeader {
+      position: relative;
+      height: 160px;
+      //background: red;
+    }
+    .modalCloseContainer {
+      position: absolute;
+      z-index: 77;
+      display: block;
+      top: 15px;
+      right: 18px;
+      font-weight: bold;
+      font-size: 2em;
+      color: #3917fe;
+      cursor: pointer;
+    }
+
+    .logoContainer {
+      position: relative;
+      //background: #4a4a4a;
+      text-align: center;
+      top: 22px;
+    }
+
+
+
+    .stripeForm .Checkout {
+      margin: 0 auto;
+      max-width: 800px;
+      box-sizing: border-box;
+      padding: 0 5px;
+    }
+
+    .stripeForm label, .emailStripeContainer label {
+      font-family: var(--font-family);
+      font-weight: var(--font-weight);
+      letter-spacing: 2px;
+      color: var(--color);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .stripeForm {
+      padding: 20px;
+    }
+
+    .stripeForm button {
+      margin-top: 70px;
+      box-shadow: 0 6px 14px 0 rgba(165, 227, 236, 0.4);
+    }
+
+    .stripeForm input,
+    .StripeElement {
+      display: block;
+      margin: 10px 0 20px 0;
+      padding: 10px 14px;
+      font-size: 1em;
+      border: 0;
+      outline: 0;
+      border-bottom: 4px solid #AB5BFF;
+    }
+
+    .emailStripeContainer input:focus {
+      border-bottom: 4px solid #AB5BFF;
+    }
+
+    .stripeForm input::placeholder {
+      color: #aab7c4;
+    }
+
+    .stripeForm input:focus,
+    .StripeElement--focus {
+      -webkit-transition: all 150ms ease;
+      transition: all 150ms ease;
+    }
+    .cardInputContainer {
+      display: block;
+      margin: 10px 0 20px 0;
+      padding: 10px 14px;
+      font-size: 1em;
+    }
+
+    .yearCvcContainer {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .yearContainer, .cvcContainer {
+      min-width: 170px;
+    }
+
+  </style>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.

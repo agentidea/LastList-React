@@ -1,12 +1,19 @@
 .buttons {
-  display: flex;
-  justify-content: space-between;
+  display: block;
+  text-align: center;
+}
+
+.backBtn,
+.nextBtn {
+  min-width: 15em;
 }
 
 .backBtn {
-  align-self: flex-start;
+  display: block;
+  margin: 0 auto;
 }
 
 .nextBtn {
-  align-self: flex-start;
+  display: block;
+  margin: 0.5em auto;
 }

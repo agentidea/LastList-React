@@ -12,7 +12,9 @@ export default class GuardiansList extends Component {
           <tbody>
             {guardians.map(g => (
               <tr key={g.uuid}>
-                <td> {g.firstName} </td> <td> {g.lastName}</td> <td> {g.email}</td>
+                <td>{g.firstName}</td>
+                <td>{g.lastName}</td>
+                <td>{g.email}</td>
               </tr>
             ))}
           </tbody>

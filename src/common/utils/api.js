@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { environment } from '../../environment/environment'
 
-export const API_ROOT = 'https://api.lastlist.com/api'
+export const API_ROOT =
+  environment.mode === 'dev' ? environment.development : environment.production
 
 function getUrl(endpoint) {
   // if it's an external call

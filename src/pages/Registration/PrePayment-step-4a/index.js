@@ -10,6 +10,9 @@ import styles from './PrePayment.module.css'
 import GuardiansList from './GuardiansList'
 import Invoice from './Invoice'
 import Button from '../../../common/components/Button'
+import ReactModal from 'react-modal'
+import logo from '../../../common/components/Header/logo.png'
+import StripeCardForm from './StripePayment'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -23,13 +26,22 @@ const mapDispatchToProps = dispatch => ({
 class RegPrePayment extends Component {
   state = {
     goingnext: false,
+    showModal: false,
   }
 
-  goNext = () => {
-    //$to do: auto-save / prompt if dirty
-    //$to do: why is history undefined here????
-    const { history } = this.props
-    history.push('/reg/payment')
+  /* handle modal open */
+  handleOpenModal() {
+    this.setState({ showModal: true })
+  }
+
+  /* handle modal close */
+  handleCloseModal() {
+    this.setState({ showModal: false })
+  }
+
+  /* action pay with card / stripe */
+  openPayment = () => {
+    this.handleOpenModal()
   }
 
   goBack = () => {
@@ -39,6 +51,8 @@ class RegPrePayment extends Component {
 
   componentDidMount() {
     this.props.invoiceActions.getInvoice()
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
   }
 
   render() {
@@ -58,10 +72,29 @@ class RegPrePayment extends Component {
           <Button className={styles.backBtn} onClick={this.goBack}>
             Back
           </Button>
-          <Button className={styles.nextBtn} onClick={this.goNext}>
-            {goingnext ? 'Next: Finish Up' : 'Next: Finish Up'}
+          <Button className={styles.nextBtn} onClick={this.openPayment}>
+            {goingnext ? 'Pay with Card' : 'Pay with Card'}
           </Button>
         </div>
+
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="onRequestClose Example"
+          onRequestClose={this.handleCloseModal}
+          className="Modal"
+          overlayClassName="Overlay"
+        >
+          <div className="stripeTopHeader">
+            <span className="modalCloseContainer" onClick={this.handleCloseModal}>
+              &times;
+            </span>
+            <div className="logoContainer">
+              <img src={logo} alt="Last List" width="106" height="109" />
+            </div>
+          </div>
+
+          <StripeCardForm />
+        </ReactModal>
       </div>
     )
   }
