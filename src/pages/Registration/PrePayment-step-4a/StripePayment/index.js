@@ -10,9 +10,10 @@ import {
   StripeProvider,
 } from 'react-stripe-elements'
 import Button from '../../../../common/components/Button'
-import styles from '../PrePayment.module.css'
+import styles from '../StripePayment/StripePayment.module.css'
 import { environment } from '../../../../environment/environment'
 import React from 'react'
+import * as paymentsActions from '../../../../common/state/payments/actions'
 
 const createOptions = (fontSize: string, padding: ?string) => {
   return {
@@ -21,7 +22,6 @@ const createOptions = (fontSize: string, padding: ?string) => {
         fontSize,
         color: '#424770',
         letterSpacing: '0.025em',
-        fontFamily: 'Source Code Pro, monospace',
         '::placeholder': {
           color: '#aab7c4',
         },
@@ -34,37 +34,77 @@ const createOptions = (fontSize: string, padding: ?string) => {
   }
 }
 
-const handleBlur = () => {
-  console.log('[blur]')
-}
-const handleChange = change => {
-  console.log('[change]', change)
-}
-const handleClick = () => {
-  console.log('[click]')
-}
-const handleFocus = () => {
-  console.log('[focus]')
-}
-const handleReady = () => {
-  console.log('[ready]')
-}
-
 class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
-  handleSubmit = ev => {
-    ev.preventDefault()
-    if (this.props.stripe) {
-      this.props.stripe.createToken().then(payload => console.log('[token]', payload))
-    } else {
-      console.log("Stripe.js hasn't loaded yet.")
-    }
+  state = {
+    email: '',
+    error: {
+      field: null,
+      message: null,
+    },
+    loading: false,
+    paymentResponse: null,
   }
 
+  /* handle change for stripe specific components */
+  handleChange = change => {
+    console.log('[change]', change)
+
+    this.setState({
+      error: {
+        field: null,
+        message: null,
+      },
+    })
+
+    this.setState({
+      error: {
+        field: change.elementType,
+        message: change.error ? change.error.message : '',
+      },
+    })
+  }
+
+  /* handle change for other non-stripe components */
   onChange = (field, value) => {
     this.setState({ [field]: value, error: { field: null } })
   }
 
+  /* on form submit */
+  handleSubmit = ev => {
+    ev.preventDefault()
+
+    this.setState({ loading: true })
+
+    if (this.props.stripe) {
+      this.props.stripe.createToken().then(payload => {
+        let result = paymentsActions.stripePay(payload)
+
+        if (result.error) {
+          this.setState({
+            error: {
+              field: result.field,
+              message: result.message,
+            },
+          })
+
+          return
+        }
+
+        paymentsActions.doStripePayment(result.token).then(data => {
+          let message = data.code === 200 ? data.message : 'Something went wrong'
+          this.setState({ loading: false, paymentResponse: message })
+        })
+      })
+    } else {
+      this.setState({ loading: false })
+      console.log("Stripe.js hasn't loaded yet.")
+    }
+  }
+
   render() {
+    const { email, error } = this.state
+    const errorEmail = error.field === 'email' ? error.message : null
+
     return (
       <form onSubmit={this.handleSubmit} className="stripeForm">
         <div className="emailStripeContainer">
@@ -72,8 +112,9 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
             Email
             <Textfield
               type="email"
-              value=""
+              value={email}
               required
+              error={errorEmail}
               placeholder="email@emailaddy.com"
               onChange={value => this.onChange('email', value)}
             />
@@ -82,41 +123,52 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
         <label>
           Card Number
           <CardNumberElement
-            onBlur={handleBlur}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onReady={handleReady}
+            onChange={this.handleChange}
             {...createOptions(this.props.fontSize)}
             className="cardInputContainer"
           />
+          {error.field === 'cardNumber' ? (
+            <span className={styles.errors}>{error.message}</span>
+          ) : (
+            ''
+          )}
         </label>
         <div className="yearCvcContainer">
           <div className="yearContainer">
             <label>
               MM / YY
               <CardExpiryElement
-                onBlur={handleBlur}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onReady={handleReady}
+                onChange={this.handleChange}
                 {...createOptions(this.props.fontSize)}
               />
+              {error.field === 'cardExpiry' ? (
+                <span className={styles.errors}>{error.message}</span>
+              ) : (
+                ''
+              )}
             </label>
           </div>
           <div className="cvcContainer">
             <label>
               CVC
               <CardCVCElement
-                onBlur={handleBlur}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onReady={handleReady}
+                onChange={this.handleChange}
                 {...createOptions(this.props.fontSize)}
               />
+              {error.field === 'cardCvc' ? (
+                <span className={styles.errors}>{error.message}</span>
+              ) : (
+                ''
+              )}
             </label>
           </div>
         </div>
-        <Button className={styles.nextBtn} onClick={this.goNext}>
+
+        <div className={styles.noticeWrapper}>
+          {this.state.loading ? <span className="">PLEASE WAIT...</span> : ''}
+          {this.state.paymentResponse ? <span className="">{this.state.paymentResponse}</span> : ''}
+        </div>
+        <Button className={styles.payBtn} type="submit">
           Pay ${environment.payAmount}
         </Button>
       </form>
@@ -129,7 +181,9 @@ const SplitForm = injectStripe(_SplitForm)
 class StripeCardForm extends Component {
   render() {
     return (
-      <StripeProvider apiKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh">
+      <StripeProvider
+        apiKey={environment.mode === 'dev' ? environment.devStripeKey : environment.prodStripeKey}
+      >
         <Elements>
           <SplitForm />
         </Elements>

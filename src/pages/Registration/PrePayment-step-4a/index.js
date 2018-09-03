@@ -92,7 +92,6 @@ class RegPrePayment extends Component {
               <img src={logo} alt="Last List" width="106" height="109" />
             </div>
           </div>
-
           <StripeCardForm />
         </ReactModal>
       </div>

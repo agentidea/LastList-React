@@ -1,17 +1,18 @@
-.Modal {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
-  background-color: #ccc;
+.errors {
+  color: red;
+  font-size: 0.7em;
+  margin: 0.7em 0;
 }
 
-.Overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+.payBtn {
+  display: block;
+  margin: 0.5em auto;
+  min-width: 15em;
+}
+
+.noticeWrapper {
+  text-align: center;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  letter-spacing: 2px;
 }

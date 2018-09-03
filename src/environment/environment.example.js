@@ -8,4 +8,6 @@ export const environment = {
   development: 'http://127.0.0.1:5000',
   staging: '',
   payAmount: '1.00',
+  devStripeKey: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
+  prodStripeKey: '',
 }
