@@ -14,6 +14,7 @@ import styles from '../StripePayment/StripePayment.module.css'
 import { environment } from '../../../../environment/environment'
 import React from 'react'
 import * as paymentsActions from '../../../../common/state/payments/actions'
+import classnames from 'classnames'
 
 const createOptions = (fontSize: string, padding: ?string) => {
   return {
@@ -43,12 +44,15 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
     },
     loading: false,
     paymentResponse: null,
+    buttonInfo: {
+      text: null,
+      action: null,
+    },
+    viewForm: true,
   }
 
   /* handle change for stripe specific components */
   handleChange = change => {
-    console.log('[change]', change)
-
     this.setState({
       error: {
         field: null,
@@ -81,6 +85,7 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
 
         if (result.error) {
           this.setState({
+            loading: false,
             error: {
               field: result.field,
               message: result.message,
@@ -90,15 +95,42 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
           return
         }
 
-        paymentsActions.doStripePayment(result.token).then(data => {
-          let message = data.code === 200 ? data.message : 'Something went wrong'
-          this.setState({ loading: false, paymentResponse: message })
-        })
+        paymentsActions
+          .doStripePayment({ token: result.token, amount: this.props.elements.amount.due })
+          .then(data => {
+            let message =
+              data.code === 200 ? data.message : 'Something went wrong, payment was unsuccessful'
+            this.handleAfterPayButtons(data.code)
+            this.setState({ loading: false, viewForm: false, paymentResponse: message })
+          })
       })
     } else {
       this.setState({ loading: false })
       console.log("Stripe.js hasn't loaded yet.")
     }
+  }
+
+  /* return to pay view on try-again action OR close modal on close action */
+  handleNextAction = action => {
+    if (action === 'close') {
+      this.props.elements.handleCloseModal()
+      return
+    }
+
+    this._cardNumber.clear()
+    this._cardYear.clear()
+    this._cardCvc.clear()
+    this.setState({ viewForm: true, paymentResponse: null })
+  }
+
+  /* handle button of success / try again view */
+  handleAfterPayButtons = paymentResponse => {
+    this.setState({
+      buttonInfo: {
+        text: paymentResponse === 200 ? 'Done' : 'Try Again',
+        action: paymentResponse === 200 ? 'close' : 'try-again',
+      },
+    })
   }
 
   render() {
@@ -107,69 +139,91 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
 
     return (
       <form onSubmit={this.handleSubmit} className="stripeForm">
-        <div className="emailStripeContainer">
-          <label>
-            Email
-            <Textfield
-              type="email"
-              value={email}
-              required
-              error={errorEmail}
-              placeholder="email@emailaddy.com"
-              onChange={value => this.onChange('email', value)}
-            />
-          </label>
-        </div>
-        <label>
-          Card Number
-          <CardNumberElement
-            onChange={this.handleChange}
-            {...createOptions(this.props.fontSize)}
-            className="cardInputContainer"
-          />
-          {error.field === 'cardNumber' ? (
-            <span className={styles.errors}>{error.message}</span>
-          ) : (
-            ''
-          )}
-        </label>
-        <div className="yearCvcContainer">
-          <div className="yearContainer">
+        <div style={!this.state.viewForm ? { display: 'none' } : {}}>
+          <div className="emailStripeContainer">
             <label>
-              MM / YY
-              <CardExpiryElement
-                onChange={this.handleChange}
-                {...createOptions(this.props.fontSize)}
+              Email
+              <Textfield
+                type="email"
+                value={email}
+                required
+                error={errorEmail}
+                placeholder="email@emailaddy.com"
+                onChange={value => this.onChange('email', value)}
               />
-              {error.field === 'cardExpiry' ? (
-                <span className={styles.errors}>{error.message}</span>
-              ) : (
-                ''
-              )}
             </label>
           </div>
-          <div className="cvcContainer">
-            <label>
-              CVC
-              <CardCVCElement
-                onChange={this.handleChange}
-                {...createOptions(this.props.fontSize)}
-              />
-              {error.field === 'cardCvc' ? (
-                <span className={styles.errors}>{error.message}</span>
-              ) : (
-                ''
-              )}
-            </label>
+          <label>
+            Card Number
+            <CardNumberElement
+              onChange={this.handleChange}
+              {...createOptions(this.props.fontSize)}
+              className="cardInputContainer"
+              onReady={c => (this._cardNumber = c)}
+            />
+            {error.field === 'cardNumber' ? (
+              <span className={styles.errors}>{error.message}</span>
+            ) : (
+              ''
+            )}
+          </label>
+          <div className="yearCvcContainer">
+            <div className="yearContainer">
+              <label>
+                MM / YY
+                <CardExpiryElement
+                  onChange={this.handleChange}
+                  {...createOptions(this.props.fontSize)}
+                  onReady={c => (this._cardYear = c)}
+                />
+                {error.field === 'cardExpiry' ? (
+                  <span className={styles.errors}>{error.message}</span>
+                ) : (
+                  ''
+                )}
+              </label>
+            </div>
+            <div className="cvcContainer">
+              <label>
+                CVC
+                <CardCVCElement
+                  onChange={this.handleChange}
+                  {...createOptions(this.props.fontSize)}
+                  onReady={c => (this._cardCvc = c)}
+                />
+                {error.field === 'cardCvc' ? (
+                  <span className={styles.errors}>{error.message}</span>
+                ) : (
+                  ''
+                )}
+              </label>
+            </div>
           </div>
         </div>
 
         <div className={styles.noticeWrapper}>
-          {this.state.loading ? <span className="">PLEASE WAIT...</span> : ''}
-          {this.state.paymentResponse ? <span className="">{this.state.paymentResponse}</span> : ''}
+          {this.state.loading ? <span className="">{environment.waitMessage}</span> : ''}
+
+          <div
+            className={styles.noticeWrapperInner}
+            style={!this.state.paymentResponse ? { display: 'none' } : {}}
+          >
+            <span className="">{this.state.paymentResponse}</span>
+            <Button
+              className={classnames(styles.afterPayBtn)}
+              type="button"
+              onClick={() => this.handleNextAction(this.state.buttonInfo.action)}
+            >
+              {this.state.buttonInfo.text}
+            </Button>
+          </div>
         </div>
-        <Button className={styles.payBtn} type="submit">
-          Pay ${environment.payAmount}
+
+        <Button
+          className={styles.payBtn}
+          style={this.state.paymentResponse ? { display: 'none' } : {}}
+        >
+          Pay ${this.props.elements.amount.due}
         </Button>
       </form>
     )
@@ -185,7 +239,7 @@ class StripeCardForm extends Component {
         apiKey={environment.mode === 'dev' ? environment.devStripeKey : environment.prodStripeKey}
       >
         <Elements>
-          <SplitForm />
+          <SplitForm elements={this.props.elements} />
         </Elements>
       </StripeProvider>
     )

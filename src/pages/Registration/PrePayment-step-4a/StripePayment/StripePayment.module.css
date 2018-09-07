@@ -10,9 +10,20 @@
   min-width: 15em;
 }
 
+.afterPayBtn {
+  display: block;
+  margin: 0.5em auto;
+  min-width: 15em;
+}
+
 .noticeWrapper {
   text-align: center;
   font-family: var(--font-family);
   font-weight: var(--font-weight);
   letter-spacing: 2px;
+}
+
+.noticeWrapperInner {
+  padding: 5em 0.5em 0.5em 0.5em;
+  min-height: 300px;
 }

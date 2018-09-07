@@ -36,7 +36,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
           method: 'POST',
           body: {
             email: store.get('jwtEmail'), // temporary until we have real JWT
-            id: jwt,
+            jwt: jwt,
           },
         })
       )
@@ -60,10 +60,10 @@ export const login = (email, password) => async dispatch => {
         body: { email, password },
       })
     )
-    const jwt = user._id // todo replace this with real JWT
+    const jwt = user.jwt
     if (jwt) {
       setJwt(jwt)
-      store.set('jwtEmail', email) // temporary until we have real JWT
+      store.set('jwtEmail', email)
       dispatch({
         type: LOGIN_SUCCESSFULL,
         jwt,

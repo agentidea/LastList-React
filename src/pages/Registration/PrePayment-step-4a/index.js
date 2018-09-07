@@ -92,7 +92,7 @@ class RegPrePayment extends Component {
               <img src={logo} alt="Last List" width="106" height="109" />
             </div>
           </div>
-          <StripeCardForm />
+          <StripeCardForm elements={{ handleCloseModal: this.handleCloseModal, amount: invoice }} />
         </ReactModal>
       </div>
     )

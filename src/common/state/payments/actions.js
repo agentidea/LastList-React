@@ -5,7 +5,7 @@ import { getJwt } from '../user/utils/jwt'
 export const doStripePayment = async token => {
   let userJwt = getJwt()
 
-  if (userJwt && token) {
+  if (userJwt && token && token.token) {
     try {
       let response = fetch(API_ROOT + '/payment/payment', {
         method: 'POST',
@@ -13,7 +13,7 @@ export const doStripePayment = async token => {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token: token, user_id: userJwt, amount: 200 }),
+        body: JSON.stringify({ token: token.token, user_id: userJwt, amount: token.amount * 100 }),
       })
         .then(response => {
           return response.json()
