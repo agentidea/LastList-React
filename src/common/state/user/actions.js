@@ -19,7 +19,7 @@ export const PAY_API = createAPIActions('PAY_API', 'POST')
 
 export const signOut = () => async dispatch => {
   await resetJwt()
-  store.set('jwtEmail', null) // temporary until we have real JWT
+  store.set('jwtEmail', null)
   dispatch({
     type: SIGN_OUT,
   })
@@ -35,7 +35,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
         doRequest(GET_CURRENT_USER_API, `user/validate`, {
           method: 'POST',
           body: {
-            email: store.get('jwtEmail'), // temporary until we have real JWT
+            email: store.get('jwtEmail'),
             jwt: jwt,
           },
         })

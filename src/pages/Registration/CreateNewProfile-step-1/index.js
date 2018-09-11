@@ -113,7 +113,7 @@ class NewProfile extends Component {
               placeholder="First Name"
               required
               error={errorFirstName}
-              value={firstName}
+              value={firstName === null ? '' : firstName}
               onChange={value => this.onTextChange('firstName', value)}
             />
             <Textfield
@@ -121,7 +121,7 @@ class NewProfile extends Component {
               placeholder="Last Name"
               required
               error={errorLastName}
-              value={lastName}
+              value={lastName === null ? '' : lastName}
               onChange={value => this.onTextChange('lastName', value)}
             />
             <Datepicker

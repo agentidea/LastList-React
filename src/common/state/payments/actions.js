@@ -10,10 +10,11 @@ export const doStripePayment = async token => {
       let response = fetch(API_ROOT + '/payment/payment', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${userJwt}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token: token.token, user_id: userJwt, amount: token.amount * 100 }),
+        body: JSON.stringify({ token: token.token, user_jwt: userJwt, amount: token.amount * 100 }),
       })
         .then(response => {
           return response.json()

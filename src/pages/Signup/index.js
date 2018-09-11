@@ -23,6 +23,7 @@ class Signup extends Component {
       field: null,
       message: null,
     },
+    nextAction: null,
   }
 
   componentWillMount() {
@@ -35,7 +36,12 @@ class Signup extends Component {
 
   redirect() {
     const { history } = this.props
-    history.push('/signup-confirmation')
+    let got_to = this.state.nextAction === 'login' ? '/reg/create-profile' : '/signup-confirmation'
+    history.push(got_to)
+  }
+
+  setNextAction(action: string) {
+    this.setState({ nextAction: action })
   }
 
   onSubmit = event => {
@@ -43,32 +49,40 @@ class Signup extends Component {
     this.setState({ creating: true, successMessage: null, error: { field: null } })
 
     const { email, password } = this.state
-    this.props.userActions
-      .signup(email, password)
-      .then(resp => this.redirect())
-      .catch(error => {
-        if (error instanceof UserError) {
-          const { field, message } = error
-          this.setState({ creating: false, error: { field, message } })
-        } else {
-          this.setState({ creating: false, error: { field: 'email', message: 'Unknown error' } })
-        }
-      })
+    console.log('NEXT ACTION IS -> ', this.state.nextAction)
+
+    let route =
+      this.state.nextAction === 'login'
+        ? this.props.userActions.login(email, password)
+        : this.props.userActions.signup(email, password)
+
+    route.then(resp => this.redirect()).catch(error => {
+      if (error instanceof UserError) {
+        const { field, message } = error
+        this.setState({ creating: false, error: { field, message } })
+      } else {
+        this.setState({ creating: false, error: { field: 'email', message: 'Unknown error' } })
+      }
+    })
   }
 
   render() {
-    const { successMessage, creating } = this.state
+    const { successMessage, creating, nextAction } = this.state
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
         <h3>Create your account</h3>
         {this.renderInputs()}
         {successMessage && <div className={styles.success}>{successMessage}</div>}
         <div className={styles.buttons}>
-          <Button to="/login" nonprimary>
-            Sign In
+          <Button onClick={() => this.setNextAction('login')}>
+            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
           </Button>
-          <Button disabled={creating} className={styles.signupButton}>
-            {creating ? 'Creating Account...' : 'Create Account'}
+          <Button
+            disabled={creating}
+            className={styles.signupButton}
+            onClick={() => this.setNextAction('create-account')}
+          >
+            {creating && nextAction === 'create-account' ? 'Creating Account...' : 'Create Account'}
           </Button>
         </div>
       </form>

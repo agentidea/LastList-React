@@ -25,6 +25,7 @@ class Login extends Component {
       field: null,
       message: null,
     },
+    nextAction: null,
   }
 
   componentWillMount() {
@@ -39,28 +40,39 @@ class Login extends Component {
   redirect(flow) {
     const { location, history } = this.props
 
-    if (flow === 'registering') {
-      //continue to register phase ...
-      history.push('/reg/create-profile')
-    } else {
-      if (flow === 'registered') {
+    switch (flow) {
+      case 'registering':
+        history.push('/reg/create-profile')
+        break
+      case 'registered':
         const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
         const newRoute = (match && match[1]) || '/'
         history.push(newRoute)
-      } else {
-        console.error('unknow flow ' + flow)
-      }
+        break
+      case 'creating-account':
+        history.push('/signup-confirmation')
+        break
+      default:
+        console.error('unknown flow ' + flow)
+        break
     }
+  }
+
+  setNextAction(action: string) {
+    this.setState({ nextAction: action })
   }
 
   onSubmit = event => {
     event.preventDefault()
     const { email, password } = this.state
-    this.props.userActions
-      .login(email, password)
+    let route =
+      this.state.nextAction === 'login'
+        ? this.props.userActions.login(email, password)
+        : this.props.userActions.signup(email, password)
+
+    route
       .then(resp => {
-        //hack to get flow for redirect
-        var flow = resp.data.flow
+        let flow = this.state.nextAction === 'create-account' ? 'creating-account' : resp.data.flow
         this.redirect(flow)
       })
       .catch(error => {
@@ -88,10 +100,10 @@ class Login extends Component {
           label="Remember me"
         />
         <div className={styles.buttons}>
-          <Button to="/signup" nonprimary>
-            Create Account
+          <Button onClick={() => this.setNextAction('create-account')}>Create Account</Button>
+          <Button className={styles.loginButton} onClick={() => this.setNextAction('login')}>
+            Sign In
           </Button>
-          <Button className={styles.loginButton}>Sign In</Button>
         </div>
         <p>
           <Link to="/forgot">Forgot password?</Link>
