@@ -6,6 +6,7 @@ import UserError from './error'
 
 export const LOGIN_REG_SUCCESSFULL = 'LOGIN_REGISTRATION_SUCCESSFULL'
 export const LOGIN_SUCCESSFULL = 'LOGIN_SUCCESSFULL'
+export const RESET_PASSWORD_SUCCESSFULL = 'RESET_PASSWORD_SUCCESSFULL'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SIGN_OUT = 'SIGN_OUT'
 
@@ -14,6 +15,8 @@ export const GET_CURRENT_USER_API = createAPIActions('CURRENT_USER', 'FETCH')
 export const LOGIN_API = createAPIActions('LOGIN_API', 'POST')
 export const SIGNUP_API = createAPIActions('SIGNUP_API', 'POST')
 export const CONFIRM_USER_API = createAPIActions('CONFIRM_USER_API', 'POST')
+export const FORGOT_PASSWORD_API = createAPIActions('FORGOT_PASSWORD_API', 'POST')
+export const RESET_PASSWORD_API = createAPIActions('RESET_PASSWORD_API', 'POST')
 export const SAVE_PROFILE_API = createAPIActions('SAVE_PROFILE_API', 'PUT')
 export const PAY_API = createAPIActions('PAY_API', 'POST')
 
@@ -181,5 +184,49 @@ export const payForList = (amount, paymentMethod, numberListsPayingFor) => async
     return true
   } else {
     console.error('User should be logged in to pay for lists')
+  }
+}
+
+export const forgotPassword = resetToken => async dispatch => {
+  try {
+    const user = await dispatch(
+      doRequest(FORGOT_PASSWORD_API, `user/forgot-password`, {
+        method: 'POST',
+        resetToken: resetToken,
+      })
+    )
+    const code = user.code
+    if (code === 200) {
+      return true
+    }
+  } catch (e) {
+    if (e.response) {
+      const message = e.response.data.message || 'Email provided can not be found!'
+      throw new UserError(message, 'email')
+    }
+    throw e
+  }
+}
+
+export const resetPassword = password => async dispatch => {
+  try {
+    const user = await dispatch(
+      doRequest(RESET_PASSWORD_API, `user/reset-password`, {
+        method: 'POST',
+        resetToken: password,
+      })
+    )
+    const code = user.code
+    if (code === 200) {
+      let success = 'Your Password was successfully reset, now you can login with your new one'
+      dispatch({ type: RESET_PASSWORD_SUCCESSFULL, data: success })
+      return true
+    }
+  } catch (e) {
+    if (e.response) {
+      const message = e.response.data.message || 'Something went wrong!'
+      throw new UserError(message, 'email')
+    }
+    throw e
   }
 }

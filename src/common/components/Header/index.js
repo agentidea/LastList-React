@@ -33,7 +33,7 @@ export default class Header extends Component {
               <Link to="/guardians">Your Guardians</Link>
             </Fragment>
           )}
-        <Link to="/login">{label}</Link>
+        <Link to={isLoggedIn ? '/sign-out' : '/login'}>{label}</Link>
       </Fragment>
     )
   }

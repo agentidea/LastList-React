@@ -9,10 +9,15 @@
   width: 100%;
 }
 
-.success {
+.success,
+.infoText {
   color: var(--success);
   margin-top: var(--spacing-container);
   text-align: center;
+}
+
+.infoText {
+  color: var(--color);
 }
 
 @media (max-width: 600px) {

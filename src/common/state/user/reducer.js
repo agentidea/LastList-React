@@ -1,5 +1,11 @@
 import { getJwt } from './utils/jwt'
-import { LOGIN_SUCCESSFULL, SIGN_OUT, SET_CURRENT_USER, PAY_API } from './actions'
+import {
+  LOGIN_SUCCESSFULL,
+  SIGN_OUT,
+  SET_CURRENT_USER,
+  PAY_API,
+  RESET_PASSWORD_SUCCESSFULL,
+} from './actions'
 
 const initialState = {
   jwt: getJwt(),
@@ -11,6 +17,7 @@ const initialState = {
   states: [],
   flow: null,
   payments: [],
+  success: null,
 }
 
 export default (state = initialState, action) => {
@@ -36,6 +43,11 @@ export default (state = initialState, action) => {
         ...state,
         states: action.data.user.states,
         payments: action.data.user.payments,
+      }
+    case RESET_PASSWORD_SUCCESSFULL:
+      return {
+        ...state,
+        success: action.data,
       }
     default: {
       return state

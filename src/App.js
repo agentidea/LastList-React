@@ -19,11 +19,14 @@ import EditLastList from './pages/EditLastList'
 import EditProfile from './pages/EditProfile'
 import EmailConfirmation from './pages/EmailConfirmation'
 import Faq from './pages/Faq'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 import GuardianAccess from './pages/GuardianAccess'
 import Guardians from './pages/Guardians'
 import LastList from './pages/LastList'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import SignOut from './pages/SignOut'
 import SignupConfirmation from './pages/SignupConfirmation'
 import Payment from './pages/Payment'
 import PaymentSuccess from './pages/PaymentSuccess'
@@ -75,6 +78,7 @@ class App extends Component {
                   <Route path="/guardians" component={Guardians} />
                   <Route path="/lastlist/:id" component={LastList} />
                   <Route path="/login" component={Login} />
+                  <Route path="/sign-out" component={SignOut} />
                   <Route path="/payment" component={Payment} />
                   <Route path="/payment-success" component={PaymentSuccess} />
                   <Route path="/signup" component={Signup} />
@@ -85,6 +89,8 @@ class App extends Component {
                   <Route path="/reg/pre-payment" component={RegPrePayment} />
                   <Route path="/reg/payment" component={RegPayment} />
                   <Route path="/reg/welcome-member" component={WelcomeMember} />
+                  <Route path="/forgot" component={ForgotPassword} />
+                  <Route path="/reset-password/:token" component={ResetPassword} />
                   <Route default component={Four04} />
                 </Switch>
               </div>

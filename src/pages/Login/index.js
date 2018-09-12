@@ -10,6 +10,11 @@ import UserError from '../../common/state/user/error'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
+import { getJwt } from '../../common/state/user/utils/jwt'
+
+const mapStateToProps = state => ({
+  success: state.user.success,
+})
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -29,7 +34,10 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    this.props.userActions.signOut()
+    if (getJwt()) {
+      const { history } = this.props
+      history.push('/')
+    }
   }
 
   onChange = (field, value) => {
@@ -86,8 +94,12 @@ class Login extends Component {
   }
 
   render() {
+    const success = this.props.success
+
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
+        {success ? <p className={styles.infoText}>{success}</p> : null}
+
         <h3>Sign In To Your Last List</h3>
         {this.renderInputs()}
         <FormControlLabel
@@ -141,4 +153,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
