@@ -17,6 +17,7 @@ class ResetPassword extends Component {
     loading: false,
     confirmPassword: '',
     password: '',
+    resetToken: null,
     error: {
       field: null,
       message: null,
@@ -33,7 +34,7 @@ class ResetPassword extends Component {
   componentDidMount() {
     const params = this.props.match.params
     const reset_token = params.token
-    this.checkResetToken(reset_token)
+    this.setResetToken(reset_token)
   }
 
   redirect = () => {
@@ -74,8 +75,10 @@ class ResetPassword extends Component {
 
     this.setState({ loading: true })
 
+    let payload = { password: this.state.password, resetToken: this.state.resetToken }
+
     this.props.userActions
-      .resetPassword(this.state.password)
+      .resetPassword(payload)
       .then(resp => {
         this.setState({ loading: false, password: '', confirmPassword: '' })
         this.redirect()
@@ -94,9 +97,9 @@ class ResetPassword extends Component {
     this.setState({ [field]: value, error: { field: null } })
   }
 
-  checkResetToken = (reset_token: string) => {
-    // todo: reset code goes here
+  setResetToken = (reset_token: string) => {
     console.log('reset token is -> ', reset_token)
+    this.setState({ resetToken: reset_token })
   }
 
   render() {

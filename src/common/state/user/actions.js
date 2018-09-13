@@ -187,12 +187,12 @@ export const payForList = (amount, paymentMethod, numberListsPayingFor) => async
   }
 }
 
-export const forgotPassword = resetToken => async dispatch => {
+export const forgotPassword = email => async dispatch => {
   try {
     const user = await dispatch(
       doRequest(FORGOT_PASSWORD_API, `user/forgot-password`, {
         method: 'POST',
-        resetToken: resetToken,
+        body: { email: email },
       })
     )
     const code = user.code
@@ -208,12 +208,15 @@ export const forgotPassword = resetToken => async dispatch => {
   }
 }
 
-export const resetPassword = password => async dispatch => {
+export const resetPassword = data => async dispatch => {
   try {
     const user = await dispatch(
       doRequest(RESET_PASSWORD_API, `user/reset-password`, {
         method: 'POST',
-        resetToken: password,
+        body: {
+          password: data.password,
+          resetToken: data.resetToken,
+        },
       })
     )
     const code = user.code
