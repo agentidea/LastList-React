@@ -10,4 +10,6 @@ export const environment = {
   payAmount: '1.00',
   devStripeKey: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
   prodStripeKey: '',
+  waitMessage: 'PLEASE WAIT...',
+  facebookKey: 'XXXXXXXXXXXXXXX',
 }

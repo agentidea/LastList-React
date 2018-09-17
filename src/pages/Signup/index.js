@@ -7,6 +7,8 @@ import UserError from '../../common/state/user/error'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Signup.module.css'
+import FacebookButton from '../../common/components/FacebookButton'
+import { getJwt } from '../../common/state/user/utils/jwt'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -27,7 +29,10 @@ class Signup extends Component {
   }
 
   componentWillMount() {
-    this.props.userActions.signOut()
+    if (getJwt()) {
+      const { history } = this.props
+      history.push('/reg/create-profile')
+    }
   }
 
   onChange = (field, value) => {
@@ -40,8 +45,50 @@ class Signup extends Component {
     history.push(got_to)
   }
 
+  // On successful login, redirect the user to the intended page.
+  redirectTo(flow) {
+    const { location, history } = this.props
+
+    switch (flow) {
+      case 'registering':
+        history.push('/reg/create-profile')
+        break
+      case 'registered':
+        const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
+        const newRoute = (match && match[1]) || '/'
+        history.push(newRoute)
+        break
+      case 'creating-account':
+        history.push('/signup-confirmation')
+        break
+      default:
+        console.error('unknown flow ' + flow)
+        break
+    }
+  }
+
   setNextAction(action: string) {
     this.setState({ nextAction: action })
+  }
+
+  setFacebookAuth = user_data => {
+    console.log(user_data)
+
+    let route = this.props.userActions.sociallogin(user_data)
+
+    route
+      .then(resp => {
+        let flow = resp.data.flow
+        this.redirectTo(flow)
+      })
+      .catch(error => {
+        if (error instanceof UserError) {
+          const { field, message } = error
+          this.setState({ error: { field, message } })
+        } else {
+          this.setState({ error: { field: 'email', message: 'Unknown error' } })
+        }
+      })
   }
 
   onSubmit = event => {
@@ -71,6 +118,8 @@ class Signup extends Component {
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
         <h3>Create your account</h3>
+        {this.renderSocialAuth()}
+        <h3>OR</h3>
         {this.renderInputs()}
         {successMessage && <div className={styles.success}>{successMessage}</div>}
         <div className={styles.buttons}>
@@ -87,6 +136,19 @@ class Signup extends Component {
         </div>
       </form>
     )
+  }
+
+  renderSocialAuth = () => {
+    const facebook = (
+      <div className={styles.socialLoginWrapper}>
+        <FacebookButton onChange={this.setFacebookAuth} />
+        <div className={styles.belowBtnInfo}>
+          We won’t share any of your information with Facebook.
+        </div>
+      </div>
+    )
+
+    return facebook
   }
 
   renderInputs() {

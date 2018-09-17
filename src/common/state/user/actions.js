@@ -13,6 +13,7 @@ export const SIGN_OUT = 'SIGN_OUT'
 export const SIGN_OUT_API = createAPIActions('SIGN_OUT_API', 'DELETE')
 export const GET_CURRENT_USER_API = createAPIActions('CURRENT_USER', 'FETCH')
 export const LOGIN_API = createAPIActions('LOGIN_API', 'POST')
+export const SOCIAL_LOGIN_API = createAPIActions('SOCIAL_LOGIN_API', 'POST')
 export const SIGNUP_API = createAPIActions('SIGNUP_API', 'POST')
 export const CONFIRM_USER_API = createAPIActions('CONFIRM_USER_API', 'POST')
 export const FORGOT_PASSWORD_API = createAPIActions('FORGOT_PASSWORD_API', 'POST')
@@ -67,6 +68,34 @@ export const login = (email, password) => async dispatch => {
     if (jwt) {
       setJwt(jwt)
       store.set('jwtEmail', email)
+      dispatch({
+        type: LOGIN_SUCCESSFULL,
+        jwt,
+        data: user,
+      })
+      return dispatch({ type: SET_CURRENT_USER, data: user })
+    }
+  } catch (e) {
+    if (e.response && e.response.status === 409) {
+      const message = e.response.data.message || 'User not found.'
+      throw new UserError(message, 'email')
+    }
+    throw e
+  }
+}
+
+export const sociallogin = social_data => async dispatch => {
+  try {
+    const user = await dispatch(
+      doRequest(SOCIAL_LOGIN_API, `user/social-login`, {
+        method: 'POST',
+        body: { email: social_data.socialEmail },
+      })
+    )
+    const jwt = user.jwt
+    if (jwt) {
+      setJwt(jwt)
+      store.set('jwtEmail', social_data.socialEmail)
       dispatch({
         type: LOGIN_SUCCESSFULL,
         jwt,

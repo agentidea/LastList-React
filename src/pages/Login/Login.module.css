@@ -1,3 +1,8 @@
+.content {
+  margin: 5em auto;
+  max-width: 550px;
+}
+
 .buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -18,6 +23,17 @@
 
 .infoText {
   color: var(--color);
+}
+
+.socialLoginWrapper {
+  text-align: center;
+  margin: 5em 0 0 0;
+  width: 100%;
+  min-height: 100px;
+}
+
+.socialLoginWrapper .belowBtnInfo {
+  margin: 2em 0.1em;
 }
 
 @media (max-width: 600px) {

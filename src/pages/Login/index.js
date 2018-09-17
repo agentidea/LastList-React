@@ -11,6 +11,7 @@ import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
 import { getJwt } from '../../common/state/user/utils/jwt'
+import FacebookButton from '../../common/components/FacebookButton'
 
 const mapStateToProps = state => ({
   success: state.user.success,
@@ -70,6 +71,26 @@ class Login extends Component {
     this.setState({ nextAction: action })
   }
 
+  setFacebookAuth = user_data => {
+    console.log(user_data)
+
+    let route = this.props.userActions.sociallogin(user_data)
+
+    route
+      .then(resp => {
+        let flow = resp.data.flow
+        this.redirect(flow)
+      })
+      .catch(error => {
+        if (error instanceof UserError) {
+          const { field, message } = error
+          this.setState({ error: { field, message } })
+        } else {
+          this.setState({ error: { field: 'email', message: 'Unknown error' } })
+        }
+      })
+  }
+
   onSubmit = event => {
     event.preventDefault()
     const { email, password } = this.state
@@ -101,6 +122,8 @@ class Login extends Component {
         {success ? <p className={styles.infoText}>{success}</p> : null}
 
         <h3>Sign In To Your Last List</h3>
+        {this.renderSocialAuth()}
+        <h3>OR</h3>
         {this.renderInputs()}
         <FormControlLabel
           control={
@@ -122,6 +145,19 @@ class Login extends Component {
         </p>
       </form>
     )
+  }
+
+  renderSocialAuth = () => {
+    const facebook = (
+      <div className={styles.socialLoginWrapper}>
+        <FacebookButton onChange={this.setFacebookAuth} />
+        <div className={styles.belowBtnInfo}>
+          We won’t share any of your information with Facebook.
+        </div>
+      </div>
+    )
+
+    return facebook
   }
 
   renderInputs() {
