@@ -8,8 +8,9 @@ import { profileSelector } from '../../common/state/user/selectors'
 
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
-import Datepicker from '../../common/components/Datepicker'
 import styles from './EditProfile.module.css'
+import DateOfBirthSelector from '../../common/components/DateOfBirthSelector'
+import dateFns from 'date-fns'
 
 const mapStateToProps = state => ({
   currentProfile: profileSelector(state),
@@ -33,7 +34,10 @@ class EditProfile extends Component {
   }
 
   onDateChange = date => {
-    this.setState({ dob: date })
+    if (date === null) {
+      return
+    }
+    this.setState({ dob: new Date(date.toString()) })
   }
 
   saveProfile = () => {
@@ -64,10 +68,10 @@ class EditProfile extends Component {
               value={lastName}
               onChange={value => this.onTextChange('lastName', value)}
             />
-            <Datepicker
+            <DateOfBirthSelector
               label="Date of Birth"
-              placeholder="Date of Birth"
-              value={dob}
+              placeholder="YYYY/MM/DD"
+              value={dateFns.format(dob, 'YYYY/MM/DD')}
               onChange={this.onDateChange}
             />
             <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
