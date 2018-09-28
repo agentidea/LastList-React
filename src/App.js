@@ -38,6 +38,9 @@ import RegGuardians from './pages/Registration/Guardians-step-3'
 import RegPrePayment from './pages/Registration/PrePayment-step-4a'
 import RegPayment from './pages/Registration/Payment-step-4'
 import WelcomeMember from './pages/Registration/WelcomeMember-step-5'
+import sentryWatcher from './common/utils/sentry'
+
+sentryWatcher()
 
 const mapStateToProps = state => ({
   isLoggedIn: loggedInSelector(state),

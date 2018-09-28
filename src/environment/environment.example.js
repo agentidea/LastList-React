@@ -14,4 +14,5 @@ export const environment = {
   facebookKey: 'XXXXXXXXXXXXXXX',
   payPalSandbox: 'XXXXXXXXXXXXXXX',
   payPalProduction: 'XXXXXXXXXXXXXXX',
+  sentryDSN: 'XXXXXXXXXXXXXXXXXXXXX',
 }
