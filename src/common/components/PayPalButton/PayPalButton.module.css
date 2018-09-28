@@ -1,0 +1,27 @@
+.payBtn {
+  display: block;
+  min-width: 15em;
+}
+
+/*@note: CHANGING THIS STYLE IS LIKE OPENING A PANDORA'S BOX*/
+.payBtn2 {
+  opacity: 0;
+  position: absolute;
+  top: 1.2em;
+  width: 100%;
+}
+
+.btnAllWrap:hover > .payBtn {
+  outline: 0;
+  cursor: pointer;
+  background-color: var(--color-link-2);
+  color: #fff;
+}
+
+.btnAllWrap {
+  position: relative;
+  max-width: 17em;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5em;
+}

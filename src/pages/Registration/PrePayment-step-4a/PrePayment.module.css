@@ -10,10 +10,30 @@
 
 .backBtn {
   display: block;
-  margin: 0 auto;
+  border: none;
 }
 
 .nextBtn {
   display: block;
-  margin: 0.5em auto;
+  height: 60px;
+  margin-top: 0.5em;
+}
+
+.payButtonsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 1em;
+  max-width: 600px;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 575px) {
+  .backBtn {
+    margin: 0 auto;
+  }
+  .payButtonsWrap {
+    justify-content: center;
+    width: 100%;
+  }
 }

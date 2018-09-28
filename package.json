@@ -21,6 +21,7 @@
     "lodash.debounce": "^4.0.8",
     "material-ui": "^1.0.0-beta.35",
     "material-ui-icons": "^1.0.0-beta.35",
+    "paypal-checkout": "^4.0.218",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.2.0",

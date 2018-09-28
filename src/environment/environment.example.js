@@ -12,4 +12,6 @@ export const environment = {
   prodStripeKey: '',
   waitMessage: 'PLEASE WAIT...',
   facebookKey: 'XXXXXXXXXXXXXXX',
+  payPalSandbox: 'XXXXXXXXXXXXXXX',
+  payPalProduction: 'XXXXXXXXXXXXXXX',
 }

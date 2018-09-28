@@ -13,6 +13,7 @@ import Button from '../../../common/components/Button'
 import ReactModal from 'react-modal'
 import logo from '../../../common/components/Header/logo.png'
 import StripeCardForm from './StripePayment'
+import PayPalButton from '../../../common/components/PayPalButton'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -56,7 +57,6 @@ class RegPrePayment extends Component {
   }
 
   render() {
-    // same as const guardians = this.props.guardians
     const { guardians, goingnext, invoice, loadingInvoice } = this.props
 
     return (
@@ -72,9 +72,12 @@ class RegPrePayment extends Component {
           <Button className={styles.backBtn} onClick={this.goBack}>
             Back
           </Button>
-          <Button className={styles.nextBtn} onClick={this.openPayment}>
-            {goingnext ? 'Pay with Card' : 'Pay with Card'}
-          </Button>
+          <div className={styles.payButtonsWrap}>
+            <PayPalButton elements={{ amount: invoice }} />
+            <Button className={styles.nextBtn} onClick={this.openPayment}>
+              {goingnext ? 'Pay with Card' : 'Pay with Card'}
+            </Button>
+          </div>
         </div>
 
         <ReactModal
