@@ -12,6 +12,7 @@ import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
 import { getJwt } from '../../common/state/user/utils/jwt'
 import FacebookButton from '../../common/components/FacebookButton'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 const mapStateToProps = state => ({
   success: state.user.success,
@@ -32,6 +33,10 @@ class Login extends Component {
       message: null,
     },
     nextAction: null,
+  }
+
+  componentDidMount() {
+    gAnalyticsPageView()
   }
 
   componentWillMount() {

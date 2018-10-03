@@ -8,6 +8,7 @@ import Loading from '../../../common/components/Loading'
 import SongInput from '../../../common/components/SongInput'
 import Button from '../../../common/components/Button'
 import styles from './EditLastList.module.css'
+import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 
 const mapStateToProps = state => ({
   lists: state.lists.lists,
@@ -20,6 +21,8 @@ const mapDispatchToProps = dispatch => ({
 })
 export class CreateFirstLastList extends Component {
   componentDidMount() {
+    gAnalyticsPageView()
+
     this.props.listsActions.fetchUserLists()
     this.setState({ ...this.props.currentProfile, saved: false, loaded: true }) // see if user had previously saved a list ( aka edit_list )
   }

@@ -8,6 +8,7 @@ import Loading from '../../common/components/Loading'
 import SongInput from '../../common/components/SongInput'
 import Button from '../../common/components/Button'
 import styles from './EditLastList.module.css'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 const mapStateToProps = state => ({
   lists: state.lists.lists,
@@ -19,6 +20,8 @@ const mapDispatchToProps = dispatch => ({
 })
 export class EditLastList extends Component {
   componentDidMount() {
+    gAnalyticsPageView()
+
     this.props.listsActions.fetchUserLists()
   }
 

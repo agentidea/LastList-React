@@ -7,6 +7,7 @@ import UserError from '../../../common/state/user/error'
 import Button from '../../../common/components/Button'
 import Textfield from '../../../common/components/Textfield'
 import styles from './AddGuardian.module.css'
+import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 
 const mapDispatchToProps = dispatch => ({
   guardiansActions: bindActionCreators(guardiansActionCreators, dispatch),
@@ -19,6 +20,10 @@ class AddGuardian extends Component {
     email: '',
     adding: false,
     error: null,
+  }
+
+  componentDidMount() {
+    gAnalyticsPageView()
   }
 
   render() {

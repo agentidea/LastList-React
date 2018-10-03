@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../common/components/Button'
 import styles from './Home.module.css'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 export class Home extends Component {
+  componentDidMount() {
+    gAnalyticsPageView()
+  }
+
   render() {
     return (
       <div className={styles.content}>

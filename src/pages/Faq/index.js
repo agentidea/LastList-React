@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from './Faq.module.css'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 const Faq = () => {
+  gAnalyticsPageView()
+
   return (
     <div className={styles.content}>
       <h3>Here are some answers to your Frequently Asked Questions</h3>

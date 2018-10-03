@@ -9,6 +9,7 @@ import Textfield from '../../common/components/Textfield'
 import styles from './Signup.module.css'
 import FacebookButton from '../../common/components/FacebookButton'
 import { getJwt } from '../../common/state/user/utils/jwt'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -26,6 +27,10 @@ class Signup extends Component {
       message: null,
     },
     nextAction: null,
+  }
+
+  componentDidMount() {
+    gAnalyticsPageView()
   }
 
   componentWillMount() {

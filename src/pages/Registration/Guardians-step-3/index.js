@@ -8,6 +8,7 @@ import Loading from '../../../common/components/Loading'
 import styles from './Guardians.module.css'
 import GuardiansList from './GuardiansList'
 import AddGuardian from './AddGuardian'
+import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -19,6 +20,8 @@ const mapDispatchToProps = dispatch => ({
 
 class RegGuardians extends Component {
   componentDidMount() {
+    gAnalyticsPageView()
+
     this.props.guardiansActions.fetchUserGuardians()
   }
 

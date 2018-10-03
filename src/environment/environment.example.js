@@ -15,4 +15,5 @@ export const environment = {
   payPalSandbox: 'XXXXXXXXXXXXXXX',
   payPalProduction: 'XXXXXXXXXXXXXXX',
   sentryDSN: 'XXXXXXXXXXXXXXXXXXXXX',
+  gAnalyticsKey: 'XXXXXXXXXXXX',
 }

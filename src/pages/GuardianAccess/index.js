@@ -4,6 +4,7 @@ import apiRequest from '../../common/utils/api'
 import Button from '../../common/components/Button'
 import Textfield from '../../common/components/Textfield'
 import styles from './GuardianAccess.module.css'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 export class GuardianAccess extends Component {
   constructor(props) {
@@ -14,6 +15,10 @@ export class GuardianAccess extends Component {
       success: false,
       submitting: false,
     }
+  }
+
+  componentDidMount() {
+    gAnalyticsPageView()
   }
 
   onSubmit = async event => {

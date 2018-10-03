@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from './TermsAndConditions.module.css'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 const Terms = () => {
+  gAnalyticsPageView()
+
   return (
     <div>
       <h3>Terms and Conditions</h3>

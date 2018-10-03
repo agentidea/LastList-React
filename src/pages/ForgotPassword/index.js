@@ -7,6 +7,7 @@ import Textfield from '../../common/components/Textfield'
 import Button from '../../common/components/Button'
 import UserError from '../../common/state/user/error'
 import { getJwt } from '../../common/state/user/utils/jwt'
+import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -21,6 +22,10 @@ class ForgotPassword extends Component {
       field: null,
       message: null,
     },
+  }
+
+  componentDidMount() {
+    gAnalyticsPageView()
   }
 
   componentWillMount() {

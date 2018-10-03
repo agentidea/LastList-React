@@ -15,6 +15,7 @@ import { environment } from '../../../../environment/environment'
 import React from 'react'
 import * as paymentsActions from '../../../../common/state/payments/actions'
 import classnames from 'classnames'
+import gAnalyticsPageView from '../../../../common/utils/googleAnalytics'
 
 const createOptions = (fontSize: string, padding: ?string) => {
   return {
@@ -49,6 +50,10 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
       action: null,
     },
     viewForm: true,
+  }
+
+  componentDidMount() {
+    gAnalyticsPageView('stripe payment')
   }
 
   /* handle change for stripe specific components */

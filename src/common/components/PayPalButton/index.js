@@ -5,6 +5,7 @@ import styles from './PayPalButton.module.css'
 import Button from '../Button'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import gAnalyticsPageView from '../../utils/googleAnalytics'
 
 const client = {
   sandbox: environment.payPalSandbox,
@@ -32,6 +33,8 @@ class PayPalButton extends Component {
   }
 
   payment = (data, actions) => {
+    gAnalyticsPageView('paypal payment')
+
     let total = this.props.elements.amount.due
     const paypal = window.PAYPAL
     const { currency } = this.state

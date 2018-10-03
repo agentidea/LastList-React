@@ -14,6 +14,7 @@ import ReactModal from 'react-modal'
 import logo from '../../../common/components/Header/logo.png'
 import StripeCardForm from './StripePayment'
 import PayPalButton from '../../../common/components/PayPalButton'
+import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -51,6 +52,8 @@ class RegPrePayment extends Component {
   }
 
   componentDidMount() {
+    gAnalyticsPageView()
+
     this.props.invoiceActions.getInvoice()
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
