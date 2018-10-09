@@ -2,6 +2,11 @@ import ReactGA from 'react-ga'
 import { environment } from '../../environment/environment'
 ReactGA.initialize(environment.gAnalyticsKey)
 
+/**
+ * G-Analytics
+ * @param page
+ * @returns {null}
+ */
 function gAnalyticsPageView(page = null) {
   if (environment.mode === 'dev') {
     return null
