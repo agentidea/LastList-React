@@ -149,7 +149,7 @@ export const confirmAccount = confirmationCode => async dispatch => {
     const user = await dispatch(
       doRequest(CONFIRM_USER_API, `user/confirmEmail/${confirmationCode}`)
     )
-    const jwt = user._id // todo replace this with real JWT
+    const jwt = user.jwt
     const email = user.email //temp solution for now
     if (jwt) {
       setJwt(jwt)
