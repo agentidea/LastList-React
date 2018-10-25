@@ -5,9 +5,9 @@
 
 /*@note: CHANGING THIS STYLE IS LIKE OPENING A PANDORA'S BOX*/
 .payBtn2 {
-  opacity: 0;
+  opacity: 0.01;
   position: absolute;
-  top: 1.2em;
+  top: 1em;
   width: 100%;
 }
 
