@@ -44,7 +44,7 @@ class ForgotPassword extends Component {
         this.setState({
           loading: false,
           email: '',
-          success: 'Please check your email spam or inbox for further instructions',
+          success: 200,
         })
       })
       .catch(error => {
@@ -62,42 +62,47 @@ class ForgotPassword extends Component {
   }
 
   render() {
-    const { error, email } = this.state
+    const { error, email, success, loading } = this.state
     const errorEmail = error.field === 'email' ? error.message : null
+    let result = ''
 
-    return (
-      <div className={style.allWrap}>
-        <h3 className={style.h3}>Forgot your password?</h3>
+    if (success) {
+      result = <span>Please check your email spam or inbox for further instructions</span>
+    } else {
+      result = (
+        <div>
+          <h3 className={style.h3}>Forgot your password?</h3>
 
-        <span className={style.infoText}>
-          If you’ve forgotten your password, please enter your email below and we’ll send you an
-          email with instructions on how to reset it.
-        </span>
+          <span className={style.infoText}>
+            If you’ve forgotten your password, please enter your email below and we’ll send you an
+            email with instructions on how to reset it.
+          </span>
 
-        <div className={style.formWrap}>
-          <form onSubmit={this.onSubmit}>
-            <Textfield
-              className={style.textfield}
-              type="email"
-              label="Email Address"
-              value={email}
-              required
-              error={errorEmail}
-              placeholder="Email Address"
-              onChange={value => this.onChange('email', value)}
-            />
+          <div className={style.formWrap}>
+            <form onSubmit={this.onSubmit}>
+              <Textfield
+                className={style.textfield}
+                type="email"
+                label="Email Address"
+                value={email}
+                required
+                error={errorEmail}
+                placeholder="Email Address"
+                onChange={value => this.onChange('email', value)}
+              />
 
-            {this.state.success ? <span className={''}>{this.state.success}</span> : ''}
-
-            <div className={style.btnWrap}>
-              <Button className={style.fpButton}>
-                {this.state.loading ? 'Please wait...' : 'Reset My Password'}
-              </Button>
-            </div>
-          </form>
+              <div className={style.btnWrap}>
+                <Button className={style.fpButton}>
+                  {loading ? 'Please wait...' : 'Reset My Password'}
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+
+    return <div className={style.allWrap}>{result}</div>
   }
 }
 
