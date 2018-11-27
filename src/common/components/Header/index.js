@@ -15,22 +15,22 @@ export default class Header extends Component {
         </div>
         <div className={styles.links}>
           {!isLoggedIn && <Link to="/guardian">Guardian Access</Link>}
-          {this.renderLogin(isLoggedIn, isRegistered)}
+          {Header.renderLogin(isLoggedIn, isRegistered)}
         </div>
       </header>
     )
   }
 
-  renderLogin(isLoggedIn, isRegistered) {
+  static renderLogin(isLoggedIn, isRegistered) {
     const label = isLoggedIn ? 'Sign Out' : 'Sign In'
     return (
       <Fragment>
         {isLoggedIn &&
           isRegistered && (
             <Fragment>
-              <Link to="/edit-profile">Profile</Link>
-              <Link to="/edit-list">Your Last List</Link>
-              <Link to="/guardians">Your Guardians</Link>
+              <Link to="/reg/create-profile">Profile</Link>
+              <Link to="/reg/create-list">Your Last List</Link>
+              <Link to="/reg/add-guardian">Your Guardians</Link>
             </Fragment>
           )}
         <Link to={isLoggedIn ? '/sign-out' : '/login'}>{label}</Link>

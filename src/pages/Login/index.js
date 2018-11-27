@@ -27,6 +27,7 @@ class Login extends Component {
     email: '',
     password: '',
     remember: true,
+    creating: false,
     user: null,
     error: {
       field: null,
@@ -60,7 +61,7 @@ class Login extends Component {
         break
       case 'registered':
         const match = location.search.match(/[?|&]fwd=\/?([-%\d\w]+)/)
-        const newRoute = (match && match[1]) || '/'
+        const newRoute = (match && match[1]) || '/reg/create-profile'
         history.push(newRoute)
         break
       case 'creating-account':
@@ -84,6 +85,7 @@ class Login extends Component {
     route
       .then(resp => {
         let flow = resp.data.flow
+        this.setState({ creating: false })
         this.redirect(flow)
       })
       .catch(error => {
@@ -98,6 +100,8 @@ class Login extends Component {
 
   onSubmit = event => {
     event.preventDefault()
+    this.setState({ creating: true })
+
     const { email, password } = this.state
     let route =
       this.state.nextAction === 'login'
@@ -112,15 +116,16 @@ class Login extends Component {
       .catch(error => {
         if (error instanceof UserError) {
           const { field, message } = error
-          this.setState({ error: { field, message } })
+          this.setState({ creating: false, error: { field, message } })
         } else {
-          this.setState({ error: { field: 'email', message: 'Unknown error' } })
+          this.setState({ creating: false, error: { field: 'email', message: 'Unknown error' } })
         }
       })
   }
 
   render() {
     const success = this.props.success
+    const { creating, nextAction } = this.state
 
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
@@ -131,6 +136,7 @@ class Login extends Component {
         <h3>OR</h3>
         {this.renderInputs()}
         <FormControlLabel
+          classes={''}
           control={
             <Checkbox
               checked={this.state.remember}
@@ -140,9 +146,11 @@ class Login extends Component {
           label="Remember me"
         />
         <div className={styles.buttons}>
-          <Button onClick={() => this.setNextAction('create-account')}>Create Account</Button>
-          <Button className={styles.loginButton} onClick={() => this.setNextAction('login')}>
-            Sign In
+          <Button disabled={creating} onClick={() => this.setNextAction('create-account')}>
+            {creating && nextAction === 'create-account' ? 'Creating Account...' : 'Create Account'}
+          </Button>
+          <Button disabled={creating} className={''} onClick={() => this.setNextAction('login')}>
+            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
           </Button>
         </div>
         <p>
@@ -153,7 +161,7 @@ class Login extends Component {
   }
 
   renderSocialAuth = () => {
-    const facebook = (
+    return (
       <div className={styles.socialLoginWrapper}>
         <FacebookButton onChange={this.setFacebookAuth} />
         <div className={styles.belowBtnInfo}>
@@ -161,8 +169,6 @@ class Login extends Component {
         </div>
       </div>
     )
-
-    return facebook
   }
 
   renderInputs() {

@@ -61,10 +61,15 @@ class RegPrePayment extends Component {
 
   render() {
     const { guardians, goingnext, invoice, loadingInvoice } = this.props
+    let serverStates = this.props.user.states
+    let heading =
+      serverStates && serverStates.find(item => item === 'registration_complete')
+        ? 'SUMMARY & PAYMENT'
+        : 'STEP 4: SUMMARY & PAYMENT'
 
     return (
-      <div className={styles.content}>
-        <h3>STEP 4: SUMMARY</h3>
+      <div className={''}>
+        <h3>{heading}</h3>
 
         <h4> Your Last List</h4>
         <h4>{loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}</h4>

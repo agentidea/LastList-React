@@ -69,7 +69,10 @@ class NewProfile extends Component {
     this.setState({ saving: true })
     this.props.userActions
       .saveUserProfile(firstName, lastName, dob)
-      .then(() => this.setState({ saving: false, saved: true }))
+      .then(() => {
+        this.setState({ saving: false, saved: true })
+        window.location.reload() // so as to update the 'state' with new data
+      })
       .catch(error => {
         if (error instanceof UserError) {
           const { field, message } = error
@@ -79,6 +82,7 @@ class NewProfile extends Component {
         }
       })
   }
+
   shouldShowSaveButton() {
     const { firstName, lastName, dobDirty, saved, dob } = this.state
 
@@ -86,11 +90,7 @@ class NewProfile extends Component {
     if (saved !== null && saved) return false
     if (firstName === null || lastName === null) return false
 
-    if (firstName.length > 0 && lastName.length > 0 && dobDirty) {
-      return true
-    } else {
-      return false
-    }
+    return firstName.length > 0 && lastName.length > 0 && dobDirty
   }
 
   shouldShowNextButton() {
@@ -99,7 +99,7 @@ class NewProfile extends Component {
       return true
     }
     //look for previously created profile state
-    var serverStates = this.props.user.states
+    let serverStates = this.props.user.states
     if (serverStates && serverStates.length > 0) {
       const hasProfile = serverStates.find(item => item === 'created_profile')
       return hasProfile === 'created_profile'
@@ -112,9 +112,18 @@ class NewProfile extends Component {
     const errorFirstName = error.field === 'firstName' ? error.message : null
     const errorLastName = error.field === 'lastName' ? error.message : null
 
+    let serverStates = this.props.user.states
+    let heading = 'STEP 1. TELL US ABOUT YOURSELF'
+    let actionBtnText = 'Save'
+
+    if (serverStates && serverStates.find(item => item === 'registration_complete')) {
+      heading = 'ABOUT YOU'
+      actionBtnText = 'Update'
+    }
+
     return (
       <div className={styles.content}>
-        <h3>STEP 1. TELL US ABOUT YOURSELF</h3>
+        <h3>{heading}</h3>
         {loaded && (
           <Fragment>
             <Textfield
@@ -143,7 +152,7 @@ class NewProfile extends Component {
             <div className={styles.buttons}>
               {this.shouldShowSaveButton() && (
                 <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-                  {saving ? 'Saving ...' : 'Save'}
+                  {saving ? 'Please wait...' : actionBtnText}
                 </Button>
               )}
 

@@ -63,7 +63,7 @@ export class CreateFirstLastList extends Component {
     const { saved } = this.props
     if (saved && saved === true) return true
 
-    var serverStates = this.props.user.states
+    let serverStates = this.props.user.states
     if (serverStates && serverStates.length > 0) {
       const hasList = serverStates.find(item => item === 'edit_list')
       return hasList === 'edit_list'
@@ -73,10 +73,15 @@ export class CreateFirstLastList extends Component {
 
   render() {
     const { lists, loading, saving } = this.props
+    let serverStates = this.props.user.states
+    let heading =
+      serverStates && serverStates.find(item => item === 'registration_complete')
+        ? 'ADD YOUR SONGS'
+        : 'STEP TWO: ADD YOUR SONGS'
 
     return (
       <div className={styles.content}>
-        <h3>STEP TWO: ADD YOUR SONGS</h3>
+        <h3>{heading}</h3>
         <p>
           Got loads of favorite songs? No problem. You can include as many as you like – it’s only
           $1 for a set of 10 songs. And you can add more sets and change your Last List whenever the

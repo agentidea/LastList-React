@@ -108,7 +108,7 @@ class Signup extends Component {
         ? this.props.userActions.login(email, password)
         : this.props.userActions.signup(email, password)
 
-    route.then(resp => this.redirect()).catch(error => {
+    route.then(() => this.redirect()).catch(error => {
       if (error instanceof UserError) {
         const { field, message } = error
         this.setState({ creating: false, error: { field, message } })
@@ -128,9 +128,6 @@ class Signup extends Component {
         {this.renderInputs()}
         {successMessage && <div className={styles.success}>{successMessage}</div>}
         <div className={styles.buttons}>
-          <Button onClick={() => this.setNextAction('login')}>
-            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
-          </Button>
           <Button
             disabled={creating}
             className={styles.signupButton}
@@ -138,13 +135,16 @@ class Signup extends Component {
           >
             {creating && nextAction === 'create-account' ? 'Creating Account...' : 'Create Account'}
           </Button>
+          <Button onClick={() => this.setNextAction('login')}>
+            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
+          </Button>
         </div>
       </form>
     )
   }
 
   renderSocialAuth = () => {
-    const facebook = (
+    return (
       <div className={styles.socialLoginWrapper}>
         <FacebookButton onChange={this.setFacebookAuth} />
         <div className={styles.belowBtnInfo}>
@@ -152,8 +152,6 @@ class Signup extends Component {
         </div>
       </div>
     )
-
-    return facebook
   }
 
   renderInputs() {

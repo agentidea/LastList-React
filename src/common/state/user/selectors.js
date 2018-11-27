@@ -16,10 +16,12 @@ export const profileSelector = state => {
 
 export const registeredSelector = state => {
   if (state.user && state.user._id) {
-    if (state.user.flow === 'registered') {
+    let userStates = state.user.states
+
+    if (userStates && userStates.find(item => item === 'registration_complete')) {
       return true
     } else {
-      if (state.user.flow === 'registering') {
+      if (userStates && userStates.find(item => item === 'registration_started')) {
         return false
       }
     }
