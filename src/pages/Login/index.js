@@ -136,7 +136,6 @@ class Login extends Component {
         <h3>OR</h3>
         {this.renderInputs()}
         <FormControlLabel
-          classes={''}
           control={
             <Checkbox
               checked={this.state.remember}
