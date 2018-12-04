@@ -24,7 +24,7 @@ class DateOfBirthSelector extends Component {
       return
     }
 
-    const dob = dateFns.format(rawDate, 'YYYY-MM-DD')
+    const dob = dateFns.format(rawDate, 'YYYY/MM/DD')
     this.props.onChange(dob)
   }
 

@@ -29,7 +29,7 @@ class RegGuardians extends Component {
     const { loading, guardians } = this.props
     let serverStates = this.props.user.states
     let heading =
-      serverStates && serverStates.find(item => item === 'registration_complete')
+      serverStates && serverStates.find(item => item === 'made_payment')
         ? 'NOMINATE YOUR GUARDIANS'
         : 'STEP 3: NOMINATE YOUR GUARDIANS'
 

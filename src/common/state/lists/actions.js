@@ -2,6 +2,7 @@ import { createAPIActions, doRequest } from '../api/actions'
 import { listsForServerSelector } from './selectors'
 
 import { currentUserSelector } from '../user/selectors'
+import { setListCost } from '../user/utils/listCost'
 
 export const GET_LISTS_API = createAPIActions('GET_LISTS_API', 'FETCH')
 export const SAVE_LIST_API = createAPIActions('SAVE_LIST_API', 'PUT')
@@ -50,7 +51,9 @@ export const saveUserList = () => async (dispatch, getState) => {
           sets: listsForServerSelector(getState()),
         },
       })
-    )
+    ).then(data => {
+      setListCost(data['cost'])
+    })
   } else {
     console.error('User should be logged in to save his lists')
   }

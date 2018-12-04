@@ -75,9 +75,9 @@ export class CreateFirstLastList extends Component {
     const { lists, loading, saving } = this.props
     let serverStates = this.props.user.states
     let heading =
-      serverStates && serverStates.find(item => item === 'registration_complete')
+      serverStates && serverStates.find(item => item === 'made_payment')
         ? 'ADD YOUR SONGS'
-        : 'STEP TWO: ADD YOUR SONGS'
+        : 'STEP 2: ADD YOUR SONGS'
 
     return (
       <div className={styles.content}>

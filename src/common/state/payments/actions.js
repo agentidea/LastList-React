@@ -1,8 +1,8 @@
 import { API_ROOT } from '../../utils/api'
 import { getJwt } from '../user/utils/jwt'
 
-/* api dispatch on stripe payment */
-export const doStripePayment = async token => {
+/* api dispatch on stripe/paypal payment */
+export const doPayment = async token => {
   let userJwt = getJwt()
 
   if (userJwt && token && token.token) {
@@ -14,7 +14,12 @@ export const doStripePayment = async token => {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token: token.token, user_jwt: userJwt, amount: token.amount * 100 }),
+        body: JSON.stringify({
+          token: token.token,
+          user_jwt: userJwt,
+          amount: token.amount,
+          method: token.method,
+        }),
       })
         .then(response => {
           return response.json()
@@ -27,10 +32,10 @@ export const doStripePayment = async token => {
 
       return response
     } catch (e) {
-      console.log('Error Occurred in Stripe Payment | ', e)
+      console.log('Error Occurred in Payment | ', e)
     }
   } else {
-    console.error('User should be logged in and stripe token should be valid')
+    console.error('User should be logged in and token should be valid')
   }
 }
 
