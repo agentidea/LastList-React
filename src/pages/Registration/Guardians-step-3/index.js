@@ -27,9 +27,15 @@ class RegGuardians extends Component {
 
   render() {
     const { loading, guardians } = this.props
+    let serverStates = this.props.user.states
+    let heading =
+      serverStates && serverStates.find(item => item === 'made_payment')
+        ? 'NOMINATE YOUR GUARDIANS'
+        : 'STEP 3: NOMINATE YOUR GUARDIANS'
+
     return (
-      <div className={styles.content}>
-        <h3>STEP 3: NOMINATE YOUR GUARDIANS</h3>
+      <div className={''}>
+        <h3>{heading}</h3>
         <p>
           <b>Your Guardians are a very important part of the process.</b> They’re the people you
           trust to step up and get your Last List from us when you head into the great beyond.

@@ -101,12 +101,19 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
         }
 
         paymentsActions
-          .doStripePayment({ token: result.token, amount: this.props.elements.amount.due })
+          .doPayment({
+            token: result.token,
+            amount: this.props.elements.amount.due,
+            method: 'stripe',
+          })
           .then(data => {
             let message =
               data.code === 200 ? data.message : 'Something went wrong, payment was unsuccessful'
             this.handleAfterPayButtons(data.code)
             this.setState({ loading: false, viewForm: false, paymentResponse: message })
+            setTimeout(() => {
+              window.location.reload()
+            }, 500)
           })
       })
     } else {

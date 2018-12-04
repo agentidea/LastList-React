@@ -61,10 +61,15 @@ class RegPrePayment extends Component {
 
   render() {
     const { guardians, goingnext, invoice, loadingInvoice } = this.props
+    let serverStates = this.props.user.states
+    let heading =
+      serverStates && serverStates.find(item => item === 'made_payment')
+        ? 'SUMMARY & PAYMENT'
+        : 'STEP 4: SUMMARY & PAYMENT'
 
     return (
-      <div className={styles.content}>
-        <h3>STEP 4: SUMMARY</h3>
+      <div className={''}>
+        <h3>{heading}</h3>
 
         <h4> Your Last List</h4>
         <h4>{loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}</h4>
@@ -75,9 +80,14 @@ class RegPrePayment extends Component {
           <Button className={styles.backBtn} onClick={this.goBack}>
             Back
           </Button>
+          {invoice.due === 0 ? <div>Payment already done!</div> : null}
           <div className={styles.payButtonsWrap}>
             <PayPalButton elements={{ amount: invoice }} />
-            <Button className={styles.nextBtn} onClick={this.openPayment}>
+            <Button
+              disabled={invoice.due === 0}
+              className={styles.nextBtn}
+              onClick={this.openPayment}
+            >
               {goingnext ? 'Pay with Card' : 'Pay with Card'}
             </Button>
           </div>

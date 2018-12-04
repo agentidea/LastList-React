@@ -6,6 +6,7 @@ import Button from '../Button'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import gAnalyticsPageView from '../../utils/googleAnalytics'
+import * as paymentsActions from '../../state/payments/actions'
 
 const client = {
   sandbox: environment.payPalSandbox,
@@ -27,9 +28,21 @@ class PayPalButton extends Component {
   }
 
   onAuthorize = (data, actions) => {
-    return actions.payment.execute().then(() => {
-      this.setState({ info: 'Payment Complete!' })
-    })
+    return actions.payment
+      .execute()
+      .then(() => {
+        paymentsActions
+          .doPayment({ token: true, amount: this.props.elements.amount.due, method: 'paypal' })
+          .then(data => {
+            console.log(data)
+          })
+      })
+      .then(() => {
+        this.setState({ info: 'Payment Complete!' })
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
+      })
   }
 
   payment = (data, actions) => {
@@ -68,7 +81,10 @@ class PayPalButton extends Component {
         <Button className={styles.payBtn}>
           <FontAwesomeIcon className={style.faIcon} icon={faPaypal} /> PayPal
         </Button>
-        <div className={styles.payBtn2}>
+        <div
+          className={styles.payBtn2}
+          style={{ display: this.props.elements.amount.due === 0 ? 'none' : '' }}
+        >
           <PayPalButton
             style={style}
             env={env}
