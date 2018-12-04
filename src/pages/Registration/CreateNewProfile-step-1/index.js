@@ -52,7 +52,7 @@ class NewProfile extends Component {
 
   onDateChange = date => {
     if (date === null) {
-      this.setState({ dob: null })
+      this.setState({ dob: this.props.currentProfile.dob })
       return
     }
     this.setState({ dob: new Date(date.toString()), dobDirty: true })
@@ -90,7 +90,7 @@ class NewProfile extends Component {
     if (saved !== null && saved) return false
     if (firstName === null || lastName === null) return false
 
-    return firstName.length > 0 && lastName.length > 0 && dobDirty
+    return firstName.length > 0 && lastName.length > 0
   }
 
   shouldShowNextButton() {
@@ -146,19 +146,19 @@ class NewProfile extends Component {
               label="Date of Birth"
               placeholder="YYYY/MM/DD"
               value={dateFns.format(dob, 'YYYY/MM/DD')}
-              onChange={this.onDateChange}
+              onChange={value => this.onDateChange(value)}
             />
 
             <div className={styles.buttons}>
-              {this.shouldShowSaveButton() && (
-                <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-                  {saving ? 'Please wait...' : actionBtnText}
-                </Button>
-              )}
-
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
                   Next: Add Songs
+                </Button>
+              )}
+
+              {this.shouldShowSaveButton() && (
+                <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
+                  {saving ? 'Please wait...' : actionBtnText}
                 </Button>
               )}
             </div>
