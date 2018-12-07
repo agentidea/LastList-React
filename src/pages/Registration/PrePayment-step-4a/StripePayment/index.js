@@ -111,9 +111,13 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
               data.code === 200 ? data.message : 'Something went wrong, payment was unsuccessful'
             this.handleAfterPayButtons(data.code)
             this.setState({ loading: false, viewForm: false, paymentResponse: message })
-            setTimeout(() => {
-              window.location.reload()
-            }, 500)
+
+            if (data.code === 200) {
+              setTimeout(() => {
+                const { history } = this.props
+                history.push('/payment-success')
+              }, 500)
+            }
           })
       })
     } else {

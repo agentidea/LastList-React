@@ -39,8 +39,10 @@ class PayPalButton extends Component {
       })
       .then(() => {
         this.setState({ info: 'Payment Complete!' })
+
         setTimeout(() => {
-          window.location.reload()
+          const { history } = this.props
+          history.push('/payment-success')
         }, 500)
       })
   }
