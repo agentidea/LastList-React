@@ -109,7 +109,9 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
           .then(data => {
             let message =
               data.code === 200 ? data.message : 'Something went wrong, payment was unsuccessful'
-            this.handleAfterPayButtons(data.code)
+            data.code === 200
+              ? this.handleNextAction('close')
+              : this.handleAfterPayButtons(data.code)
             this.setState({ loading: false, viewForm: false, paymentResponse: message })
 
             if (data.code === 200) {
