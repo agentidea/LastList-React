@@ -114,8 +114,7 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
 
             if (data.code === 200) {
               setTimeout(() => {
-                const { history } = this.props
-                history.push('/payment-success')
+                window.location = '/payment-success'
               }, 500)
             }
           })

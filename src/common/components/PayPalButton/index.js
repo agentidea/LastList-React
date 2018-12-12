@@ -41,8 +41,7 @@ class PayPalButton extends Component {
         this.setState({ info: 'Payment Complete!' })
 
         setTimeout(() => {
-          const { history } = this.props
-          history.push('/payment-success')
+          window.location = '/payment-success'
         }, 500)
       })
   }

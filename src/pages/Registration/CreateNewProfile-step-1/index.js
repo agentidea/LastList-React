@@ -71,7 +71,6 @@ class NewProfile extends Component {
       .saveUserProfile(firstName, lastName, dob)
       .then(() => {
         this.setState({ saving: false, saved: true })
-        window.location.reload() // so as to update the 'state' with new data
       })
       .catch(error => {
         if (error instanceof UserError) {
