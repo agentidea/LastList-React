@@ -22,9 +22,17 @@
 }
 
 .quotes {
+  transition: all 2ms ease-in-out;
   border-bottom: 1px solid #ccc;
   margin: 0.5em 0 2em 0;
   font-weight: bold;
+}
+
+.footer_quotes {
+  border-top: 1px solid #ccc;
+  margin: 2em 0 1em 0;
+  text-align: center;
+  font-style: italic;
 }
 
 .subtitle {

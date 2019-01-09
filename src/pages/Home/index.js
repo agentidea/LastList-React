@@ -3,10 +3,26 @@ import { Link } from 'react-router-dom'
 import Button from '../../common/components/Button'
 import styles from './Home.module.css'
 import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import { quotes } from '../../common/utils/quotes'
 
 export class Home extends Component {
   componentDidMount() {
     gAnalyticsPageView()
+    setInterval(() => {
+      this.showQuote()
+    }, 7000)
+  }
+
+  state = {
+    counter: 0,
+    footer_counter: Math.floor(Math.random() * quotes.footer.length),
+    quote: quotes.header[3],
+  }
+
+  showQuote = () => {
+    const { counter } = this.state
+    let next = quotes.header.length > counter ? counter : 0
+    this.setState({ counter: next + 1, quote: quotes.header[next] })
   }
 
   render() {
@@ -16,10 +32,7 @@ export class Home extends Component {
           <h2>Say goodbye with songs</h2>
 
           <div className={styles.quotes}>
-            <p>
-              “This is what I want in heaven.. for words to become notes and conversations to become
-              symphonies.” ― Tina Turner
-            </p>
+            <p>{this.state.quote}</p>
           </div>
 
           <p>
@@ -59,6 +72,10 @@ export class Home extends Component {
         <div className={styles.links}>
           <Link to="/signup">Create Your Last List</Link>
           <Link to="/faq">Questions?</Link>
+        </div>
+
+        <div className={styles.footer_quotes}>
+          <p>{quotes.footer[this.state.footer_counter]}</p>
         </div>
       </div>
     )
