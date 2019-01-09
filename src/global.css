@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700');
 
 :root {
-  --color: #4a4a4a;
+  --color: #000000;
   --theme-color: #3917fe;
-  --header-color: #fff;
+  --header-color: #f7f8fa;
   --footer-color: #f6f8f9;
   --font-family: 'Ubuntu', 'Helvetica', 'Arial', sans-serif;
   --font-size-small: 14px;

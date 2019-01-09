@@ -31,26 +31,22 @@ class RegGuardians extends Component {
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
         ? 'NOMINATE YOUR GUARDIANS'
-        : 'STEP 3: NOMINATE YOUR GUARDIANS'
+        : 'STEP 3: CHOOSE YOUR GUARDIANS'
 
     return (
-      <div className={''}>
+      <div className={styles.text}>
         <h3>{heading}</h3>
         <p>
-          <b>Your Guardians are a very important part of the process.</b> They’re the people you
-          trust to step up and get your Last List from us when you head into the great beyond.
+          <b>Who do you trust with your tunes?</b>
         </p>
         <p>
-          <b>You can add up to 5 Guardians and change them whenever you feel like it.</b> (You never
-          know, your best friend might decide to renounce technology.)
+          You can choose up to five Guardians of your Last List. They’ll be responsible for getting
+          it from us when you die. We’ll send them a message telling them all about it and cc you so
+          you’re in the loop.
         </p>
         <p>
-          <b>
-            We’ll send your Guardians an email telling them they've been chosen and exactly what
-            they have to do to get your Last List from us.
-          </b>
-          We can’t stop them from taking a sneak peak, and you probably won’t mind, but we'll cc you
-          on the email anyway so you can chat to them about it.
+          You can change your Guardians whenever you feel like it. We won’t share any of your or
+          their information.
         </p>
 
         {loading ? (

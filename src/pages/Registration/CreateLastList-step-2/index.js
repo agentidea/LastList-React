@@ -77,7 +77,7 @@ export class CreateFirstLastList extends Component {
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
         ? 'ADD YOUR SONGS'
-        : 'STEP 2: ADD YOUR SONGS'
+        : 'STEP 2: CREATE YOUR LAST LIST'
 
     return (
       <div className={styles.content}>

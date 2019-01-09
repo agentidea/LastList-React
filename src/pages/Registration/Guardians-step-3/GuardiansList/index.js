@@ -11,6 +11,8 @@ import Slide from 'material-ui/transitions/Slide'
 import Button from '../../../../common/components/Button'
 import styles from './GuardiansList.module.css'
 import gAnalyticsPageView from '../../../../common/utils/googleAnalytics'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 const Transition = props => <Slide direction="down" {...props} /> // used for the remove dialog
 
@@ -26,7 +28,7 @@ export default class GuardiansList extends Component {
   render() {
     const { guardians } = this.props
     return (
-      <div>
+      <div className={styles.listWrap}>
         <h4>Current Guardians</h4>
 
         <ul>
@@ -35,7 +37,7 @@ export default class GuardiansList extends Component {
               {g.firstName} {g.lastName} ({g.email})
               <Tooltip id="tooltip-top" title="Remove" placement="right">
                 <span className={styles.deleteIcon} onClick={() => this.removeGuardian(g)}>
-                  ✕
+                  <FontAwesomeIcon className={styles.faIcon} icon={faTrashAlt} />
                 </span>
               </Tooltip>
             </li>

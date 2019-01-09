@@ -10,6 +10,8 @@ import styles from './Signup.module.css'
 import FacebookButton from '../../common/components/FacebookButton'
 import { getJwt } from '../../common/state/user/utils/jwt'
 import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import { FormControlLabel } from 'material-ui/Form'
+import Checkbox from 'material-ui/Checkbox'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -122,12 +124,15 @@ class Signup extends Component {
     const { successMessage, creating, nextAction } = this.state
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
-        <h3>Create your account</h3>
+        <h3>Create your profile</h3>
         {this.renderSocialAuth()}
         <h3>OR</h3>
         {this.renderInputs()}
         {successMessage && <div className={styles.success}>{successMessage}</div>}
         <div className={styles.buttons}>
+          <Button onClick={() => this.setNextAction('login')}>
+            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
+          </Button>
           <Button
             disabled={creating}
             className={styles.signupButton}
@@ -135,9 +140,19 @@ class Signup extends Component {
           >
             {creating && nextAction === 'create-account' ? 'Creating Account...' : 'Create Account'}
           </Button>
-          <Button onClick={() => this.setNextAction('login')}>
-            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
-          </Button>
+
+          <div className="">&nbsp;</div>
+
+          <FormControlLabel
+            className={styles.checkbox}
+            control={
+              <Checkbox
+                checked={this.state.remember}
+                onChange={(e, checked) => this.setState({ remember: checked })}
+              />
+            }
+            label="Remember me"
+          />
         </div>
       </form>
     )
@@ -166,7 +181,7 @@ class Signup extends Component {
           value={email}
           required
           error={errorEmail}
-          placeholder="Email Address"
+          placeholder="your@emailaddress.com"
           onChange={value => this.onChange('email', value)}
         />
         <Textfield
@@ -174,7 +189,7 @@ class Signup extends Component {
           label="Password"
           value={password}
           error={errorPw}
-          placeholder="Password"
+          placeholder="Make it memorable"
           help="Must be between 8 and 20 characters."
           minLength={8}
           maxLength={20}

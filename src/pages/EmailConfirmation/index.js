@@ -51,11 +51,11 @@ class EmailConfirmation extends Component {
           </div>
         ) : (
           <div>
-            <h3>GREAT! YOU'RE ALL SET</h3>
+            <h3>THANKS! YOU'RE ALL SET</h3>
             <div className={styles.spaceHack}>&nbsp;</div>
             <p className={styles.success}>
-              Your email address and Last List account are confirmed. You can now start creating
-              your Last List.
+              Your email address and Last List account are confirmed. You can start creating your
+              Last List.
             </p>
             <Button to="/reg/create-profile">Get Started</Button>
           </div>

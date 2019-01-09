@@ -65,7 +65,7 @@ class RegPrePayment extends Component {
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
         ? 'SUMMARY & PAYMENT'
-        : 'STEP 4: SUMMARY & PAYMENT'
+        : 'STEP 4: FINISH UP'
 
     return (
       <div className={''}>

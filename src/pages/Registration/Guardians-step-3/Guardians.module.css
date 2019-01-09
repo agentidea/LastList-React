@@ -3,3 +3,9 @@
   height: 40px;
   margin: var(--spacing-container) 0;
 }
+
+.text {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 2px;
+}

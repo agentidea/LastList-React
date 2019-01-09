@@ -6,6 +6,7 @@
 .buttons {
   display: flex;
   justify-content: space-between;
+  margin-top: 2em;
 }
 
 .addGuardianBtn {
@@ -20,8 +21,8 @@
 
 .inputs {
   display: grid;
-  grid-gap: var(--spacing-elements);
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr;
 }
 .addError {
   color: var(--error);

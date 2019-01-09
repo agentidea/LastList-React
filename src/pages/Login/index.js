@@ -131,30 +131,28 @@ class Login extends Component {
       <form className={styles.content} onSubmit={this.onSubmit}>
         {success ? <p className={styles.infoText}>{success}</p> : null}
 
-        <h3>Sign In To Your Last List</h3>
+        <h3>Sign In</h3>
         {this.renderSocialAuth()}
         <h3>OR</h3>
         {this.renderInputs()}
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.remember}
-              onChange={(e, checked) => this.setState({ remember: checked })}
-            />
-          }
-          label="Remember me"
-        />
         <div className={styles.buttons}>
-          <Button disabled={creating} onClick={() => this.setNextAction('create-account')}>
-            {creating && nextAction === 'create-account' ? 'Creating Account...' : 'Create Account'}
-          </Button>
           <Button disabled={creating} className={''} onClick={() => this.setNextAction('login')}>
             {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
           </Button>
+          <p className={styles.fgtPwd}>
+            <Link to="/forgot">Forgot password?</Link>
+          </p>
+          <FormControlLabel
+            className={styles.checkbox}
+            control={
+              <Checkbox
+                checked={this.state.remember}
+                onChange={(e, checked) => this.setState({ remember: checked })}
+              />
+            }
+            label="Remember me"
+          />
         </div>
-        <p>
-          <Link to="/forgot">Forgot password?</Link>
-        </p>
       </form>
     )
   }
@@ -182,7 +180,7 @@ class Login extends Component {
           value={email}
           required
           error={errorEmail}
-          placeholder="Email Address"
+          placeholder="your@emailaddress.com"
           onChange={value => this.onChange('email', value)}
         />
         <Textfield
@@ -190,7 +188,7 @@ class Login extends Component {
           label="Password"
           value={password}
           error={errorPw}
-          placeholder="Password"
+          placeholder="Make it memorable"
           required
           onChange={value => this.onChange('password', value)}
         />

@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: var(--spacing-container);
-  margin-top: var(--spacing-container);
+  margin-top: 2em;
 }
 
 .buttons button {
@@ -38,4 +38,12 @@
   .signupButton {
     grid-row: 1;
   }
+}
+
+.checkbox {
+  padding-left: 2em;
+}
+
+.checkbox span:first-child {
+  color: #004ddc;
 }

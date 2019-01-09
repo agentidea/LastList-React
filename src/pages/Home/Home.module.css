@@ -8,6 +8,25 @@
   text-align: center;
 }
 
+.text p,
+.list {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 2px;
+}
+
+.text h2 {
+  font-size: 52px;
+  font-weight: bold;
+  color: #168cff;
+}
+
+.quotes {
+  border-bottom: 1px solid #ccc;
+  margin: 0.5em 0 2em 0;
+  font-weight: bold;
+}
+
 .subtitle {
   font-weight: normal;
   text-transform: none;
@@ -28,9 +47,12 @@
 }
 
 .links {
+  color: #3917fe;
   display: flex;
   justify-content: space-around;
   margin: var(--spacing-container) 0;
+  margin-top: 3em;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
@@ -43,4 +65,8 @@
   .links > a {
     margin: var(--spacing-elements);
   }
+}
+
+.h3 {
+  padding: 0 0.5em 2em 0.5em;
 }

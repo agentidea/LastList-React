@@ -74,6 +74,8 @@ class AddGuardian extends Component {
               placeholder="Last Name"
               onChange={value => this.onInputChange('lastName', value)}
             />
+          </div>
+          <div className={''}>
             <Textfield
               type="email"
               label="Email"
@@ -97,7 +99,7 @@ class AddGuardian extends Component {
 
             {this.shouldShowNextButton() && (
               <Button className={styles.nextBtn} onClick={this.goNext}>
-                {goingnext ? 'Next: Summary' : 'Next: Summary'}
+                {goingnext ? 'Next: Payment' : 'Next: Payment'}
               </Button>
             )}
           </div>

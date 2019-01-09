@@ -1,3 +1,9 @@
 .content {
   text-align: center;
 }
+
+.content p {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 2px;
+}
