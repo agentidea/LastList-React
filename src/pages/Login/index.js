@@ -13,6 +13,7 @@ import styles from './Login.module.css'
 import { getJwt } from '../../common/state/user/utils/jwt'
 import FacebookButton from '../../common/components/FacebookButton'
 import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import SpotifyButton from '../../common/components/SpotifyButton'
 
 const mapStateToProps = state => ({
   success: state.user.success,
@@ -77,7 +78,7 @@ class Login extends Component {
     this.setState({ nextAction: action })
   }
 
-  setFacebookAuth = user_data => {
+  setSocialAuth = user_data => {
     console.log(user_data)
 
     let route = this.props.userActions.sociallogin(user_data)
@@ -160,9 +161,10 @@ class Login extends Component {
   renderSocialAuth = () => {
     return (
       <div className={styles.socialLoginWrapper}>
-        <FacebookButton onChange={this.setFacebookAuth} />
+        <FacebookButton onChange={this.setSocialAuth} />
+        <SpotifyButton setSocialAuth={this.setSocialAuth} />
         <div className={styles.belowBtnInfo}>
-          We won’t share any of your information with Facebook.
+          We won’t share any of your information with Facebook or Spotify.
         </div>
       </div>
     )

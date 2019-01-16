@@ -1,4 +1,10 @@
-import { GET_LISTS_API, SAVE_LIST_API, ADD_NEW_LIST, UPDATE_LIST_FIELD } from './actions'
+import {
+  GET_LISTS_API,
+  SAVE_LIST_API,
+  ADD_NEW_LIST,
+  UPDATE_LIST_FIELD,
+  REMOVE_LIST_ITEM,
+} from './actions'
 
 const initialState = {
   loading: false,
@@ -14,31 +20,27 @@ function convertFromServerLists(serverLists) {
     serverLists = [[]]
   }
   return serverLists.map(list => {
-    if (list.length > 10) {
-      return list.slice(0, 10)
-    }
-    while (list.length < 10) {
-      list.push({ artistName: '', songName: '' })
-    }
     return list
   })
 }
 
 function updateListField(state, action) {
-  const newLists = state.lists.map((list, listIndex) => {
-    if (listIndex !== action.listIndex) return list
-    return list.map((item, itemIndex) => {
-      if (itemIndex !== action.itemIndex) return item
-      return {
-        ...item,
-        [action.field]: action.value,
-      }
-    })
-  })
+  let list = state.lists[0]
+  list.unshift(action.value)
 
   return {
     ...state,
-    lists: newLists,
+    lists: [list],
+  }
+}
+
+function removeListItem(state, action) {
+  let list = state.lists[0]
+  let itemIndex = list.indexOf(action.value)
+  list.splice(itemIndex, 1)
+  return {
+    ...state,
+    lists: [list],
   }
 }
 
@@ -79,6 +81,8 @@ export default (state = initialState, action) => {
         ...state,
         lists: [...state.lists, emptyList()],
       }
+    case REMOVE_LIST_ITEM:
+      return removeListItem(state, action)
     default: {
       return state
     }

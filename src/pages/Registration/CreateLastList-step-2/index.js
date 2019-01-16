@@ -5,10 +5,12 @@ import { connect } from 'react-redux'
 import requireLogin from '../../../common/hocs/requireLogin'
 import * as listsActionCreators from '../../../common/state/lists/actions'
 import Loading from '../../../common/components/Loading'
-import SongInput from '../../../common/components/SongInput'
 import Button from '../../../common/components/Button'
 import styles from './EditLastList.module.css'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import SongAdd from '../../../common/components/SongAdd'
+import SongList from '../../../common/components/SongList'
+import SongApiSearch from '../../../common/components/SongApiSearch'
 
 const mapStateToProps = state => ({
   lists: state.lists.lists,
@@ -20,6 +22,13 @@ const mapDispatchToProps = dispatch => ({
   listsActions: bindActionCreators(listsActionCreators, dispatch),
 })
 export class CreateFirstLastList extends Component {
+  state = {
+    openSearch: false,
+    artist: '',
+    song: '',
+    note: '',
+  }
+
   componentDidMount() {
     gAnalyticsPageView()
 
@@ -40,6 +49,7 @@ export class CreateFirstLastList extends Component {
   goNext = () => {
     //$to do: auto-save / prompt if dirty
     const { history } = this.props
+    this.props.listsActions.saveUserList() // save first then continue
     history.push('/reg/add-guardian')
   }
 
@@ -71,6 +81,20 @@ export class CreateFirstLastList extends Component {
     return false
   }
 
+  toggleSearch = () => {
+    let { openSearch } = this.state
+    this.setState({ openSearch: !openSearch })
+  }
+
+  fromSearchAddSong = item => {
+    this.setState({
+      artist: item === null ? '' : item.artist,
+      song: item === null ? '' : item.title,
+      note: item === null ? '' : item.note,
+      openSearch: false,
+    })
+  }
+
   render() {
     const { lists, loading, saving } = this.props
     let serverStates = this.props.user.states
@@ -82,18 +106,25 @@ export class CreateFirstLastList extends Component {
     return (
       <div className={styles.content}>
         <h3>{heading}</h3>
-        <p>
-          Got loads of favorite songs? No problem. You can include as many as you like – it’s only
-          $1 for a set of 10 songs. And you can add more sets and change your Last List whenever the
-          urge takes you. Have fun!
-        </p>
+        <div className={styles.text}>
+          <p>Add a set of 10 songs for $1. </p>
+          <p>
+            Got more than 10 favorite songs? No problem. You can add as many sets as you want and
+            change them whenever you feel like it.
+          </p>
+        </div>
         {loading ? (
           <div className={styles.loaderContainer}>
             <Loading />
           </div>
         ) : (
           <Fragment>
-            <div>{lists.map((l, i) => this.renderList(l, i))}</div>
+            <SongAdd
+              onSongAdd={this.props.listsActions.setListItem}
+              toggleSearch={this.toggleSearch}
+              {...this.state}
+            />
+
             <div className={styles.buttons}>
               {this.shouldShowBackButton() && (
                 <Button className={styles.backBtn} onClick={this.goBack}>
@@ -113,12 +144,19 @@ export class CreateFirstLastList extends Component {
 
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
-                  Next: Nominate Guardians
+                  Next: Choose Your Guardians
                 </Button>
               )}
             </div>
+
+            <div>{lists.map((l, i) => this.renderList(l, i))}</div>
           </Fragment>
         )}
+        <SongApiSearch
+          {...this.state}
+          toggleSearch={this.toggleSearch}
+          fromSearchAddSong={this.fromSearchAddSong}
+        />
       </div>
     )
   }
@@ -127,16 +165,11 @@ export class CreateFirstLastList extends Component {
     return (
       <div key={listIndex} className={styles.list}>
         {list.map((item, index) => (
-          <SongInput
+          <SongList
             key={index}
-            isFirst={index === 0}
-            artistName={item.artistName}
-            songName={item.songName}
-            onBothChanged={item => this.props.listsActions.setListItem(listIndex, index, item)}
-            onArtistChange={value =>
-              this.props.listsActions.setListItemArtist(listIndex, index, value)
-            }
-            onSongChange={value => this.props.listsActions.setListItemSong(listIndex, index, value)}
+            listItem={item}
+            fromSearchAddSong={this.fromSearchAddSong}
+            removeSong={this.props.listsActions.removeListItem}
           />
         ))}
       </div>

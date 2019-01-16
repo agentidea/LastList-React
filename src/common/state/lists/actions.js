@@ -10,6 +10,7 @@ export const SAVE_LIST_API = createAPIActions('SAVE_LIST_API', 'PUT')
 export const ADD_NEW_LIST = 'ADD_NEW_LIST'
 export const UPDATE_LIST_ITEM = 'UPDATE_LIST_ITEM'
 export const UPDATE_LIST_FIELD = 'UPDATE_LIST_FIELD'
+export const REMOVE_LIST_ITEM = 'REMOVE_LIST_ITEM'
 
 export const fetchUserLists = () => async (dispatch, getState) => {
   const user = currentUserSelector(getState())
@@ -20,16 +21,23 @@ export const fetchUserLists = () => async (dispatch, getState) => {
   }
 }
 
-export const setListItem = (listIndex, itemIndex, item) => async dispatch => {
-  dispatch(setListItemArtist(listIndex, itemIndex, item.artist))
-  dispatch(setListItemSong(listIndex, itemIndex, item.song))
+export const setListItem = item => async dispatch => {
+  dispatch(setListItemObj(item))
 }
 
-export const setListItemArtist = (listIndex, itemIndex, value) => ({
+export const removeListItem = item => async dispatch => {
+  dispatch(removeListItemObj(item))
+}
+
+export const removeListItemObj = value => ({
+  type: REMOVE_LIST_ITEM,
+  field: 'track',
+  value,
+})
+
+export const setListItemObj = value => ({
   type: UPDATE_LIST_FIELD,
-  field: 'artistName',
-  listIndex,
-  itemIndex,
+  field: 'track',
   value,
 })
 

@@ -1,0 +1,28 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  margin-bottom: 1em;
+}
+
+.searchBtnWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 2px;
+  color: #3917fe;
+  padding: 1em 0.5em 2em 1em;
+}
+.searchBtnWrap span {
+  cursor: pointer;
+}
+.faIcon {
+  font-size: 1.5em;
+}
+
+.addBtnWrap {
+  display: flex;
+  justify-content: flex-end;
+}

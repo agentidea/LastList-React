@@ -14,16 +14,19 @@
     "@fortawesome/free-brands-svg-icons": "^5.3.1",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "@fortawesome/react-fontawesome": "^0.1.3",
+    "@material-ui/core": "^3.8.3",
+    "@material-ui/icons": "^3.0.2",
     "@sentry/browser": "^4.0.6",
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "cleave.js": "^1.4.4",
     "date-fns": "^1.29.0",
+    "howler": "^2.1.1",
     "lodash.debounce": "^4.0.8",
     "material-ui": "^1.0.0-beta.35",
     "material-ui-icons": "^1.0.0-beta.35",
     "paypal-checkout": "^4.0.218",
-    "react": "^16.2.0",
+    "react": "^16.3.0",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.2.0",
     "react-facebook-login": "^4.1.0",
@@ -36,7 +39,8 @@
     "react-stripe-elements": "^2.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "qs": "latest"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [

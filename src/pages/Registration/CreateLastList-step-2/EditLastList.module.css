@@ -1,6 +1,14 @@
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.text {
+  margin-bottom: 3em;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
 }
 
 .buttons {
@@ -22,4 +30,8 @@
 .loaderContainer {
   position: relative;
   margin-top: 50px;
+}
+
+.list {
+  margin-top: 4em;
 }

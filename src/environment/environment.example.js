@@ -16,4 +16,7 @@ export const environment = {
   payPalProduction: 'XXXXXXXXXXXXXXX',
   sentryDSN: 'XXXXXXXXXXXXXXXXXXXXX',
   gAnalyticsKey: 'XXXXXXXXXXXX',
+  spotifyCLIENT_ID: '',
+  spotifyCLIENT_SECRET: '',
+  spotifyREDIRECT_URI: 'https://localhost:3002/login',
 }

@@ -1,0 +1,21 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+  margin-bottom: 1em;
+}
+
+.gridWrap {
+  display: block;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.gridWrap:last-child {
+  text-align: center;
+}
+.faIcon {
+  cursor: pointer;
+  font-size: 1em;
+  margin: 0.2em 0.8em;
+  color: #3917fe;
+}
