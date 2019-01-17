@@ -12,6 +12,7 @@ import { getJwt } from '../../common/state/user/utils/jwt'
 import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 import { FormControlLabel } from 'material-ui/Form'
 import Checkbox from 'material-ui/Checkbox'
+import SpotifyButton from '../../common/components/SpotifyButton'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -78,7 +79,7 @@ class Signup extends Component {
     this.setState({ nextAction: action })
   }
 
-  setFacebookAuth = user_data => {
+  setSocialAuth = user_data => {
     console.log(user_data)
 
     let route = this.props.userActions.sociallogin(user_data)
@@ -161,9 +162,10 @@ class Signup extends Component {
   renderSocialAuth = () => {
     return (
       <div className={styles.socialLoginWrapper}>
-        <FacebookButton onChange={this.setFacebookAuth} />
+        <FacebookButton onChange={this.setSocialAuth} />
+        <SpotifyButton setSocialAuth={this.setSocialAuth} />
         <div className={styles.belowBtnInfo}>
-          We won’t share any of your information with Facebook.
+          We won’t share any of your information with Facebook or Spotify.
         </div>
       </div>
     )
