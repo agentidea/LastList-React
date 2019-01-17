@@ -1,22 +1,13 @@
-import { environment } from '../../environment/environment'
+import { API_ROOT } from './api'
 
+/*TODO: SAVE TOKEN FOR 3600s THEN FLUSH IT FOR A NEW ONE (BYPASS THIS UNTIL 3600s)*/
 export const authToken = () => {
-  return fetch('https://accounts.spotify.com/api/token', {
-    mode: 'no-cors',
-    body: 'grant_type=client_credentials',
-    headers: {
-      Authorization:
-        'Basic ' +
-        window.btoa(environment.spotifyCLIENT_ID + ':' + environment.spotifyCLIENT_SECRET),
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    method: 'POST',
-  })
+  return fetch(API_ROOT + '/spotify/')
     .then(response => {
       return response.json()
     })
     .then(body => {
-      return body.access_token
+      return body.data
     })
 }
 
