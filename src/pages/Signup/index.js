@@ -13,6 +13,7 @@ import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 import { FormControlLabel } from 'material-ui/Form'
 import Checkbox from 'material-ui/Checkbox'
 import SpotifyButton from '../../common/components/SpotifyButton'
+import GoogleButton from '../../common/components/GoogleButton'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -164,6 +165,7 @@ class Signup extends Component {
       <div className={styles.socialLoginWrapper}>
         <FacebookButton onChange={this.setSocialAuth} />
         <SpotifyButton setSocialAuth={this.setSocialAuth} />
+        <GoogleButton />
         <div className={styles.belowBtnInfo}>
           We won’t share any of your information with Facebook or Spotify.
         </div>

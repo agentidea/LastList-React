@@ -26,11 +26,13 @@
     "material-ui": "^1.0.0-beta.35",
     "material-ui-icons": "^1.0.0-beta.35",
     "paypal-checkout": "^4.0.218",
+    "qs": "latest",
     "react": "^16.3.0",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.2.0",
     "react-facebook-login": "^4.1.0",
     "react-ga": "^2.5.3",
+    "react-google-login": "^5.0.0",
     "react-infinite-calendar": "^2.3.1",
     "react-modal": "^3.5.1",
     "react-redux": "^5.0.7",
@@ -39,8 +41,7 @@
     "react-stripe-elements": "^2.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "store": "^2.0.12",
-    "qs": "latest"
+    "store": "^2.0.12"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
