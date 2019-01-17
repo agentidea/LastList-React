@@ -8,7 +8,7 @@ import { OAuth } from '../../utils/spotifyApi'
 
 class SpotifyButton extends Component {
   state = {
-    isFacebook: true,
+    isSpotify: true,
     socialEmail: '',
   }
 

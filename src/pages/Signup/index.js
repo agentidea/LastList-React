@@ -165,7 +165,7 @@ class Signup extends Component {
       <div className={styles.socialLoginWrapper}>
         <FacebookButton onChange={this.setSocialAuth} />
         <SpotifyButton setSocialAuth={this.setSocialAuth} />
-        <GoogleButton />
+        <GoogleButton setSocialAuth={this.setSocialAuth} />
         <div className={styles.belowBtnInfo}>
           We won’t share any of your information with Facebook or Spotify.
         </div>

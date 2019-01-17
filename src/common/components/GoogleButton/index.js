@@ -8,12 +8,8 @@ import GoogleLogin from 'react-google-login'
 
 class GoogleButton extends Component {
   state = {
-    isFacebook: true,
+    isGoogle: true,
     socialEmail: '',
-  }
-
-  componentClicked = () => {
-    console.log('button clicked')
   }
 
   failed = e => {
@@ -21,9 +17,8 @@ class GoogleButton extends Component {
   }
 
   successful = data => {
-    //this.setState({ socialEmail: data.email })
-    //this.props.onChange(this.state)
-    console.log(data)
+    this.setState({ socialEmail: data.profileObj.email })
+    this.props.setSocialAuth(this.state)
   }
 
   render() {
