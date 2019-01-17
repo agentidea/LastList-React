@@ -7,19 +7,6 @@
   min-width: 318px;
 }
 
-.fbBtn:focus,
-.fbBtn:hover {
-  outline: 0;
-  cursor: pointer;
-  background-color: var(--color-link-2);
-  color: #fff;
-}
-
-.fbBtn:active,
-.fbBtn:focus {
-  opacity: 1;
-}
-
 .faIcon {
   margin: 0 1em 0 0;
   width: 30px !important;

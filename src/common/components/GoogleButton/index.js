@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import FacebookLogin from 'react-facebook-login'
 import style from './GoogleButton.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookSquare, faGoogle, faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { environment } from '../../../environment/environment'
 import GoogleLogin from 'react-google-login'
+import Button from '../Button'
 
 class GoogleButton extends Component {
   state = {
@@ -25,7 +26,11 @@ class GoogleButton extends Component {
     const GgBtn = (
       <GoogleLogin
         clientId={environment.googleCLIENT_ID}
-        buttonText="Sign in with Google"
+        render={renderProps => (
+          <Button className={style.btn} onClick={renderProps.onClick}>
+            <FontAwesomeIcon className={style.faIcon} icon={faGoogle} />Sign in with Google
+          </Button>
+        )}
         onSuccess={this.successful}
         onFailure={this.failed}
       />

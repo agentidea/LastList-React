@@ -14,6 +14,7 @@ import { getJwt } from '../../common/state/user/utils/jwt'
 import FacebookButton from '../../common/components/FacebookButton'
 import gAnalyticsPageView from '../../common/utils/googleAnalytics'
 import SpotifyButton from '../../common/components/SpotifyButton'
+import GoogleButton from '../../common/components/GoogleButton'
 
 const mapStateToProps = state => ({
   success: state.user.success,
@@ -163,8 +164,9 @@ class Login extends Component {
       <div className={styles.socialLoginWrapper}>
         <FacebookButton onChange={this.setSocialAuth} />
         <SpotifyButton setSocialAuth={this.setSocialAuth} />
+        <GoogleButton setSocialAuth={this.setSocialAuth} />
         <div className={styles.belowBtnInfo}>
-          We won’t share any of your information with Facebook or Spotify.
+          We won’t share any of your information with Facebook or Spotify or Google.
         </div>
       </div>
     )
