@@ -80,7 +80,7 @@ class PayPalButton extends Component {
     const PayBtn = (
       <div className={styles.btnAllWrap}>
         <Button className={styles.payBtn}>
-          <FontAwesomeIcon className={style.faIcon} icon={faPaypal} /> PayPal
+          <FontAwesomeIcon className={style.faIcon} icon={faPaypal} /> Pay via PayPal
         </Button>
         <div
           className={styles.payBtn2}
