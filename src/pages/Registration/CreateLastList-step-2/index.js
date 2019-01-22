@@ -123,6 +123,7 @@ export class CreateFirstLastList extends Component {
               onSongAdd={this.props.listsActions.setListItem}
               toggleSearch={this.toggleSearch}
               {...this.state}
+              {...this.props}
             />
 
             <div className={styles.buttons}>

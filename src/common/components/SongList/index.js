@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 class SongList extends Component {
-  state = {}
+  state = {
+    should_show: false,
+  }
 
   onEditSong = item => {
     let obj = {
@@ -18,12 +20,35 @@ class SongList extends Component {
 
   onRemoveSong = item => {
     this.props.removeSong(item)
+    this.closePrompt()
+  }
+
+  toDelete = () => {
+    this.setState({ should_show: true })
+  }
+
+  closePrompt = () => {
+    this.setState({ should_show: false })
   }
 
   render() {
     const { listItem } = this.props
+    const { should_show } = this.state
     return (
       <div className={styles.row}>
+        <div className={styles.deletePrompt} style={{ display: should_show ? '' : 'none' }}>
+          <span>Are you sure ?</span>
+          <div className={styles.smBtnWrap}>
+            <a className={styles.smBtnApprove} onClick={() => this.onRemoveSong(listItem)}>
+              Yes
+            </a>{' '}
+            |&nbsp;
+            <a className={styles.smBtnDeny} onClick={this.closePrompt}>
+              Cancel
+            </a>
+          </div>
+        </div>
+
         <span className={styles.gridWrap}>{listItem.artistName}</span>
         <span className={styles.gridWrap}>{listItem.songName}</span>
         <span className={styles.gridWrap}>
@@ -33,7 +58,7 @@ class SongList extends Component {
             icon={faPen}
           />
           <FontAwesomeIcon
-            onClick={() => this.onRemoveSong(listItem)}
+            onClick={() => this.toDelete()}
             className={styles.faIcon}
             icon={faTrashAlt}
           />

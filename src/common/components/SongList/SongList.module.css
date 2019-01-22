@@ -19,3 +19,39 @@
   margin: 0.2em 0.8em;
   color: #3917fe;
 }
+.deletePrompt {
+  width: 200px;
+  background: #fff;
+  box-shadow: 0 0 10px #000;
+  height: auto;
+  position: absolute;
+  right: 0;
+  border-radius: 5px;
+  padding: 0.5em 0.5em 0 0.5em;
+}
+
+.smBtnWrap {
+  margin-top: 0.5em;
+  border-top: 1px solid #ccc;
+  padding: 0.5em 0;
+}
+
+.smBtnApprove {
+  border: #004ddc 2px solid;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.1em 1em;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #004ddc;
+}
+
+.smBtnDeny {
+  border: #ccc 2px solid;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.1em 1em;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #004ddc;
+}
