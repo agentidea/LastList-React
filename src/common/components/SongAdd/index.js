@@ -28,7 +28,6 @@ class SongAdd extends Component {
 
   onSongAdd = () => {
     let { artist, song, note } = this.state
-    console.log(this.state)
     const { onSongAdd } = this.props
     artist = artist.trim()
     song = song.trim()
