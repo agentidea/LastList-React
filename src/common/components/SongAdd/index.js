@@ -11,6 +11,8 @@ class SongAdd extends Component {
     song: '',
     note: '',
     error: null,
+    error_msg: null,
+    hasError: false,
   }
 
   componentWillReceiveProps(nextProps, d) {
@@ -34,8 +36,10 @@ class SongAdd extends Component {
     note = note ? note.trim() : ''
 
     if (artist === '' || song === '') {
+      this.setState({ hasError: true, error_msg: 'Please add a song!' })
       return
     }
+    this.setState({ hasError: false })
 
     let item = {
       artistName: artist,
@@ -47,7 +51,7 @@ class SongAdd extends Component {
   }
 
   render() {
-    let { artist, song, note } = this.state
+    let { artist, song, note, error_msg, hasError } = this.state
     return (
       <div>
         <div className={styles.row}>
@@ -70,6 +74,11 @@ class SongAdd extends Component {
           value={note}
           onChange={value => this.onChange('note', value)}
         />
+        {hasError ? (
+          <div className={styles.errorWrap}>
+            <span className={styles.error}>{error_msg}</span>
+          </div>
+        ) : null}
         <div className={styles.addBtnWrap}>
           <Button className={styles.addBtn} onClick={this.onSongAdd}>
             Add
