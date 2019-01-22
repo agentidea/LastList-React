@@ -33,6 +33,7 @@ class NewProfile extends Component {
       field: null,
       message: null,
     },
+    current_state: 'create',
   }
 
   componentDidMount() {
@@ -44,6 +45,7 @@ class NewProfile extends Component {
     //
 
     this.setState({ ...this.props.currentProfile, loaded: true })
+    this.checkCurrentState()
   }
 
   onTextChange = (field, value) => {
@@ -65,12 +67,15 @@ class NewProfile extends Component {
   }
 
   saveProfile = () => {
-    const { firstName, lastName, dob } = this.state
+    const { firstName, lastName, dob, current_state } = this.state
     this.setState({ saving: true })
     this.props.userActions
       .saveUserProfile(firstName, lastName, dob)
       .then(() => {
         this.setState({ saving: false, saved: true })
+        if (current_state === 'update') {
+          window.location.reload()
+        }
       })
       .catch(error => {
         if (error instanceof UserError) {
@@ -104,6 +109,13 @@ class NewProfile extends Component {
       return hasProfile === 'created_profile'
     }
     return false
+  }
+
+  checkCurrentState = () => {
+    let serverStates = this.props.user.states
+    if (serverStates && serverStates.find(item => item === 'registration_complete')) {
+      this.setState({ current_state: 'update' })
+    }
   }
 
   render() {

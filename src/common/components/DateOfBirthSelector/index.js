@@ -24,8 +24,30 @@ class DateOfBirthSelector extends Component {
       return
     }
 
+    if (!this.validateDate(rawDate)) {
+      this.props.onChange(null)
+      return
+    }
+
     const dob = dateFns.format(rawDate, 'YYYY/MM/DD')
     this.props.onChange(dob)
+  }
+
+  validateDate = bdate => {
+    let bdate_year = dateFns.format(bdate, 'YYYY')
+    let cur_year = dateFns.format(new Date(), 'YYYY')
+    let age = cur_year - bdate_year
+
+    if (age < 10) {
+      this.setState({ error: 'You have to be older than 10 years to use this service' })
+      return false
+    }
+    if (age > 120) {
+      this.setState({ error: ' You have to be younger than 120 years to use this service' })
+      return false
+    }
+
+    return true
   }
 
   render() {
