@@ -26,3 +26,13 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.errorWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 1em 0.5em;
+}
+.error {
+  color: var(--error);
+}
