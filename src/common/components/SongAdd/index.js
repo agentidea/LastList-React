@@ -39,15 +39,32 @@ class SongAdd extends Component {
       this.setState({ hasError: true, error_msg: 'Please add a song!' })
       return
     }
-    this.setState({ hasError: false })
 
     let item = {
       artistName: artist,
       songName: song,
       note: note,
     }
+
+    if (!this.validate_songs(item)) {
+      this.setState({ hasError: true, error_msg: "You've already added this song." })
+      return
+    }
+
+    this.setState({ hasError: false })
+
     onSongAdd(item)
     this.setState({ artist: '', song: '', note: '' })
+  }
+
+  validate_songs = needle => {
+    const { lists } = this.props
+    let list = lists[0]
+    let track = list.find(
+      item => item.artistName === needle.artistName && item.songName === needle.songName
+    )
+
+    return !track
   }
 
   render() {
