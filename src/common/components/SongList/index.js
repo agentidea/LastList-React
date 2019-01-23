@@ -32,10 +32,13 @@ class SongList extends Component {
   }
 
   render() {
-    const { listItem } = this.props
+    const { listItem, controls } = this.props
     const { should_show } = this.state
     return (
-      <div className={styles.row}>
+      <div
+        className={styles.row}
+        style={{ gridTemplateColumns: !controls ? '1fr 2fr' : '1fr 2fr 1fr' }}
+      >
         <div className={styles.deletePrompt} style={{ display: should_show ? '' : 'none' }}>
           <span>Are you sure ?</span>
           <div className={styles.smBtnWrap}>
@@ -51,7 +54,7 @@ class SongList extends Component {
 
         <span className={styles.gridWrap}>{listItem.artistName}</span>
         <span className={styles.gridWrap}>{listItem.songName}</span>
-        <span className={styles.gridWrap}>
+        <span className={styles.gridWrap} style={{ display: controls ? '' : 'none' }}>
           <FontAwesomeIcon
             onClick={() => this.onEditSong(listItem)}
             className={styles.faIcon}

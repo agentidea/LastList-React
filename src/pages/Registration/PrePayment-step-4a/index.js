@@ -15,14 +15,18 @@ import logo from '../../../common/components/Header/logo.png'
 import StripeCardForm from './StripePayment'
 import PayPalButton from '../../../common/components/PayPalButton'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import * as listsActionCreators from '../../../common/state/lists/actions'
+import SongList from '../../../common/components/SongList'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
   invoice: state.invoice.data,
   loadingInvoice: state.invoice.loading,
+  lists: state.lists.lists,
 })
 const mapDispatchToProps = dispatch => ({
   invoiceActions: bindActionCreators(invoiceActionCreators, dispatch),
+  listsActions: bindActionCreators(listsActionCreators, dispatch),
 })
 
 class RegPrePayment extends Component {
@@ -55,13 +59,14 @@ class RegPrePayment extends Component {
     gAnalyticsPageView()
 
     this.props.invoiceActions.getInvoice()
+    this.props.listsActions.fetchUserLists()
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
   }
 
   render() {
-    const { guardians, goingnext, invoice, loadingInvoice } = this.props
-    let serverStates = this.props.user.states
+    const { guardians, goingnext, invoice, loadingInvoice, lists, user } = this.props
+    let serverStates = user.states
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
         ? 'SUMMARY & PAYMENT'
@@ -72,7 +77,14 @@ class RegPrePayment extends Component {
         <h3>{heading}</h3>
 
         <h4> Your Last List</h4>
-        <h4>{loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}</h4>
+        <h4 className={styles.invoice}>
+          {loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}
+        </h4>
+
+        <div className={styles.listWrap}>{lists.map((l, i) => RegPrePayment.renderList(l, i))}</div>
+        <h4 className={styles.paid}>
+          Paid: <span>${user.payment}</span>
+        </h4>
 
         <GuardiansList guardians={guardians} />
 
@@ -110,6 +122,14 @@ class RegPrePayment extends Component {
           </div>
           <StripeCardForm elements={{ handleCloseModal: this.handleCloseModal, amount: invoice }} />
         </ReactModal>
+      </div>
+    )
+  }
+
+  static renderList(list, listIndex) {
+    return (
+      <div key={listIndex} className={styles.list}>
+        {list.map((item, index) => <SongList key={index} listItem={item} controls={false} />)}
       </div>
     )
   }

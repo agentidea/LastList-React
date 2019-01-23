@@ -171,6 +171,7 @@ export class CreateFirstLastList extends Component {
             listItem={item}
             fromSearchAddSong={this.fromSearchAddSong}
             removeSong={this.props.listsActions.removeListItem}
+            controls={true}
           />
         ))}
       </div>
