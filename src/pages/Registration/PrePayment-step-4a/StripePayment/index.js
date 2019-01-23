@@ -151,25 +151,10 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
   }
 
   render() {
-    const { email, error } = this.state
-    const errorEmail = error.field === 'email' ? error.message : null
-
+    const { error } = this.state
     return (
       <form onSubmit={this.handleSubmit} className="stripeForm">
         <div style={!this.state.viewForm ? { display: 'none' } : {}}>
-          <div className="emailStripeContainer">
-            <label>
-              Email
-              <Textfield
-                type="email"
-                value={email}
-                required
-                error={errorEmail}
-                placeholder="email@emailaddy.com"
-                onChange={value => this.onChange('email', value)}
-              />
-            </label>
-          </div>
           <label>
             Card Number
             <CardNumberElement
