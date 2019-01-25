@@ -20,8 +20,16 @@ class SongAdd extends Component {
       return
     }
 
-    const { artist, song, note } = nextProps
-    this.setState({ artist: artist, song: song, note: note })
+    const { artist, song, note, show_add_more } = nextProps
+    this.setState({ artist: artist, song: song, note: note, hasError: false, error_msg: null })
+
+    if (show_add_more) {
+      this.setState({
+        hasError: true,
+        error_msg:
+          'Please click on the "<b>Add Another 10 songs</b>" button OR proceed to the payment page by clicking the "<b>Next</b>" button',
+      })
+    }
   }
 
   onChange = (field, value) => {
@@ -68,6 +76,7 @@ class SongAdd extends Component {
   }
 
   render() {
+    const { show_add_more } = this.props
     let { artist, song, note, error_msg, hasError } = this.state
     return (
       <div>
@@ -93,17 +102,20 @@ class SongAdd extends Component {
         />
         {hasError ? (
           <div className={styles.errorWrap}>
-            <span className={styles.error}>{error_msg}</span>
+            <span className={styles.error} dangerouslySetInnerHTML={{ __html: error_msg }} />
           </div>
         ) : null}
         <div className={styles.addBtnWrap}>
-          <Button className={styles.addBtn} onClick={this.onSongAdd}>
+          <Button
+            className={`${styles.addBtn} ${show_add_more ? styles.inactive : ''}`}
+            onClick={this.onSongAdd}
+          >
             Add
           </Button>
         </div>
 
         <div className={styles.searchBtnWrap}>
-          <span onClick={this.props.toggleSearch}>
+          <span onClick={this.props.toggleSearch} className={show_add_more ? styles.inactive : ''}>
             Looking for a particular song?{' '}
             <FontAwesomeIcon className={styles.faIcon} icon={faSearch} />
           </span>

@@ -27,6 +27,7 @@ export class CreateFirstLastList extends Component {
     artist: '',
     song: '',
     note: '',
+    show_add_more: false,
   }
 
   componentDidMount() {
@@ -36,21 +37,26 @@ export class CreateFirstLastList extends Component {
     this.setState({ ...this.props.currentProfile, saved: false, loaded: true }) // see if user had previously saved a list ( aka edit_list )
   }
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    setTimeout(() => {
+      this.shouldShowAddSongs()
+    }, 100) // delay for obvious react reasons
+  }
+
   shouldShowAddSongs = () => {
     const { lists } = this.props
     if (lists && lists.length > 0) {
-      const lastList = lists[lists.length - 1]
-      const nonEmptySongs = lastList.filter(item => item.artistName !== '' || item.songName !== '')
-      return nonEmptySongs.length === 10
+      this.setState({ show_add_more: lists[0].length > 0 && lists[0].length % 10 === 0 })
+      return
     }
-    return false
+    this.setState({ show_add_more: false })
   }
 
   goNext = () => {
-    //$to do: auto-save / prompt if dirty
     const { history } = this.props
-    this.props.listsActions.saveUserList() // save first then continue
-    history.push('/reg/add-guardian')
+    this.props.listsActions.saveUserList().then(data => {
+      data === 200 ? history.push('/reg/add-guardian') : null
+    })
   }
 
   goBack = () => {
@@ -58,13 +64,8 @@ export class CreateFirstLastList extends Component {
     history.goBack()
   }
 
-  shouldShowBackButton() {
+  static shouldShowBackButton() {
     return false
-  }
-
-  saveButtonClicked = () => {
-    //pass dispatch getState() ?????
-    this.props.listsActions.saveUserList()
   }
 
   shouldShowNextButton() {
@@ -95,9 +96,14 @@ export class CreateFirstLastList extends Component {
     })
   }
 
+  shouldAddMore = () => {
+    this.setState({ show_add_more: false })
+  }
+
   render() {
-    const { lists, loading, saving } = this.props
-    let serverStates = this.props.user.states
+    const { lists, loading, saving, user } = this.props
+    const { show_add_more } = this.state
+    let serverStates = user.states
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
         ? 'ADD YOUR SONGS'
@@ -127,25 +133,23 @@ export class CreateFirstLastList extends Component {
             />
 
             <div className={styles.buttons}>
-              {this.shouldShowBackButton() && (
+              {CreateFirstLastList.shouldShowBackButton() && (
                 <Button className={styles.backBtn} onClick={this.goBack}>
                   Back
                 </Button>
               )}
 
-              {this.shouldShowAddSongs() && (
-                <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
+              {show_add_more ? (
+                <Button className={styles.addMoreBtn} onClick={this.shouldAddMore}>
                   Add Another 10 Songs
                 </Button>
+              ) : (
+                <div>&nbsp;</div>
               )}
-
-              <Button className={styles.saveBtn} onClick={this.saveButtonClicked} disabled={saving}>
-                {saving ? 'Saving...' : 'Save'}
-              </Button>
 
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
-                  Next: Choose Your Guardians
+                  {saving ? 'Saving...' : 'Next: Choose Your Guardians'}
                 </Button>
               )}
             </div>

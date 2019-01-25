@@ -36,3 +36,9 @@
 .error {
   color: var(--error);
 }
+
+.inactive {
+  border-color: #aab7c4;
+  color: #aab7c4;
+  pointer-events: none;
+}

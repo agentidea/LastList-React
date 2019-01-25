@@ -51,6 +51,7 @@ export const setListItemSong = (listIndex, itemIndex, value) => ({
 
 export const saveUserList = () => async (dispatch, getState) => {
   const user = currentUserSelector(getState())
+  let res = 404
   if (user) {
     await dispatch(
       doRequest(SAVE_LIST_API, `user/addList/${user._id}`, {
@@ -61,10 +62,12 @@ export const saveUserList = () => async (dispatch, getState) => {
       })
     ).then(data => {
       setListCost(data['cost'])
+      res = 200
     })
   } else {
-    console.error('User should be logged in to save his lists')
+    console.error('User should be logged in to save their lists')
   }
+  return res
 }
 
 export const addNewList = () => ({
