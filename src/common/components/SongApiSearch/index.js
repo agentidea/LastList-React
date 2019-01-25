@@ -103,6 +103,13 @@ class SongApiSearch extends Component {
               <FontAwesomeIcon className={styles.faIconClose} icon={faTimesCircle} />
             </span>
           </div>
+          <div className={styles.header}>
+            <h3>Looking for a particular song?</h3>
+            <p>
+              You can search for a song from our database, preview it, and then click the + to add
+              to your list.{' '}
+            </p>
+          </div>
           <Textfield
             id="search-field"
             placeholder="Search for a song..."

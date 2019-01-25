@@ -1,7 +1,7 @@
 .popup {
   width: 70%;
   min-width: 300px;
-  height: 50vh;
+  height: 60vh;
   background: #fff;
   overflow-y: scroll;
   padding: 1em;
@@ -51,4 +51,11 @@
   font-size: 1em;
   margin: 0.8em;
   color: #3917fe;
+}
+
+.header p {
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1.56;
 }
