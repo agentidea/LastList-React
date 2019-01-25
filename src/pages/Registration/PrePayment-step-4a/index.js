@@ -92,17 +92,22 @@ class RegPrePayment extends Component {
           <Button className={styles.backBtn} onClick={this.goBack}>
             Back
           </Button>
-          {invoice.due === 0 ? <div>Payment already done!</div> : null}
-          <div className={styles.payButtonsWrap}>
-            <PayPalButton elements={{ amount: invoice }} />
-            <Button
-              disabled={invoice.due === 0}
-              className={styles.nextBtn}
-              onClick={this.openPayment}
-            >
-              {goingnext ? 'Pay via Stripe' : 'Pay via Stripe'}
-            </Button>
-          </div>
+          {invoice.due === 0 ? (
+            <div style={{ fontWeight: 'bold' }}>Payment already done!</div>
+          ) : null}
+
+          {invoice.due === 0 ? null : (
+            <div className={styles.payButtonsWrap}>
+              <PayPalButton elements={{ amount: invoice }} />
+              <Button
+                disabled={invoice.due === 0}
+                className={styles.nextBtn}
+                onClick={this.openPayment}
+              >
+                {goingnext ? 'Pay via Stripe' : 'Pay via Stripe'}
+              </Button>
+            </div>
+          )}
         </div>
 
         <ReactModal
