@@ -45,17 +45,17 @@ export class LastList extends Component {
   }
 
   render() {
-    const { firstName, lastName } = this.state
+    const { firstName, lastName, loading } = this.state
     return (
-      <div>
-        <h3>{`${firstName} ${lastName}'s`} Last list</h3>
+      <div className={styles.content}>
+        {!loading ? <h3>{`${firstName} ${lastName}'s`} Last list</h3> : null}
         {this.renderLists()}
       </div>
     )
   }
 
   renderLists() {
-    const { songs, firstName, lastName, loading, error } = this.state
+    const { songs, firstName, loading, error } = this.state
     if (loading)
       return (
         <div className={styles.loaderContainer}>
@@ -66,36 +66,26 @@ export class LastList extends Component {
 
     return (
       <Fragment>
-        <p className={styles.intro}>
-          Here is a list of {`${firstName}`} ’s favorite songs. We’ve emailed you a copy too.
-        </p>
-        <p className={styles.intro}>
-          You now have the very important role of carrying out their musical wishes.
-        </p>
-        <p className={styles.paraLeft}> Here's how:</p>
+        <div className={styles.introWrap}>
+          <p className={styles.intro}>
+            Here is a list of songs that {firstName} made for you and all the other people they
+            loved. We’ve emailed you a copy. If you don’t have specific instructions, here’s what
+            you need to do.
+          </p>
 
-        <ul>
-          <li>
-            <b>Make a playlist of these songs </b>
-            <br />
-            If you don’t have all of the songs, ask friends or family or use Playlist-converter.net,
-            iTunes, Spotify, Pandora or another music streaming service.
-          </li>
+          <ol>
+            <li>Make a playlist of these songs</li>
+            <li>Play it at your loved one’s end-of-life celebration</li>
+            <li>Share it with the people they love</li>
+          </ol>
 
-          <li>
-            <b>Save the list onto a thumb drive, smartphone, computer or other digital device </b>
-            <br />
-            You can even go old school and burn them onto a CD!
-          </li>
-
-          <li>
-            <b>Make sure that this Last List is played at your loved one's final celebration </b>
-            Whether it’s a pizza party, wake, memorial or cremation.{' '}
-          </li>
-          <li>
-            <b>Share this Last List with others.</b>
-          </li>
-        </ul>
+          <p>
+            How you do this is up to you. If you can’t find all of their songs, use
+            Playlist-converter.net iTunes, Spotify, Pandora or another music streaming service. You
+            can save the list onto a thumb drive, smartphone or other digital device (Or even go old
+            school and burn them onto a CD)
+          </p>
+        </div>
 
         <div className={styles.headerWrapper}>
           <h4>Last List</h4>
@@ -111,6 +101,7 @@ export class LastList extends Component {
               <tr>
                 <th>Artist</th>
                 <th>Song Title</th>
+                <th>Reason Why</th>
               </tr>
             </thead>
             <tbody>
@@ -118,6 +109,7 @@ export class LastList extends Component {
                 <tr key={songIndex}>
                   <td>{song.artistName}</td>
                   <td>{song.songName}</td>
+                  <td>{song.note ? song.note : null}</td>
                 </tr>
               ))}
             </tbody>
