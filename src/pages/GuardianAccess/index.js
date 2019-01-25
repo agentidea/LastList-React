@@ -35,7 +35,7 @@ export class GuardianAccess extends Component {
     } catch (e) {
       let message = 'Unknown error'
       if (e.response && e.response.data && e.response.data.error_type) {
-        message = e.response.data.message
+        message = e.response.data.error
       }
       this.setState({ submitting: false, error: message })
     }

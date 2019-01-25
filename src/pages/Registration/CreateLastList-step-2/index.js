@@ -28,6 +28,7 @@ export class CreateFirstLastList extends Component {
     song: '',
     note: '',
     show_add_more: false,
+    show_next: false,
   }
 
   componentDidMount() {
@@ -40,6 +41,7 @@ export class CreateFirstLastList extends Component {
   componentWillReceiveProps(nextProps, nextContext) {
     setTimeout(() => {
       this.shouldShowAddSongs()
+      this.shouldShowNextButton()
     }, 100) // delay for obvious react reasons
   }
 
@@ -71,15 +73,17 @@ export class CreateFirstLastList extends Component {
   shouldShowNextButton() {
     //$to do: have to refresh page here to get the state on save
     //look for previously saved a list
-    const { saved } = this.props
-    if (saved && saved === true) return true
-
-    let serverStates = this.props.user.states
-    if (serverStates && serverStates.length > 0) {
-      const hasList = serverStates.find(item => item === 'edit_list')
-      return hasList === 'edit_list'
+    const { saved, lists } = this.props
+    if (saved && saved === true) {
+      this.setState({ show_next: true })
+      return
     }
-    return false
+
+    if (lists && lists.length > 0) {
+      this.setState({ show_next: lists[0].length > 0 })
+      return
+    }
+    this.setState({ show_next: false })
   }
 
   toggleSearch = () => {
@@ -102,7 +106,7 @@ export class CreateFirstLastList extends Component {
 
   render() {
     const { lists, loading, saving, user } = this.props
-    const { show_add_more } = this.state
+    const { show_add_more, show_next } = this.state
     let serverStates = user.states
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
@@ -147,11 +151,11 @@ export class CreateFirstLastList extends Component {
                 <div>&nbsp;</div>
               )}
 
-              {this.shouldShowNextButton() && (
+              {show_next ? (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
                   {saving ? 'Saving...' : 'Next: Choose Your Guardians'}
                 </Button>
-              )}
+              ) : null}
             </div>
 
             <div>{lists.map((l, i) => this.renderList(l, i))}</div>
