@@ -3,6 +3,17 @@
   flex-direction: column;
 }
 
+.content h3 {
+  margin-top: 4em;
+}
+
+.content p {
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
 .success {
   color: var(--success);
   margin-top: var(--spacing-container);
@@ -10,7 +21,14 @@
 }
 
 .submit {
-  align-self: flex-end;
+  display: block;
+  margin: 3em auto 0 auto;
+  width: 50%;
+}
+
+.inputWrap {
+  width: 50%;
+  margin: 2em auto 1em auto;
 }
 
 @media (max-width: 600px) {

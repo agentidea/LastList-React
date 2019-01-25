@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import apiRequest from '../../common/utils/api'
 import Button from '../../common/components/Button'
@@ -49,20 +49,28 @@ export class GuardianAccess extends Component {
     const { success } = this.state
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
-        <h3>YOUR LOVED ONE'S LAST LIST</h3>
-        <p>Thanks for being a Last List Guardian. We’re so sorry for your loss. </p>
-
-        <p>Please enter your email address below to access your loved one’s favorite songs.</p>
+        {success ? (
+          <div>
+            <h3>THANKS!</h3>
+            <p>
+              Please check your inbox or spam folder. We’ve sent you a link to confirm your email
+              address.
+            </p>
+          </div>
+        ) : (
+          <div>
+            <h3>ACCESS YOUR LOVED ONE’S LAST LIST</h3>
+            <p>
+              Thanks for being a Last List Guardian. We’re very sorry for your loss. <br />
+              Please enter your email address below to receive a code, via email, that will allow
+              you to access your loved one’s favorite songs.
+            </p>
+          </div>
+        )}
 
         <div className={styles.spaceHack}>&nbsp;</div>
 
-        {success ? (
-          <div className={styles.success}>
-            Check your inbox or spam folder for an email from us.
-          </div>
-        ) : (
-          this.renderForm()
-        )}
+        {success ? null : this.renderForm()}
       </form>
     )
   }
@@ -70,7 +78,7 @@ export class GuardianAccess extends Component {
   renderForm() {
     const { email, error, submitting } = this.state
     return (
-      <Fragment>
+      <div className={styles.inputWrap}>
         <Textfield
           type="email"
           label="Email Address"
@@ -81,7 +89,7 @@ export class GuardianAccess extends Component {
           required
         />
         <Button className={styles.submit}>{submitting ? 'Submitting...' : 'Submit'}</Button>
-      </Fragment>
+      </div>
     )
   }
 }
