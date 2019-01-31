@@ -42,3 +42,8 @@
   color: #aab7c4;
   pointer-events: none;
 }
+
+.notice h5 {
+  text-align: center;
+  color: #3917fe;
+}

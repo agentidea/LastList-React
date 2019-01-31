@@ -20,16 +20,8 @@ class SongAdd extends Component {
       return
     }
 
-    const { artist, song, note, show_add_more } = nextProps
+    const { artist, song, note } = nextProps
     this.setState({ artist: artist, song: song, note: note, hasError: false, error_msg: null })
-
-    if (show_add_more) {
-      this.setState({
-        hasError: true,
-        error_msg:
-          'Please click on the "<b>Add Another 10 songs</b>" button OR proceed to the payment page by clicking the "<b>Next</b>" button',
-      })
-    }
   }
 
   onChange = (field, value) => {
@@ -80,46 +72,60 @@ class SongAdd extends Component {
     let { artist, song, note, error_msg, hasError } = this.state
     return (
       <div>
-        <div className={styles.row}>
-          <Textfield
-            label={'Artist'}
-            placeholder="Artist Name"
-            value={artist}
-            onChange={value => this.onChange('artist', value)}
-          />
-          <Textfield
-            label={'Song Title'}
-            placeholder="Song Title"
-            value={song}
-            onChange={value => this.onChange('song', value)}
-          />
-        </div>
-        <Textfield
-          label={'Reason Why (Explain why this song means a lot to you)'}
-          placeholder="Notes"
-          value={note}
-          onChange={value => this.onChange('note', value)}
-        />
-        {hasError ? (
-          <div className={styles.errorWrap}>
-            <span className={styles.error} dangerouslySetInnerHTML={{ __html: error_msg }} />
+        <div style={{ display: show_add_more ? 'none' : '' }}>
+          <div className={styles.row}>
+            <Textfield
+              label={'Artist'}
+              placeholder="Artist Name"
+              value={artist}
+              onChange={value => this.onChange('artist', value)}
+            />
+            <Textfield
+              label={'Song Title'}
+              placeholder="Song Title"
+              value={song}
+              onChange={value => this.onChange('song', value)}
+            />
           </div>
-        ) : null}
-        <div className={styles.addBtnWrap}>
-          <Button
-            className={`${styles.addBtn} ${show_add_more ? styles.inactive : ''}`}
-            onClick={this.onSongAdd}
-          >
-            Add
-          </Button>
+          <Textfield
+            label={'Reason Why (Explain why this song means a lot to you)'}
+            placeholder="Notes"
+            value={note}
+            onChange={value => this.onChange('note', value)}
+          />
+          {hasError ? (
+            <div className={styles.errorWrap}>
+              <span className={styles.error} dangerouslySetInnerHTML={{ __html: error_msg }} />
+            </div>
+          ) : null}
+          <div className={styles.addBtnWrap}>
+            <Button
+              className={`${styles.addBtn} ${show_add_more ? styles.inactive : ''}`}
+              onClick={this.onSongAdd}
+            >
+              Add
+            </Button>
+          </div>
+
+          <div className={styles.searchBtnWrap}>
+            <span
+              onClick={this.props.toggleSearch}
+              className={show_add_more ? styles.inactive : ''}
+            >
+              Looking for a particular song?{' '}
+              <FontAwesomeIcon className={styles.faIcon} icon={faSearch} />
+            </span>
+          </div>
         </div>
 
-        <div className={styles.searchBtnWrap}>
-          <span onClick={this.props.toggleSearch} className={show_add_more ? styles.inactive : ''}>
-            Looking for a particular song?{' '}
-            <FontAwesomeIcon className={styles.faIcon} icon={faSearch} />
-          </span>
-        </div>
+        {show_add_more ? (
+          <div className={styles.notice}>
+            <h5>
+              Please click on the "<b>Add Another 10 songs</b>" button OR proceed to the payment
+              page by clicking the "<b>Next</b>" button
+            </h5>
+          </div>
+        ) : null}
       </div>
     )
   }
