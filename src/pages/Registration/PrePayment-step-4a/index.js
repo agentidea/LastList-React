@@ -16,7 +16,6 @@ import StripeCardForm from './StripePayment'
 import PayPalButton from '../../../common/components/PayPalButton'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 import * as listsActionCreators from '../../../common/state/lists/actions'
-import SongList from '../../../common/components/SongList'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -65,7 +64,7 @@ class RegPrePayment extends Component {
   }
 
   render() {
-    const { guardians, goingnext, invoice, loadingInvoice, lists, user } = this.props
+    const { guardians, goingnext, invoice, loadingInvoice, user } = this.props
     let serverStates = user.states
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
@@ -79,11 +78,6 @@ class RegPrePayment extends Component {
         <h4> Your Last List</h4>
         <h4 className={styles.invoice}>
           {loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}
-        </h4>
-
-        <div className={styles.listWrap}>{lists.map((l, i) => RegPrePayment.renderList(l, i))}</div>
-        <h4 className={styles.paid}>
-          Paid: <span>${user.payment}</span>
         </h4>
 
         <GuardiansList guardians={guardians} />
@@ -127,14 +121,6 @@ class RegPrePayment extends Component {
           </div>
           <StripeCardForm elements={{ handleCloseModal: this.handleCloseModal, amount: invoice }} />
         </ReactModal>
-      </div>
-    )
-  }
-
-  static renderList(list, listIndex) {
-    return (
-      <div key={listIndex} className={styles.list}>
-        {list.map((item, index) => <SongList key={index} listItem={item} controls={false} />)}
       </div>
     )
   }

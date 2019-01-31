@@ -27,11 +27,6 @@
   max-width: 600px;
   justify-content: space-between;
 }
-.listWrap {
-  padding: 1em 0 0 0;
-  border-bottom: 2px solid #168cff;
-  border-top: 2px solid #168cff;
-}
 
 .paid {
   margin: 1em 0 0 0;
