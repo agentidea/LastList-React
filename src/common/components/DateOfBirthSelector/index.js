@@ -26,7 +26,6 @@ class DateOfBirthSelector extends Component {
 
     if (!this.validateDate(rawDate)) {
       this.props.onChange(null)
-      return
     }
 
     const dob = dateFns.format(rawDate, 'YYYY/MM/DD')

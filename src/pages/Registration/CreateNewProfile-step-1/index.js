@@ -34,6 +34,7 @@ class NewProfile extends Component {
       message: null,
     },
     current_state: 'create',
+    dob_error: false,
   }
 
   componentDidMount() {
@@ -58,6 +59,14 @@ class NewProfile extends Component {
       return
     }
     this.setState({ dob: new Date(date.toString()), dobDirty: true })
+    this.validateDate(date)
+  }
+
+  validateDate = bdate => {
+    let bdate_year = dateFns.format(bdate, 'YYYY')
+    let cur_year = dateFns.format(new Date(), 'YYYY')
+    let age = cur_year - bdate_year
+    this.setState({ dob_error: age < 10 || age > 120 })
   }
 
   goNext = () => {
@@ -88,9 +97,9 @@ class NewProfile extends Component {
   }
 
   shouldShowSaveButton() {
-    const { firstName, lastName, dobDirty, saved, dob } = this.state
+    const { firstName, lastName, saved, dob_error } = this.state
 
-    if (dob === null) return false
+    if (dob_error) return false
     if (saved !== null && saved) return false
     if (firstName === null || lastName === null) return false
 

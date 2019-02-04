@@ -12,7 +12,7 @@ export class Footer extends Component {
           <Link to="/policies">Policies</Link>
           <Link to="/terms">Terms and Conditions</Link>
         </div>
-        <div className={styles.right}>Last List &copy; Copyright 2018</div>
+        <div className={styles.right}>Last List &copy; Copyright {new Date().getFullYear()}</div>
       </footer>
     )
   }

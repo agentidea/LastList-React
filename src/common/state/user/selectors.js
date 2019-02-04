@@ -1,3 +1,5 @@
+import dateFns from 'date-fns'
+
 export const currentUserSelector = state => state.user
 export const jwtSelector = state => state.user.jwt
 export const loggedInSelector = state => !!jwtSelector(state)
@@ -8,7 +10,9 @@ export const profileSelector = state => {
       firstName: state.user.firstName,
       lastName: state.user.lastName,
       staytz: state.user.states,
-      dob: state.user.dob ? new Date(state.user.dob) : new Date(),
+      dob: state.user.dob
+        ? new Date(state.user.dob)
+        : new Date((dateFns.format(new Date(), 'YYYY') - 10).toString()),
     }
   }
   return null
