@@ -135,6 +135,7 @@ class NewProfile extends Component {
     return (
       <div className={styles.content}>
         <h3>{heading}</h3>
+        <p className={styles.para}>To make changes to your profile, simply edit the info below</p>
         {loaded && (
           <Fragment>
             <Textfield
@@ -163,7 +164,7 @@ class NewProfile extends Component {
             <div className={styles.buttons}>
               {this.shouldShowNextButton() && (
                 <Button className={styles.nextBtn} onClick={this.goNext}>
-                  Next: Add Songs
+                  Next: Your Last List
                 </Button>
               )}
 

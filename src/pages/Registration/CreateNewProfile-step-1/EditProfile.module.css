@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.para {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
 .buttons {
   display: flex;
   flex-direction: row-reverse;

@@ -9,6 +9,7 @@ import styles from './Guardians.module.css'
 import GuardiansList from './GuardiansList'
 import AddGuardian from './AddGuardian'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import { guardians_dictionary } from '../../../common/dictionaries/GuardiansDictionary'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -28,26 +29,18 @@ class RegGuardians extends Component {
   render() {
     const { loading, guardians } = this.props
     let serverStates = this.props.user.states
-    let heading =
-      serverStates && serverStates.find(item => item === 'made_payment')
-        ? 'NOMINATE YOUR GUARDIANS'
-        : 'STEP 3: CHOOSE YOUR GUARDIANS'
+    let step =
+      serverStates && serverStates.find(item => item === 'made_payment') ? 'returning' : 'new'
+    const presentation = guardians_dictionary[step]
 
     return (
       <div className={styles.text}>
-        <h3>{heading}</h3>
+        <h3>{presentation.heading}</h3>
         <p>
-          <b>Who do you trust with your tunes?</b>
+          <b>{presentation.heading_primary}</b>
         </p>
-        <p>
-          You can choose up to five Guardians of your Last List. They’ll be responsible for getting
-          it from us when you die. We’ll send them a message telling them all about it and cc you so
-          you’re in the loop.
-        </p>
-        <p>
-          You can change your Guardians whenever you feel like it. We won’t share any of your or
-          their information.
-        </p>
+
+        <div dangerouslySetInnerHTML={{ __html: presentation.main_text }} />
 
         {loading ? (
           <div className={styles.loaderContainer}>

@@ -104,6 +104,20 @@ export class CreateFirstLastList extends Component {
     this.setState({ show_add_more: false })
   }
 
+  actionRemoveSong = track => {
+    const { lists } = this.props
+    this.props.listsActions.removeListItem(track)
+
+    //on remove last item, save deletion
+    if (lists && lists.length > 0 && lists[0].length === 0) {
+      this.props.listsActions.saveUserList().then(() => {
+        setTimeout(() => {
+          this.setState({ show_next: false })
+        }, 100)
+      })
+    }
+  }
+
   render() {
     const { lists, loading, saving, user } = this.props
     const { show_add_more, show_next } = this.state
@@ -178,7 +192,7 @@ export class CreateFirstLastList extends Component {
             key={index}
             listItem={item}
             fromSearchAddSong={this.fromSearchAddSong}
-            removeSong={this.props.listsActions.removeListItem}
+            removeSong={this.actionRemoveSong}
             controls={true}
           />
         ))}

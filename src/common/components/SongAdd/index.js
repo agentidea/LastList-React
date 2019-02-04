@@ -10,7 +10,7 @@ class SongAdd extends Component {
     artist: '',
     song: '',
     note: '',
-    error: null,
+    error: { field: null, error: null },
     error_msg: null,
     hasError: false,
   }
@@ -24,8 +24,11 @@ class SongAdd extends Component {
     this.setState({ artist: artist, song: song, note: note, hasError: false, error_msg: null })
   }
 
-  onChange = (field, value) => {
+  onChange = (field, value, display_name?: null) => {
     this.setState({ [field]: value, error: { field: null } })
+    if (value.trim() === '') {
+      this.setState({ error: { field: field, error: `Oops! Missing ${display_name}` } })
+    }
   }
 
   onSongAdd = () => {
@@ -69,7 +72,7 @@ class SongAdd extends Component {
 
   render() {
     const { show_add_more } = this.props
-    let { artist, song, note, error_msg, hasError } = this.state
+    let { artist, song, note, error_msg, hasError, error } = this.state
     return (
       <div>
         <div style={{ display: show_add_more ? 'none' : '' }}>
@@ -78,13 +81,15 @@ class SongAdd extends Component {
               label={'Artist'}
               placeholder="Artist Name"
               value={artist}
-              onChange={value => this.onChange('artist', value)}
+              error={error.field === 'artist' ? error.error : null}
+              onChange={value => this.onChange('artist', value, 'Artist Name')}
             />
             <Textfield
               label={'Song Title'}
               placeholder="Song Title"
               value={song}
-              onChange={value => this.onChange('song', value)}
+              error={error.field === 'song' ? error.error : null}
+              onChange={value => this.onChange('song', value, 'Song Title')}
             />
           </div>
           <Textfield
