@@ -61,7 +61,7 @@ export class Home extends Component {
               <span className={styles.listItemText}>Add up to 5 Guardians of your Last List.</span>
             </li>
             <li className={styles.listItem}>
-              <span className={styles.listItemText}>Finish up by paying via Stripe.</span>
+              <span className={styles.listItemText}>Finish up by paying via Stripe or PayPal.</span>
             </li>
             <li className={styles.listItem}>
               <span className={styles.listItemText} />
