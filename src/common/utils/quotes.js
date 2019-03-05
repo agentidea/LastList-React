@@ -1,15 +1,33 @@
 export const quotes = {
   header: [
-    '“This is what I want in heaven.. for words to become notes and conversations to become symphonies.” ― Tina Turner',
-    '“Most people die with their music still locked up inside them.” ― Benjamin Disraeli',
-    '“I see my life in terms of music.” ― Albert Einstein',
-    '“Music is the shorthand of emotion.” ― Leo Tolstoy',
-    '“Where words leave off, music begins.” ― Heinrich Heine',
-    '"If it weren\'t for music, I would think that love is mortal." ― Mark Helprin, A Soldier of the Great War',
-    '"I\'ve found that no matter what life throws at me, music softens the blow."\n' +
-      '― Bryce Anderson',
-    '"The life of the dead is pace in the memory of the living."― Marcus Tullius Cicero',
-    '"I\'m not afraid of death; I just don\'t want to be there when it happens." ― Woody Allen',
+    {
+      text:
+        '“This is what I want in heaven.. for words to become notes and conversations to become symphonies.”',
+      credit: 'Tina Turner',
+    },
+    {
+      text: '“Most people die with their music still locked up inside them.”',
+      credit: 'Benjamin Disraeli',
+    },
+    { text: '“I see my life in terms of music.”', credit: 'Albert Einstein' },
+    { text: '“Music is the shorthand of emotion.”', credit: 'Leo Tolstoy' },
+    { text: '“Where words leave off, music begins.”', credit: 'Heinrich Heine' },
+    {
+      text: '"If it weren\'t for music, I would think that love is mortal."',
+      credit: 'Mark Helprin, A Soldier of the Great War',
+    },
+    {
+      text: '"I\'ve found that no matter what life throws at me, music softens the blow."',
+      credit: 'Bryce Anderson',
+    },
+    {
+      text: '"The life of the dead is pace in the memory of the living."',
+      credit: 'Marcus Tullius Cicero',
+    },
+    {
+      text: '"I\'m not afraid of death; I just don\'t want to be there when it happens."',
+      credit: 'Woody Allen',
+    },
   ],
   footer: [
     '“My Way” by Frank Sinatra is one of the most popular funeral songs around the world.',

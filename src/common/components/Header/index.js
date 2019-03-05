@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 import styles from './Header.module.css'
 import logo from './logo.png'
 
 export default class Header extends Component {
   render() {
     const { isLoggedIn, isRegistered } = this.props
-    const label = isLoggedIn ? 'Sign Out' : 'Sign In'
+    const label = isLoggedIn ? 'Sign out' : 'Sign in'
     return (
       <div>
         <header className={styles.header}>
@@ -16,7 +17,15 @@ export default class Header extends Component {
             </Link>
           </div>
           <div className={styles.links}>
-            {!isLoggedIn && <Link to="/guardian">Guardian Access</Link>}
+            {!isLoggedIn && (
+              <div>
+                <HashLink smooth to="/#lastlist">
+                  What is Last List?
+                </HashLink>
+                <Link to="/signup">Create your List</Link>
+                <Link to="/guardian">Guardians</Link>
+              </div>
+            )}
             {<Link to={isLoggedIn ? '/sign-out' : '/login'}>{label}</Link>}
           </div>
         </header>

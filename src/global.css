@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
 
 :root {
   --color: #000000;
   --theme-color: #3917fe;
-  --header-color: #f7f8fa;
-  --footer-color: #f6f8f9;
-  --font-family: 'Ubuntu', 'Helvetica', 'Arial', sans-serif;
+  --header-color: none;
+  --footer-color: #ffffff;
+  --font-family: 'Nunito', sans-serif;
   --font-size-small: 14px;
   --font-size: 18px;
   --spacing-elements: 8px;
@@ -14,11 +15,13 @@
   --color-link-1: #004ddc;
   --color-link-2: #3917fe;
   --color-link-3: #168cff;
+  --color-link-4: #eaeaea;
   --color-link-1-alpha: rgba(0, 77, 220, 0.5);
   --color-link-2-alpha: rgba(57, 23, 254, 0.5);
   --color-link-3-alpha: rgba(22, 140, 255, 0.5);
   --success: rgb(8, 180, 31);
   --error: rgb(223, 29, 29);
+  --header-links-spacing: 8px 1em;
 }
 
 html,

@@ -10,11 +10,12 @@ import styles from './Button.module.css'
  */
 export default class Button extends Component {
   render() {
-    const { to, nonprimary, vspace, className, children, ...rest } = this.props
+    const { to, nonprimary, vspace, className, children, clear, ...rest } = this.props
     const classes = classnames(
       styles.button,
       nonprimary && styles.nonprimary,
       vspace && styles.vspace,
+      clear && styles.clear,
       className
     )
 

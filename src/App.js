@@ -66,37 +66,34 @@ class App extends Component {
             <Background />
             <div className={styles.main}>
               <Header isLoggedIn={isLoggedIn} isRegistered={isRegistered} />
-
-              <div className={styles.content}>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/confirmation/:code" component={EmailConfirmation} />
-                  <Route path="/contact" component={Contact} />
-                  <Route path="/terms" component={Terms} />
-                  <Route path="/policies" component={Policies} />
-                  <Route path="/edit-list" component={EditLastList} />
-                  <Route path="/edit-profile" component={EditProfile} />
-                  <Route path="/faq" component={Faq} />
-                  <Route path="/guardian" component={GuardianAccess} />
-                  <Route path="/guardians" component={Guardians} />
-                  <Route path="/lastlist/:id" component={LastList} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/sign-out" component={SignOut} />
-                  <Route path="/payment" component={Payment} />
-                  <Route path="/payment-success" component={PaymentSuccess} />
-                  <Route path="/signup" component={Signup} />
-                  <Route path="/signup-confirmation" component={SignupConfirmation} />
-                  <Route path="/reg/create-profile" component={NewProfile} />
-                  <Route path="/reg/create-list" component={CreateFirstLastList} />
-                  <Route path="/reg/add-guardian" component={RegGuardians} />
-                  <Route path="/reg/pre-payment" component={RegPrePayment} />
-                  <Route path="/reg/payment" component={RegPayment} />
-                  <Route path="/reg/welcome-member" component={WelcomeMember} />
-                  <Route path="/forgot" component={ForgotPassword} />
-                  <Route path="/reset-password/:token" component={ResetPassword} />
-                  <Route default component={Four04} />
-                </Switch>
-              </div>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/confirmation/:code" component={EmailConfirmation} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/terms" component={Terms} />
+                <Route path="/policies" component={Policies} />
+                <Route path="/edit-list" component={EditLastList} />
+                <Route path="/edit-profile" component={EditProfile} />
+                <Route path="/faq" component={Faq} />
+                <Route path="/guardian" component={GuardianAccess} />
+                <Route path="/guardians" component={Guardians} />
+                <Route path="/lastlist/:id" component={LastList} />
+                <Route path="/login" component={Login} />
+                <Route path="/sign-out" component={SignOut} />
+                <Route path="/payment" component={Payment} />
+                <Route path="/payment-success" component={PaymentSuccess} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/signup-confirmation" component={SignupConfirmation} />
+                <Route path="/reg/create-profile" component={NewProfile} />
+                <Route path="/reg/create-list" component={CreateFirstLastList} />
+                <Route path="/reg/add-guardian" component={RegGuardians} />
+                <Route path="/reg/pre-payment" component={RegPrePayment} />
+                <Route path="/reg/payment" component={RegPayment} />
+                <Route path="/reg/welcome-member" component={WelcomeMember} />
+                <Route path="/forgot" component={ForgotPassword} />
+                <Route path="/reset-password/:token" component={ResetPassword} />
+                <Route default component={Four04} />
+              </Switch>
               <Footer />
             </div>
           </div>

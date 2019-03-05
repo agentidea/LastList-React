@@ -1,29 +1,30 @@
 .footer {
   flex-shrink: 0;
   background-color: var(--footer-color);
-  padding: var(--spacing-container);
+  padding: 2em 7em;
   display: flex;
   justify-content: space-between;
   align-items: center;
   letter-spacing: 1px;
-  font-weight: 700;
-  font-size: var(--font-size-small);
+  font-weight: 600;
+  font-size: 15px;
 }
 
 .left {
   display: flex;
-  flex-direction: column;
 }
 
-.left a {
+.left a,
+.right a {
   padding: var(--spacing-elements);
-  color: var(--color-link-3);
+  color: #4d4d4d;
   text-decoration: none;
 }
 
 @media (max-width: 600px) {
   .footer {
     flex-direction: column;
+    padding: 2em 0.5em;
   }
   .left {
     text-align: center;
