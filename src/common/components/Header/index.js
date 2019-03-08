@@ -7,7 +7,7 @@ import logo from './logo.png'
 export default class Header extends Component {
   render() {
     const { isLoggedIn, isRegistered } = this.props
-    const label = isLoggedIn ? 'Sign out' : 'Sign in'
+
     return (
       <div>
         <header className={styles.header}>
@@ -24,9 +24,10 @@ export default class Header extends Component {
                 </HashLink>
                 <Link to="/signup">Create your List</Link>
                 <Link to="/guardian">Guardians</Link>
+                <Link to="/login">Sign in</Link>
               </div>
             )}
-            {<Link to={isLoggedIn ? '/sign-out' : '/login'}>{label}</Link>}
+            {isLoggedIn && <Link to="/sign-out">Sign out</Link>}
           </div>
         </header>
         <div className={styles.subheader}>{Header.renderLogin(isLoggedIn, isRegistered)}</div>

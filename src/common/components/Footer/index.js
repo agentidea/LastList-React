@@ -7,9 +7,9 @@ export class Footer extends Component {
     return (
       <footer className={styles.footer}>
         <div className={styles.left}>
-          <Link to="">Last List &copy; Copyright {new Date().getFullYear()} | </Link>
-          <Link to="/policies">Policies | </Link>
-          <Link to="/terms">Terms and Conditions | </Link>
+          <Link to="">Last List &copy; Copyright {new Date().getFullYear()}</Link>
+          <Link to="/policies">Policies</Link>
+          <Link to="/terms">Terms and Conditions</Link>
           <Link to="/faq">FAQs</Link>
         </div>
         <div className={styles.right}>

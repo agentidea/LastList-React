@@ -47,14 +47,66 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 1180px) {
+  .logoContainer {
+    padding-left: 3em;
+  }
+
+  .links {
+    padding-right: 3em;
+  }
+}
+
+@media screen and (max-width: 932px) {
+  .logoContainer {
+    text-align: center;
+    padding: 1em 0.5em;
+  }
+
+  .header {
+    grid-template-columns: 0.5fr 2fr;
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-right: 0;
+  }
+}
+
 @media (max-width: 700px) {
   .header {
     display: flex;
     flex-direction: column;
   }
+
   .links {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: var(--spacing-container);
+  }
+
+  .links > div {
+    display: inherit;
+    flex-wrap: inherit;
+    justify-content: inherit;
+  }
+
+  .links a {
+    display: block;
+    width: 220px;
+    text-align: center;
+    font-size: 1.2em;
+    border: 1px solid;
+    border-radius: 50px;
+    margin: 0.3em;
   }
 }

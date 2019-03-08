@@ -1,6 +1,7 @@
 .content_wrap {
   width: 100%;
 }
+
 .content {
   display: flex;
   flex-direction: column;
@@ -21,6 +22,7 @@
   list-style: none;
   font-weight: 600;
 }
+
 .listItemText {
   color: #fff;
 }
@@ -70,21 +72,26 @@
   color: #fff;
   justify-content: center;
 }
+
 .ci_wrapper .ci_left {
   padding: 1em 3em;
   display: block;
   text-align: center;
 }
+
 .ci_wrapper .ci_left_lg {
   width: 328px;
 }
+
 .ci_wrapper .ci_right {
   padding: 1em;
 }
+
 .ci_wrapper .ci_right {
   max-width: 665px;
   text-align: left;
 }
+
 .ci_right .highlight_text,
 .ci_right .highlight_text_2 {
   font-size: 43px;
@@ -97,11 +104,13 @@
 .ci_right .highlight_text_2 {
   font-size: 34px;
 }
+
 .ci_right p {
   font-size: 24px;
   letter-spacing: normal;
   font-weight: 600;
 }
+
 .ci_left a {
   margin-top: 3em;
   display: block;
@@ -135,4 +144,63 @@
   font-size: 19px;
   text-transform: uppercase;
   color: #808080;
+}
+
+@media screen and (max-width: 1180px) {
+  .ci_wrapper {
+    justify-content: space-evenly;
+  }
+
+  .ci_wrapper .ci_left {
+    padding: 1em 1em;
+    width: 328px;
+  }
+
+  .ci_wrapper .ci_right {
+    width: 670px;
+  }
+}
+
+@media screen and (max-width: 1008px) {
+  .ci_wrapper .ci_right {
+    text-align: justify;
+  }
+
+  .ci_right .highlight_text,
+  .ci_right .highlight_text_2 {
+    display: block;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 932px) {
+  .text h2 {
+    font-size: 60px;
+    padding: 0 0.5em;
+  }
+
+  .ci_right .highlight_text,
+  .ci_right .highlight_text_2 {
+    font-size: 32px;
+  }
+
+  .ci_right p,
+  .list {
+    font-size: 20px;
+  }
+
+  .quotes p {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .text h2 {
+    font-size: 45px;
+  }
+
+  .text h4 {
+    font-size: 20px;
+    padding: 0 0.5em;
+  }
 }
