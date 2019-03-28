@@ -27,10 +27,9 @@ export default class Header extends Component {
                 <Link to="/login">Sign in</Link>
               </div>
             )}
-            {isLoggedIn && <Link to="/sign-out">Sign out</Link>}
+            {isLoggedIn && Header.renderLogin(isLoggedIn, isRegistered)}
           </div>
         </header>
-        <div className={styles.subheader}>{Header.renderLogin(isLoggedIn, isRegistered)}</div>
       </div>
     )
   }
@@ -44,6 +43,7 @@ export default class Header extends Component {
               <Link to="/reg/create-profile">Your Profile</Link>
               <Link to="/reg/create-list">Your Last List</Link>
               <Link to="/reg/add-guardian">Your Guardians</Link>
+              <Link to="/sign-out">Sign out</Link>
             </Fragment>
           )}
       </Fragment>

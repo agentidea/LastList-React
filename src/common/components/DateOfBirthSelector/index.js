@@ -50,7 +50,7 @@ class DateOfBirthSelector extends Component {
   }
 
   render() {
-    const { label, noMargin, className, ...rest } = this.props
+    const { label, noMargin, className } = this.props
     const { error } = this.state
 
     return (

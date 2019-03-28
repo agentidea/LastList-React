@@ -6,7 +6,7 @@ export default class GuardiansList extends Component {
     const { guardians } = this.props
     return (
       <div>
-        <h4>Your Guardians</h4>
+        <h4 className={styles.h4}>Your Guardians</h4>
 
         <table className={styles.guardianTable}>
           <tbody>

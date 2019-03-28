@@ -3,20 +3,30 @@
   flex-direction: column;
 }
 
+.content h4 {
+  font-size: 27px;
+  font-weight: 800;
+  color: #4062ba;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 2em;
+  flex-wrap: wrap;
 }
 
 .addGuardianBtn {
   align-self: flex-start;
+  border-color: #ffffff;
 }
 .backBtn {
   align-self: flex-start;
+  border-color: #ffffff;
 }
 .nextBtn {
   align-self: flex-end;
+  border-color: #ffffff;
 }
 
 .inputs {
@@ -33,7 +43,11 @@
   .inputs {
     grid-template-columns: initial;
   }
-  .addGuardian button {
-    align-self: initial;
+  .buttons {
+    justify-content: center;
+  }
+  .buttons button {
+    min-width: 300px;
+    margin-top: 1em;
   }
 }

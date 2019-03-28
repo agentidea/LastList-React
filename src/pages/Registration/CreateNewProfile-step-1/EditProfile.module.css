@@ -1,28 +1,65 @@
 .content {
   display: flex;
   flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 70vh;
+}
+
+.content h3 {
+  font-size: 45px;
+  font-weight: 800;
+  color: #4062ba;
+  margin-bottom: 0;
 }
 
 .para {
-  font-size: 18px;
+  font-size: 19px;
   text-align: center;
   margin-bottom: 2em;
+  color: #4062ba;
+  font-weight: 600;
 }
 
 .buttons {
   display: flex;
+  justify-content: center;
   flex-direction: row-reverse;
-  justify-content: space-between;
+  margin-top: 5em;
+  flex-wrap: wrap;
+}
+
+.fragment {
+  width: 80%;
+  min-width: 300px;
+  margin: 0 auto;
 }
 
 .saveBtn {
-  align-self: flex-end;
+  min-width: 220px;
 }
 
 .nextBtn {
+  border-color: #fff;
   align-self: flex-end;
 }
 
 .error {
   border: 1px solid red;
+}
+
+@media (max-width: 600px) {
+  .buttons {
+    flex-direction: column-reverse;
+  }
+  .saveBtn {
+    width: 300px;
+  }
+  .nextBtn {
+    width: 300px;
+    margin-top: 1em;
+  }
+  .content h3 {
+    font-size: 37px;
+  }
 }

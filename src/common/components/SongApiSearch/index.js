@@ -5,7 +5,7 @@ import { Howl } from 'howler'
 import styles from './SongApiSearch.module.css'
 import Textfield from '../Textfield'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faPlusCircle, faStop, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faStop, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { search } from '../../utils/spotifyApi'
 
 class SongApiSearch extends Component {
@@ -13,22 +13,27 @@ class SongApiSearch extends Component {
     query: '',
     results: null,
     playing: null,
-    popupOpen: false,
+    show_search: false,
   }
   player = null
 
   componentWillReceiveProps(nextProps, d) {
-    this.setState({ popupOpen: nextProps.openSearch, query: '', results: '' })
+    this.setState({ show_search: nextProps.show_search, query: nextProps.artist_song, results: '' })
     this.stopPlayer()
+    if (nextProps.artist_song.trim() !== '') {
+      this.handleQueryChange(nextProps.artist_song.trim())
+    }
   }
 
   componentWillUnmount() {
     this.stopPlayer()
   }
 
-  handleClose = () => {
+  handleClose = value => {
     this.stopPlayer()
-    this.props.toggleSearch()
+    setTimeout(() => {
+      this.setState({ show_search: value })
+    }, 200)
   }
 
   handleQueryChange = query => {
@@ -64,8 +69,8 @@ class SongApiSearch extends Component {
   }, 300)
 
   onAddSong = result => {
-    this.props.toggleSearch()
-    this.props.fromSearchAddSong(result)
+    this.props.fillArtistSong(result)
+    this.handleClose(false)
   }
 
   onPlay = result => {
@@ -88,32 +93,27 @@ class SongApiSearch extends Component {
 
   closePopup = () => {
     this.stopPlayer()
-    this.props.toggleSearch()
+    this.setState({ results: null })
   }
 
   render() {
-    const open = this.state.popupOpen
-    const { playing } = this.state
+    const { playing, results, show_search } = this.state
 
     return (
-      <div className={styles.popupWrapper} style={{ display: !open ? 'none' : '' }}>
+      <div
+        className={styles.popupWrapper}
+        style={{ visibility: !results || !show_search ? 'hidden' : 'visible' }}
+      >
         <div className={styles.popup}>
           <div className={styles.closeWrap}>
             <span onClick={this.closePopup}>
-              <FontAwesomeIcon className={styles.faIconClose} icon={faTimesCircle} />
+              <FontAwesomeIcon className={styles.faIconClose} icon={faTimes} />
             </span>
-          </div>
-          <div className={styles.header}>
-            <h3>Looking for a particular song?</h3>
-            <p>
-              You can search for a song from our database, preview it, and then click the + to add
-              to your list.{' '}
-            </p>
           </div>
           <Textfield
             id="search-field"
             placeholder="Search for a song..."
-            type="search"
+            type="hidden"
             color="primary"
             value={this.state.query}
             onChange={value => this.handleQueryChange(value)}
@@ -127,7 +127,7 @@ class SongApiSearch extends Component {
                 <div>
                   {this.state.results.map(result => (
                     <div className={styles.eachItem} key={result.id}>
-                      <div className={styles.trackText}>
+                      <div className={styles.trackText} onClick={() => this.onAddSong(result)}>
                         {result.title}
                         <br />
                         <small>{result.artist}</small>
@@ -149,13 +149,6 @@ class SongApiSearch extends Component {
                               onClick={() => this.onPlay(result)}
                             />
                           ))}
-                        <FontAwesomeIcon
-                          className={styles.faIcon}
-                          icon={faPlusCircle}
-                          color="primary"
-                          aria-label="Add"
-                          onClick={() => this.onAddSong(result)}
-                        />
                       </div>
                     </div>
                   ))}

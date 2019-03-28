@@ -126,7 +126,7 @@ class Signup extends Component {
     const { successMessage, creating, nextAction } = this.state
     return (
       <form className={styles.content} onSubmit={this.onSubmit}>
-        <h3>Create your profile</h3>
+        <h3 className={styles.h3}>Create your profile</h3>
         {this.renderSocialAuth()}
         <h3>OR</h3>
         {this.renderInputs()}

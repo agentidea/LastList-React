@@ -6,6 +6,7 @@ import requireLogin from '../../../common/hocs/requireLogin'
 import * as guardiansActionCreators from '../../../common/state/guardians/actions'
 import Loading from '../../../common/components/Loading'
 import styles from './Guardians.module.css'
+import main_styles from '../../../App.module.css'
 import GuardiansList from './GuardiansList'
 import AddGuardian from './AddGuardian'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
@@ -34,28 +35,33 @@ class RegGuardians extends Component {
     const presentation = guardians_dictionary[step]
 
     return (
-      <div className={styles.text}>
-        <h3>{presentation.heading}</h3>
-        <p>
-          <b>{presentation.heading_primary}</b>
-        </p>
+      <div className={main_styles.grey_bg}>
+        <div className={styles.text}>
+          <h3>{presentation.heading}</h3>
+          <p className={styles.heading_primary}>
+            <b>{presentation.heading_primary}</b>
+          </p>
 
-        <div dangerouslySetInnerHTML={{ __html: presentation.main_text }} />
-
-        {loading ? (
-          <div className={styles.loaderContainer}>
-            <Loading />
-          </div>
-        ) : guardians.length === 0 ? (
-          <p />
-        ) : (
-          <GuardiansList
-            guardians={guardians}
-            onRemoveGuardian={uuid => this.props.guardiansActions.removeGuardian(uuid)}
+          <div
+            className={styles.main_text}
+            dangerouslySetInnerHTML={{ __html: presentation.main_text }}
           />
-        )}
 
-        <AddGuardian history={this.props.history} guardians={guardians} />
+          {loading ? (
+            <div className={styles.loaderContainer}>
+              <Loading />
+            </div>
+          ) : guardians.length === 0 ? (
+            <p />
+          ) : (
+            <GuardiansList
+              guardians={guardians}
+              onRemoveGuardian={uuid => this.props.guardiansActions.removeGuardian(uuid)}
+            />
+          )}
+
+          <AddGuardian history={this.props.history} guardians={guardians} />
+        </div>
       </div>
     )
   }

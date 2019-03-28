@@ -39,27 +39,29 @@ class EmailConfirmation extends Component {
   render() {
     const { confirming, error } = this.state
     return (
-      <div className={styles.content}>
-        <div className={styles.spaceHack}>&nbsp;</div>
+      <div className={styles.all_wrap}>
+        <div className={styles.content}>
+          <div className={styles.spaceHack}>&nbsp;</div>
 
-        {confirming ? (
-          <Loading />
-        ) : error ? (
-          <div>
-            <h3>OOPS! SOMETHING WENT WRONG</h3>
-            <p className={styles.error}>{error.message}</p>
-          </div>
-        ) : (
-          <div>
-            <h3>THANKS! YOU'RE ALL SET</h3>
-            <div className={styles.spaceHack}>&nbsp;</div>
-            <p className={styles.success}>
-              Your email address and Last List account are confirmed. You can start creating your
-              Last List.
-            </p>
-            <Button to="/reg/create-profile">Get Started</Button>
-          </div>
-        )}
+          {confirming ? (
+            <Loading />
+          ) : error ? (
+            <div>
+              <h3>Oops! Something went wrong</h3>
+              <p className={styles.error}>{error.message}</p>
+            </div>
+          ) : (
+            <div>
+              <h3>Thanks! You're all set</h3>
+              <div className={styles.spaceHack}>&nbsp;</div>
+              <p className={styles.success}>
+                Your email address and Last List account are confirmed. You can start creating your
+                Last List.
+              </p>
+              <Button to="/reg/create-profile">Get Started</Button>
+            </div>
+          )}
+        </div>
       </div>
     )
   }

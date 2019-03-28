@@ -1,9 +1,26 @@
+.content {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.content h3 {
+  margin-top: 1.5em;
+  font-size: 45px;
+  font-weight: 800;
+  color: #4062ba;
+}
+
+.mini_header {
+  font-size: 27px;
+  font-weight: 800;
+  color: #4062ba;
+}
+
 .buttons {
   display: block;
   text-align: center;
 }
 
-.backBtn,
 .nextBtn {
   min-width: 15em;
 }
@@ -28,6 +45,10 @@
   justify-content: space-between;
 }
 
+.payButtonsWrap button {
+  border-color: #ffffff;
+}
+
 .paid {
   margin: 1em 0 0 0;
   padding: 0;
@@ -42,12 +63,24 @@
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 575px) {
+.stripeTopHeader {
+  position: relative;
+  height: 160px;
+  background: url('./StripePayment/stripe_header.jpg');
+}
+
+@media screen and (max-width: 600px) {
   .backBtn {
-    margin: 0 auto;
+    margin: 1em auto;
+    min-width: 270px;
+    padding: 16px 28px;
+    border: 2px solid #fff;
   }
   .payButtonsWrap {
     justify-content: center;
     width: 100%;
+  }
+  .content h3 {
+    font-size: 37px;
   }
 }

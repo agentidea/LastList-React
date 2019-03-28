@@ -111,42 +111,44 @@ class ResetPassword extends Component {
 
     return (
       <div className={style.allWrap}>
-        <h3 className={style.h3}>Reset your password</h3>
+        <div className={style.content}>
+          <h3 className={style.h3}>Reset your password</h3>
 
-        <span className={style.infoText}>
-          Please create a new password for your Last List account.
-        </span>
+          <span className={style.infoText}>
+            Please create a new password for your Last List account.
+          </span>
 
-        <div className={style.formWrap}>
-          <form onSubmit={this.onSubmit}>
-            <Textfield
-              className={style.textfield}
-              type="password"
-              label="Password"
-              value={password}
-              error={errorPw}
-              placeholder="New Password"
-              required
-              onChange={value => this.onChange('password', value)}
-            />
+          <div className={style.formWrap}>
+            <form onSubmit={this.onSubmit}>
+              <Textfield
+                className={style.textfield}
+                type="password"
+                label="Password"
+                value={password}
+                error={errorPw}
+                placeholder="New Password"
+                required
+                onChange={value => this.onChange('password', value)}
+              />
 
-            <Textfield
-              className={style.textfield}
-              type="password"
-              label="Confirm Password"
-              value={confirmPassword}
-              error={''}
-              placeholder="Confirm password"
-              required
-              onChange={value => this.onChange('confirmPassword', value)}
-            />
+              <Textfield
+                className={style.textfield}
+                type="password"
+                label="Confirm Password"
+                value={confirmPassword}
+                error={''}
+                placeholder="Confirm password"
+                required
+                onChange={value => this.onChange('confirmPassword', value)}
+              />
 
-            <div className={style.btnWrap}>
-              <Button className={style.fpButton}>
-                {this.state.loading ? 'Please wait...' : 'Reset My Password'}
-              </Button>
-            </div>
-          </form>
+              <div className={style.btnWrap}>
+                <Button className={style.fpButton}>
+                  {this.state.loading ? 'Please wait...' : 'Reset My Password'}
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     )

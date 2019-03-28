@@ -16,6 +16,7 @@ import StripeCardForm from './StripePayment'
 import PayPalButton from '../../../common/components/PayPalButton'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 import * as listsActionCreators from '../../../common/state/lists/actions'
+import main_styles from '../../../App.module.css'
 
 const mapStateToProps = state => ({
   guardians: state.guardians.guardians,
@@ -68,40 +69,42 @@ class RegPrePayment extends Component {
     let serverStates = user.states
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
-        ? 'SUMMARY & PAYMENT'
-        : 'STEP 4: FINISH UP'
+        ? 'Summary & Payment'
+        : 'Step 4: Finish up'
 
     return (
-      <div className={''}>
-        <h3>{heading}</h3>
+      <div className={main_styles.grey_bg}>
+        <div className={styles.content}>
+          <h3>{heading}</h3>
 
-        <h4> Your Last List</h4>
-        <h4 className={styles.invoice}>
-          {loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}
-        </h4>
+          <h4 className={styles.mini_header}> Your Last List</h4>
+          <h4 className={styles.invoice}>
+            {loadingInvoice ? <Loading /> : <Invoice invoice={invoice} />}
+          </h4>
 
-        <GuardiansList guardians={guardians} />
+          <GuardiansList guardians={guardians} />
 
-        <div className={styles.buttons}>
-          <Button className={styles.backBtn} onClick={this.goBack}>
-            Back
-          </Button>
-          {invoice.due === 0 ? (
-            <div style={{ fontWeight: 'bold' }}>Payment already done!</div>
-          ) : null}
+          <div className={styles.buttons}>
+            <Button className={styles.backBtn} onClick={this.goBack}>
+              Back
+            </Button>
+            {invoice.due === 0 ? (
+              <div style={{ fontWeight: 'bold' }}>Payment already done!</div>
+            ) : null}
 
-          {invoice.due === 0 ? null : (
-            <div className={styles.payButtonsWrap}>
-              <PayPalButton elements={{ amount: invoice }} />
-              <Button
-                disabled={invoice.due === 0}
-                className={styles.nextBtn}
-                onClick={this.openPayment}
-              >
-                {goingnext ? 'Pay via Stripe' : 'Pay via Stripe'}
-              </Button>
-            </div>
-          )}
+            {invoice.due === 0 ? null : (
+              <div className={styles.payButtonsWrap}>
+                <PayPalButton elements={{ amount: invoice }} />
+                <Button
+                  disabled={invoice.due === 0}
+                  className={styles.nextBtn}
+                  onClick={this.openPayment}
+                >
+                  {goingnext ? 'Pay via Stripe' : 'Pay via Stripe'}
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
 
         <ReactModal
@@ -111,7 +114,7 @@ class RegPrePayment extends Component {
           className="Modal"
           overlayClassName="Overlay"
         >
-          <div className="stripeTopHeader">
+          <div className={styles.stripeTopHeader}>
             <span className="modalCloseContainer" onClick={this.handleCloseModal}>
               &times;
             </span>

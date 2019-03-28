@@ -4,6 +4,7 @@ import Textfield from '../Textfield'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Button from '../Button'
+import SongApiSearch from '../SongApiSearch'
 
 class SongAdd extends Component {
   state = {
@@ -13,6 +14,8 @@ class SongAdd extends Component {
     error: { field: null, error: null },
     error_msg: null,
     hasError: false,
+    artist_song: '',
+    show_search: false,
   }
 
   componentWillReceiveProps(nextProps, d) {
@@ -21,7 +24,9 @@ class SongAdd extends Component {
     }
 
     const { artist, song, note } = nextProps
+
     this.setState({ artist: artist, song: song, note: note, hasError: false, error_msg: null })
+    this.fillArtistSong(nextProps)
   }
 
   onChange = (field, value, display_name?: null) => {
@@ -29,6 +34,7 @@ class SongAdd extends Component {
     if (value.trim() === '') {
       this.setState({ error: { field: field, error: `Oops! Missing ${display_name}` } })
     }
+    this.makeArtistSong(field, value)
   }
 
   onSongAdd = () => {
@@ -57,7 +63,30 @@ class SongAdd extends Component {
     this.setState({ hasError: false })
 
     onSongAdd(item)
-    this.setState({ artist: '', song: '', note: '' })
+    this.setState({ artist: '', song: '', note: '', artist_song: '' })
+  }
+
+  makeArtistSong = (field, value) => {
+    if (field === 'artist_song') {
+      let artist_song = value.split('-')
+      if (artist_song.length >= 2 && artist_song[0].trim() !== '' && artist_song[1].trim() !== '') {
+        this.setState({ artist: artist_song[0].trim(), song: artist_song[1].trim() })
+        return
+      }
+      this.handleClose(false)
+    }
+  }
+
+  fillArtistSong = item => {
+    this.setState({
+      artist: item === null ? '' : item.artist,
+      song: item === null ? '' : item.title || item.song,
+      note: item === null ? '' : item.note,
+      artist_song:
+        item.artist && (item.title || item.song)
+          ? item.artist + ' - ' + (item.title || item.song)
+          : '',
+    })
   }
 
   validate_songs = needle => {
@@ -69,34 +98,36 @@ class SongAdd extends Component {
 
     return !track
   }
+  handleClose = value => {
+    this.setState({ show_search: value })
+  }
 
   render() {
     const { show_add_more } = this.props
-    let { artist, song, note, error_msg, hasError, error } = this.state
+    let { artist_song, note, error_msg, hasError, error } = this.state
     return (
-      <div>
+      <div className={styles.song_add}>
         <div style={{ display: show_add_more ? 'none' : '' }}>
           <div className={styles.row}>
-            <Textfield
-              label={'Artist'}
-              placeholder="Artist Name"
-              value={artist}
-              error={error.field === 'artist' ? error.error : null}
-              onChange={value => this.onChange('artist', value, 'Artist Name')}
-            />
-            <Textfield
-              label={'Song Title'}
-              placeholder="Song Title"
-              value={song}
-              error={error.field === 'song' ? error.error : null}
-              onChange={value => this.onChange('song', value, 'Song Title')}
-            />
+            <div className={styles.artist_song}>
+              <FontAwesomeIcon className={styles.faIcon} icon={faSearch} />
+              <Textfield
+                className={styles.tx_1}
+                placeholder="Enter artist and song name e.g (Artist - Song Title)"
+                value={artist_song}
+                error={error.field === 'artist_song' ? error.error : null}
+                onChange={value => this.onChange('artist_song', value, 'Artist / Song Title')}
+                onKeyUp={() => this.handleClose(true)}
+              />
+              <SongApiSearch {...this.state} fillArtistSong={this.fillArtistSong} />
+            </div>
           </div>
           <Textfield
-            label={'Reason Why (Explain why this song means a lot to you)'}
-            placeholder="Notes"
+            label="Why this song?"
+            placeholder="Explain why this song means a lot to you in 250 words."
             value={note}
             onChange={value => this.onChange('note', value)}
+            onKeyUp={() => this.handleClose(false)}
           />
           {hasError ? (
             <div className={styles.errorWrap}>
@@ -108,18 +139,8 @@ class SongAdd extends Component {
               className={`${styles.addBtn} ${show_add_more ? styles.inactive : ''}`}
               onClick={this.onSongAdd}
             >
-              Add
+              Add song
             </Button>
-          </div>
-
-          <div className={styles.searchBtnWrap}>
-            <span
-              onClick={this.props.toggleSearch}
-              className={show_add_more ? styles.inactive : ''}
-            >
-              Looking for a particular song?{' '}
-              <FontAwesomeIcon className={styles.faIcon} icon={faSearch} />
-            </span>
           </div>
         </div>
 

@@ -7,5 +7,34 @@
 .text {
   font-size: 18px;
   line-height: 28px;
-  letter-spacing: 2px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.text h3 {
+  margin-top: 1.5em;
+  font-size: 45px;
+  font-weight: 800;
+  color: #4062ba;
+}
+
+.heading_primary {
+  text-align: center;
+  font-size: 27px;
+  font-weight: 800;
+  color: #4062ba;
+}
+
+.main_text p {
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 4em;
+  color: #4062ba;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .text h3 {
+    font-size: 37px;
+  }
 }

@@ -60,7 +60,6 @@ class AddGuardian extends Component {
           <div className={styles.inputs}>
             <Textfield
               type="text"
-              label="First name"
               value={firstName}
               required
               placeholder="First Name"
@@ -68,7 +67,6 @@ class AddGuardian extends Component {
             />
             <Textfield
               type="text"
-              label="Last name"
               value={lastName}
               required
               placeholder="Last Name"
@@ -78,7 +76,6 @@ class AddGuardian extends Component {
           <div className={''}>
             <Textfield
               type="email"
-              label="Email"
               value={email}
               required
               placeholder="Email Address"

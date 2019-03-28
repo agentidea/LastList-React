@@ -47,9 +47,11 @@ export class LastList extends Component {
   render() {
     const { firstName, lastName, loading } = this.state
     return (
-      <div className={styles.content}>
-        {!loading ? <h3>{`${firstName} ${lastName}'s`} Last list</h3> : null}
-        {this.renderLists()}
+      <div className={styles.all_wrap}>
+        <div className={styles.content}>
+          {!loading ? <h3>{`${firstName} ${lastName}'s`} Last List</h3> : null}
+          {this.renderLists()}
+        </div>
       </div>
     )
   }
@@ -90,9 +92,9 @@ export class LastList extends Component {
         <div className={styles.headerWrapper}>
           <h4>Last List</h4>
           {songs && (
-            <div className={styles.songsCount}>
-              {songs.length} {songs.length === 1 ? 'song' : 'songs'}
-            </div>
+            <span className={styles.songsCount}>
+              &nbsp; ( {songs.length} {songs.length === 1 ? 'song' : 'songs'} )
+            </span>
           )}
         </div>
         {songs && songs.length > 0 ? (
@@ -109,7 +111,7 @@ export class LastList extends Component {
                 <tr key={songIndex}>
                   <td>{song.artistName}</td>
                   <td>{song.songName}</td>
-                  <td>{song.note ? song.note : null}</td>
+                  <td>{song.note ? song.note : '-'}</td>
                 </tr>
               ))}
             </tbody>

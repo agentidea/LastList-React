@@ -4,11 +4,14 @@
 }
 
 .invoiceTable thead th {
+  color: #4062ba;
   text-align: left;
   padding-bottom: var(--spacing-container);
+  font-weight: 600;
 }
 
 .invoiceTable tbody td {
-  color: var(--color-link-1);
+  color: #4062ba;
   padding-bottom: 30px;
+  font-size: 19px;
 }

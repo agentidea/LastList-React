@@ -3,7 +3,6 @@
   position: relative;
   font-family: var(--font-family);
   font-weight: var(--font-weight);
-  letter-spacing: 2px;
   color: var(--color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,7 +13,6 @@
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
   display: flex;
   flex-direction: column;
 }
@@ -24,6 +22,17 @@
   margin: 0 auto;
   padding: var(--spacing-container);
   flex-grow: 1;
+}
+
+.grey_bg {
+  background: #eaeaea;
+  min-height: 100%;
+  padding: 0 1em 5em 1em;
+}
+
+.plain_content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 @media (max-width: 960px) {

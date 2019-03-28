@@ -172,7 +172,7 @@ class _SplitForm extends Component<InjectedProps & { fontSize: string }> {
           <div className="yearCvcContainer">
             <div className="yearContainer">
               <label>
-                MM / YY
+                Expiration Date
                 <CardExpiryElement
                   onChange={this.handleChange}
                   {...createOptions(this.props.fontSize)}

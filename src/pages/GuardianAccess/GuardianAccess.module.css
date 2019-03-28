@@ -1,16 +1,37 @@
+.all_wrap {
+  min-height: 75vh;
+}
 .content {
   display: flex;
   flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1em 5em 1em;
 }
 
 .content h3 {
-  margin-top: 4em;
+  margin: 0.6em auto;
+  font-size: 45px;
+  font-weight: 800;
+  color: #4062ba;
+}
+.content label {
+  padding-left: 0;
+  font-weight: 600;
+}
+.content input {
+  color: #e9e9e9;
+}
+.content input::placeholder {
+  color: #e9e9e9;
+  opacity: 0.6;
 }
 
 .content p {
-  font-size: 18px;
+  color: #eaeaea;
+  font-weight: 600;
+  font-size: 20px;
   line-height: 1.56;
-  letter-spacing: 2px;
   text-align: center;
 }
 
@@ -27,7 +48,7 @@
 }
 
 .inputWrap {
-  width: 50%;
+  width: 100%;
   margin: 2em auto 1em auto;
 }
 
@@ -35,5 +56,8 @@
   .submit {
     align-self: initial;
     width: 100%;
+  }
+  .content h3 {
+    font-size: 37px;
   }
 }

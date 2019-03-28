@@ -74,6 +74,7 @@ export default class GuardiansList extends Component {
         onClose={this.closeRemoveDialog}
         aria-labelledby="remove-dialog-title"
         aria-describedby="remove-dialog-description"
+        className={styles.dialog}
       >
         <DialogTitle id="remove-dialog-title">Are you sure?</DialogTitle>
         <DialogContent>
@@ -86,7 +87,7 @@ export default class GuardiansList extends Component {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.closeRemoveDialog} nonprimary>
+          <Button onClick={this.closeRemoveDialog} clear>
             Cancel
           </Button>
           <Button onClick={this.doRemoveGuardian}>Remove</Button>

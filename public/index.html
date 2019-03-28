@@ -34,9 +34,9 @@
       top: 100px;
       max-width: 426px;
       height: 600px;
-      background-color: #fafcfe;
-      border: solid 4px #3917fe;
-      border-radius: 20px;
+      background-color: #e9e9e9;
+      border: solid 2px #4062BA;
+      border-radius: 10px;
       overflow: hidden;
     }
     .Modal:focus {
@@ -51,13 +51,9 @@
       right: 0;
       bottom: 0;
       background-color: rgba(0,0,0,0.5);
+      padding: 1em;
     }
 
-    .stripeTopHeader {
-      position: relative;
-      height: 160px;
-      //background: red;
-    }
     .modalCloseContainer {
       position: absolute;
       z-index: 77;
@@ -66,13 +62,12 @@
       right: 18px;
       font-weight: bold;
       font-size: 2em;
-      color: #3917fe;
+      color: #4062BA;
       cursor: pointer;
     }
 
     .logoContainer {
       position: relative;
-      //background: #4a4a4a;
       text-align: center;
       top: 22px;
     }
@@ -88,9 +83,8 @@
 
     .stripeForm label {
       font-family: var(--font-family);
-      font-weight: var(--font-weight);
-      letter-spacing: 2px;
-      color: var(--color);
+      font-weight: 600;
+      color: #4062BA;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -101,7 +95,7 @@
 
     .stripeForm button {
       margin-top: 70px;
-      box-shadow: 0 6px 14px 0 rgba(165, 227, 236, 0.4);
+      border-color: #fff;
     }
 
     .stripeForm input,
@@ -112,12 +106,10 @@
       font-size: 1em;
       border: 0;
       outline: 0;
-      border-bottom: 4px solid #AB5BFF;
+      border-bottom: 2px solid #4062BA;
+      color: #4062BA;
     }
 
-    .emailStripeContainer input:focus {
-      border-bottom: 4px solid #AB5BFF;
-    }
 
     .stripeForm input::placeholder {
       color: #aab7c4;

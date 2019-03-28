@@ -10,6 +10,7 @@ import UserError from '../../../common/state/user/error'
 import Button from '../../../common/components/Button'
 import Textfield from '../../../common/components/Textfield'
 import styles from './EditProfile.module.css'
+import main_styles from '../../../App.module.css'
 import DateOfBirthSelector from '../../../common/components/DateOfBirthSelector'
 import dateFns from 'date-fns'
 import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
@@ -133,58 +134,59 @@ class NewProfile extends Component {
     const errorLastName = error.field === 'lastName' ? error.message : null
 
     let serverStates = this.props.user.states
-    let heading = 'STEP 1. TELL US ABOUT YOURSELF'
+    let heading = 'Step 1. Tell us about yourself'
     let actionBtnText = 'Save'
 
     if (serverStates && serverStates.find(item => item === 'registration_complete')) {
-      heading = 'ABOUT YOU'
+      heading = 'About you'
       actionBtnText = 'Update'
     }
 
     return (
-      <div className={styles.content}>
-        <h3>{heading}</h3>
-        <p className={styles.para}>To make changes to your profile, simply edit the info below</p>
-        {loaded && (
-          <Fragment>
-            <Textfield
-              label="First Name"
-              placeholder="First Name"
-              required
-              error={errorFirstName}
-              value={firstName === null ? '' : firstName}
-              onChange={value => this.onTextChange('firstName', value)}
-            />
-            <Textfield
-              label="Last Name"
-              placeholder="Last Name"
-              required
-              error={errorLastName}
-              value={lastName === null ? '' : lastName}
-              onChange={value => this.onTextChange('lastName', value)}
-            />
-            <DateOfBirthSelector
-              label="Date of Birth"
-              placeholder="YYYY/MM/DD"
-              value={dateFns.format(dob, 'YYYY/MM/DD')}
-              onChange={value => this.onDateChange(value)}
-            />
+      <div className={main_styles.grey_bg}>
+        <div className={styles.content}>
+          <h3>{heading}</h3>
+          <p className={styles.para}>To make changes to your profile, simply edit the info below</p>
+          {loaded && (
+            <div className={styles.fragment}>
+              <Fragment>
+                <Textfield
+                  placeholder="First Name"
+                  required
+                  error={errorFirstName}
+                  value={firstName === null ? '' : firstName}
+                  onChange={value => this.onTextChange('firstName', value)}
+                />
+                <Textfield
+                  placeholder="Last Name"
+                  required
+                  error={errorLastName}
+                  value={lastName === null ? '' : lastName}
+                  onChange={value => this.onTextChange('lastName', value)}
+                />
+                <DateOfBirthSelector
+                  placeholder="YYYY/MM/DD"
+                  value={dateFns.format(dob, 'YYYY/MM/DD')}
+                  onChange={value => this.onDateChange(value)}
+                />
 
-            <div className={styles.buttons}>
-              {this.shouldShowNextButton() && (
-                <Button className={styles.nextBtn} onClick={this.goNext}>
-                  Next: Your Last List
-                </Button>
-              )}
+                <div className={styles.buttons}>
+                  {this.shouldShowNextButton() && (
+                    <Button className={styles.nextBtn} onClick={this.goNext}>
+                      Next: Your Last List
+                    </Button>
+                  )}
 
-              {this.shouldShowSaveButton() && (
-                <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
-                  {saving ? 'Please wait...' : actionBtnText}
-                </Button>
-              )}
+                  {this.shouldShowSaveButton() && (
+                    <Button className={styles.saveBtn} onClick={this.saveProfile} disabled={saving}>
+                      {saving ? 'Please wait...' : actionBtnText}
+                    </Button>
+                  )}
+                </div>
+              </Fragment>
             </div>
-          </Fragment>
-        )}
+          )}
+        </div>
       </div>
     )
   }

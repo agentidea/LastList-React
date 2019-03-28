@@ -1,6 +1,8 @@
 .payBtn {
   display: block;
   min-width: 15em;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 /*@note: CHANGING THIS STYLE IS LIKE OPENING A PANDORA'S BOX*/
@@ -9,13 +11,6 @@
   position: absolute;
   top: 1em;
   width: 100%;
-}
-
-.btnAllWrap:hover > .payBtn {
-  outline: 0;
-  cursor: pointer;
-  background-color: var(--color-link-2);
-  color: #fff;
 }
 
 .btnAllWrap {

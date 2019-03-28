@@ -1,6 +1,25 @@
 .content {
   margin: 5em auto;
-  max-width: 550px;
+  max-width: 700px;
+  padding: 0 1em 1em 1em;
+}
+.content label {
+  padding-left: 0;
+  font-weight: 600;
+}
+.content input {
+  color: #e9e9e9;
+}
+.content input::placeholder {
+  color: #e9e9e9;
+  opacity: 0.6;
+}
+
+.h3 {
+  margin: 0 auto;
+  font-size: 45px;
+  font-weight: 800;
+  color: #4062ba;
 }
 
 .buttons {
@@ -29,6 +48,9 @@
 
 .socialLoginWrapper .belowBtnInfo {
   margin: 2em 0.1em;
+  color: #e9e9e9;
+  font-size: 23px;
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
@@ -38,6 +60,9 @@
   .signupButton {
     grid-row: 1;
   }
+  .h3 {
+    font-size: 37px;
+  }
 }
 
 .checkbox {
@@ -45,5 +70,9 @@
 }
 
 .checkbox span:first-child {
-  color: #004ddc;
+  color: #4062ba;
+}
+.checkbox span:last-child {
+  font-weight: 600;
+  font-family: var(--font-family);
 }

@@ -7,8 +7,8 @@
 
 .gridWrap {
   display: block;
-  font-size: 18px;
-  letter-spacing: 2px;
+  font-size: 15px;
+  color: #694873;
 }
 .gridWrap:last-child {
   text-align: center;
@@ -17,7 +17,6 @@
   cursor: pointer;
   font-size: 1em;
   margin: 0.2em 0.8em;
-  color: #3917fe;
 }
 .deletePrompt {
   width: 200px;
@@ -28,6 +27,8 @@
   right: 0;
   border-radius: 5px;
   padding: 0.5em 0.5em 0 0.5em;
+  color: #4062ba;
+  font-weight: 600;
 }
 
 .smBtnWrap {
@@ -37,13 +38,13 @@
 }
 
 .smBtnApprove {
-  border: #004ddc 2px solid;
+  border: #4062ba 2px solid;
   display: inline-block;
   border-radius: 20px;
   padding: 0.1em 1em;
   cursor: pointer;
   font-size: 0.9em;
-  color: #004ddc;
+  color: #4062ba;
 }
 
 .smBtnDeny {
@@ -53,5 +54,5 @@
   padding: 0.1em 1em;
   cursor: pointer;
   font-size: 0.9em;
-  color: #004ddc;
+  color: #4062ba;
 }

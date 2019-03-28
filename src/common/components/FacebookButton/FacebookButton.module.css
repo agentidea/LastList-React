@@ -1,32 +1,20 @@
 .fbBtn {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border: 4px solid var(--color-link-2);
-  border-radius: 28px;
+  background-color: #4062ba;
+  border: 2px solid var(--color-link-4);
+  border-radius: 50px;
   padding: 10px 28px;
-  color: var(--color-link-2);
+  color: var(--color-link-4);
   font-size: var(--font-size);
   font-family: var(--font-family);
   font-weight: bold;
   transition: background-color 0.5s, color 0.5s;
   margin: 1em auto;
   text-decoration: none;
-  text-align: left !important;
-  letter-spacing: 1px;
-}
-
-.fbBtn:focus,
-.fbBtn:hover {
-  outline: 0;
+  text-align: center;
+  min-width: 318px;
   cursor: pointer;
-  background-color: var(--color-link-2);
-  color: #fff;
-}
-
-.fbBtn:active,
-.fbBtn:focus {
-  opacity: 1;
 }
 
 .faIcon {

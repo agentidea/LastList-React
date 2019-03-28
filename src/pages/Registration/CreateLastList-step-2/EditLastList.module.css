@@ -1,19 +1,35 @@
 .content {
+  padding-top: 1em;
   position: relative;
   display: flex;
   flex-direction: column;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.mini_container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.content h3 {
+  font-size: 45px;
+  font-weight: 800;
+  margin-bottom: 0;
 }
 
 .text {
   margin-bottom: 3em;
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #4062ba;
   text-align: center;
 }
 
 .buttons {
+  margin-top: 1em;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .backBtn {
   align-self: flex-start;
@@ -33,5 +49,25 @@
 }
 
 .list {
-  margin-top: 4em;
+  margin-top: 2em;
+}
+.song_list h4 {
+  font-size: 27px;
+  font-weight: 800;
+  color: #694873;
+  border-bottom: 2px #694873 solid;
+  padding: 0.4em 0;
+  margin: 2em 0 0 0;
+}
+@media (max-width: 600px) {
+  .content h3 {
+    font-size: 37px;
+  }
+  .addMoreBtn {
+    width: 310px;
+  }
+  .nextBtn {
+    margin-top: 1em;
+    width: 310px;
+  }
 }

@@ -48,30 +48,32 @@ export class GuardianAccess extends Component {
   render() {
     const { success } = this.state
     return (
-      <form className={styles.content} onSubmit={this.onSubmit}>
-        {success ? (
-          <div>
-            <h3>THANKS!</h3>
-            <p>
-              Please check your inbox or spam folder. We’ve sent you a link to confirm your email
-              address.
-            </p>
-          </div>
-        ) : (
-          <div>
-            <h3>ACCESS YOUR LOVED ONE’S LAST LIST</h3>
-            <p>
-              Thanks for being a Last List Guardian. We’re very sorry for your loss. <br />
-              Please enter your email address below to receive a code, via email, that will allow
-              you to access your loved one’s favorite songs.
-            </p>
-          </div>
-        )}
+      <div className={styles.all_wrap}>
+        <form className={styles.content} onSubmit={this.onSubmit}>
+          {success ? (
+            <div>
+              <h3>Thanks!</h3>
+              <p>
+                Please check your inbox or spam folder. We’ve sent you a link to confirm your email
+                address.
+              </p>
+            </div>
+          ) : (
+            <div>
+              <h3>Access your loved one's Last List</h3>
+              <p>
+                Thanks for being a Last List Guardian. We’re very sorry for your loss. <br />
+                Please enter your email address below to receive a code, via email, that will allow
+                you to access your loved one’s favorite songs.
+              </p>
+            </div>
+          )}
 
-        <div className={styles.spaceHack}>&nbsp;</div>
+          <div className={styles.spaceHack}>&nbsp;</div>
 
-        {success ? null : this.renderForm()}
-      </form>
+          {success ? null : this.renderForm()}
+        </form>
+      </div>
     )
   }
 

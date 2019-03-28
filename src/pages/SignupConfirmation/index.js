@@ -11,17 +11,19 @@ export class SignupConfirmation extends Component {
 
   render() {
     return (
-      <div className={styles.content}>
-        <div className={styles.spaceHack}>&nbsp;</div>
-        <h3>Confirm Your Email Address</h3>
-        <p>
-          Thanks. We’ve sent a confirmation email to your email address. Please click the link to
-          activate your account. If you don’t see the email, check your junk or spam folder.
-        </p>
+      <div className={styles.all_wrap}>
+        <div className={styles.content}>
+          <div className={styles.spaceHack}>&nbsp;</div>
+          <h3>Confirm Your Email Address</h3>
+          <p>
+            Thanks. We’ve sent a confirmation email to your email address. Please click the link to
+            activate your account. If you don’t see the email, check your junk or spam folder.
+          </p>
 
-        <p>
-          Didn’t get the email? Please <Link to="#">click here</Link> to resend.
-        </p>
+          <p>
+            Didn’t get the email? Please <Link to="#">click here</Link> to resend.
+          </p>
+        </div>
       </div>
     )
   }

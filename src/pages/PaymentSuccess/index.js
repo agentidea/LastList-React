@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as listsActionCreators from '../../common/state/lists/actions'
 import requireLogin from '../../common/hocs/requireLogin'
+import main_styles from '../../App.module.css'
 
 const mapStateToProps = state => ({
   lists: state.lists.lists,
@@ -22,14 +23,19 @@ export class PaymentSuccess extends Component {
   render() {
     const { lists, user } = this.props
     return (
-      <div>
-        <div className={styles.content}>
-          <h3>Payment Successful!</h3>
+      <div className={main_styles.grey_bg}>
+        <div className={styles.main_content}>
+          <div className={styles.content}>
+            <h3>Payment Successful!</h3>
+          </div>
+          <div className={styles.songs}>
+            <h4>Last List</h4>
+            {lists.map((l, i) => PaymentSuccess.renderList(l, i))}
+          </div>
+          <span className={styles.paid}>
+            Paid: <span>${user.payment}</span>
+          </span>
         </div>
-        <div>{lists.map((l, i) => PaymentSuccess.renderList(l, i))}</div>
-        <h4 className={styles.paid}>
-          Paid: <span>${user.payment}</span>
-        </h4>
       </div>
     )
   }

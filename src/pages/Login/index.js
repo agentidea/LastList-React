@@ -133,7 +133,7 @@ class Login extends Component {
       <form className={styles.content} onSubmit={this.onSubmit}>
         {success ? <p className={styles.infoText}>{success}</p> : null}
 
-        <h3>Sign In</h3>
+        <h3 className={styles.h3}>Sign In</h3>
         {this.renderSocialAuth()}
         <h3>OR</h3>
         {this.renderInputs()}

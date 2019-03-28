@@ -1,3 +1,7 @@
+.content {
+  background: #eaeaea;
+  padding: 0 1em 5em 1em;
+}
 .para {
   margin-left: 5px;
 }

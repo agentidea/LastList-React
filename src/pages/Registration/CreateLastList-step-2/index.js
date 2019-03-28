@@ -11,6 +11,7 @@ import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
 import SongAdd from '../../../common/components/SongAdd'
 import SongList from '../../../common/components/SongList'
 import SongApiSearch from '../../../common/components/SongApiSearch'
+import main_styles from '../../../App.module.css'
 
 const mapStateToProps = state => ({
   lists: state.lists.lists,
@@ -96,7 +97,6 @@ export class CreateFirstLastList extends Component {
       artist: item === null ? '' : item.artist,
       song: item === null ? '' : item.title,
       note: item === null ? '' : item.note,
-      openSearch: false,
     })
   }
 
@@ -124,62 +124,70 @@ export class CreateFirstLastList extends Component {
     let serverStates = user.states
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
-        ? 'ADD YOUR SONGS'
-        : 'STEP 2: CREATE YOUR LAST LIST'
+        ? 'Add your songs'
+        : 'Step 2: Create your Last List'
 
     return (
-      <div className={styles.content}>
-        <h3>{heading}</h3>
-        <div className={styles.text}>
-          <p>Add a set of 10 songs for $1. </p>
-          <p>
-            Got more than 10 favorite songs? No problem. You can add as many sets as you want and
-            change them whenever you feel like it.
-          </p>
-        </div>
-        {loading ? (
-          <div className={styles.loaderContainer}>
-            <Loading />
+      <div className={main_styles.grey_bg}>
+        <div className={styles.content}>
+          <h3>{heading}</h3>
+          <div className={styles.text}>
+            <p>
+              Add a set of 10 songs for $1. Got more than 10 favorite songs? <br />
+              No problem. You can add as many sets as you want and change them whenever you feel
+              like it.
+            </p>
           </div>
-        ) : (
-          <Fragment>
-            <SongAdd
-              onSongAdd={this.props.listsActions.setListItem}
-              toggleSearch={this.toggleSearch}
-              {...this.state}
-              {...this.props}
-            />
-
-            <div className={styles.buttons}>
-              {CreateFirstLastList.shouldShowBackButton() && (
-                <Button className={styles.backBtn} onClick={this.goBack}>
-                  Back
-                </Button>
-              )}
-
-              {show_add_more ? (
-                <Button className={styles.addMoreBtn} onClick={this.shouldAddMore}>
-                  Add Another 10 Songs
-                </Button>
-              ) : (
-                <div>&nbsp;</div>
-              )}
-
-              {show_next ? (
-                <Button className={styles.nextBtn} onClick={this.goNext}>
-                  {saving ? 'Saving...' : 'Next: Choose Your Guardians'}
-                </Button>
-              ) : null}
+          {loading ? (
+            <div className={styles.loaderContainer}>
+              <Loading />
             </div>
+          ) : (
+            <Fragment>
+              <div className={styles.mini_container}>
+                <SongAdd
+                  onSongAdd={this.props.listsActions.setListItem}
+                  toggleSearch={this.toggleSearch}
+                  {...this.state}
+                  {...this.props}
+                />
 
-            <div>{lists.map((l, i) => this.renderList(l, i))}</div>
-          </Fragment>
-        )}
-        <SongApiSearch
-          {...this.state}
-          toggleSearch={this.toggleSearch}
-          fromSearchAddSong={this.fromSearchAddSong}
-        />
+                <div className={styles.buttons}>
+                  {CreateFirstLastList.shouldShowBackButton() && (
+                    <Button className={styles.backBtn} onClick={this.goBack}>
+                      Back
+                    </Button>
+                  )}
+
+                  {show_add_more ? (
+                    <Button className={styles.addMoreBtn} onClick={this.shouldAddMore}>
+                      Add Another 10 Songs
+                    </Button>
+                  ) : (
+                    <div>&nbsp;</div>
+                  )}
+
+                  {show_next ? (
+                    <Button className={styles.nextBtn} onClick={this.goNext}>
+                      {saving ? 'Saving...' : 'Next: Choose Your Guardians'}
+                    </Button>
+                  ) : null}
+                </div>
+
+                <div className={styles.song_list}>
+                  {show_next ? <h4>Your Last List</h4> : null}
+
+                  {lists.map((l, i) => this.renderList(l, i))}
+                </div>
+              </div>
+            </Fragment>
+          )}
+          {/*<SongApiSearch
+            {...this.state}
+            toggleSearch={this.toggleSearch}
+            fromSearchAddSong={this.fromSearchAddSong}
+          />*/}
+        </div>
       </div>
     )
   }

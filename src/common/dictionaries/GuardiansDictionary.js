@@ -1,6 +1,6 @@
 export const guardians_dictionary = {
   new: {
-    heading: 'STEP 3: CHOOSE YOUR GUARDIANS',
+    heading: 'Step 3: Choose your guardians',
     heading_primary: 'Who do you trust with your tunes?',
     main_text:
       '<p>\n' +
@@ -14,7 +14,7 @@ export const guardians_dictionary = {
       '        </p>',
   },
   returning: {
-    heading: 'YOUR GUARDIANS',
+    heading: 'Your guardians',
     heading_primary: 'Edit your Guardians',
     main_text: '<p>Want to add or remove a Guardian? It’s easy. Just make the changes below.</p>',
   },

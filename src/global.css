@@ -12,11 +12,11 @@
   --spacing-elements: 8px;
   --spacing-container: 16px;
   --font-weight: 400;
-  --color-link-1: #004ddc;
+  --color-link-1: #4062ba;
   --color-link-2: #3917fe;
   --color-link-3: #168cff;
   --color-link-4: #eaeaea;
-  --color-link-1-alpha: rgba(0, 77, 220, 0.5);
+  --color-link-1-alpha: rgba(64, 98, 186, 0.8);
   --color-link-2-alpha: rgba(57, 23, 254, 0.5);
   --color-link-3-alpha: rgba(22, 140, 255, 0.5);
   --success: rgb(8, 180, 31);
@@ -47,8 +47,6 @@ h3 {
   font-size: 22px;
   color: var(--color-link-1);
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2.4px;
 }
 h4 {
   color: var(--color-link-3);
@@ -62,9 +60,6 @@ h5 {
 h6 {
   font-size: var(--font-size-small);
   font-weight: normal;
-}
-p {
-  letter-spacing: 2.6px;
 }
 
 a {
