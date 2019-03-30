@@ -35,7 +35,7 @@ export class Home extends Component {
         <div className={styles.text}>
           <div className={styles.content}>
             <h2>Say goodbye with songs</h2>
-            <h4>Leave your ultimate playlist behind for your loved ones.</h4>
+            <h4> Leave your ultimate playlist behind for your loved ones to remember you by.</h4>
 
             <div className={styles.btn_grp}>
               <Button to="/signup" vspace>
@@ -55,7 +55,7 @@ export class Home extends Component {
                 <div className={styles.ci_left}>
                   <img src={grave} alt="grave" width="192" />
                   <Button to="/signup" clear>
-                    Create your Last List?
+                    Create your Last List
                   </Button>
                 </div>
                 <div className={styles.ci_right}>

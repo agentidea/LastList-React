@@ -6,6 +6,15 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+.hamburger_menu {
+  display: none;
+  justify-content: flex-end;
+}
+.faIcon {
+  display: block;
+  font-size: 2em;
+  color: #e9e9e9;
+}
 
 .subheader {
   display: flex;
@@ -37,6 +46,7 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 12em;
+  transition: 0.3s all linear;
 }
 
 .links a {
@@ -108,5 +118,16 @@
     border: 1px solid;
     border-radius: 50px;
     margin: 0.3em;
+  }
+
+  .hamburger_menu {
+    display: flex;
+  }
+  .mobi_hide_menu {
+    height: 0;
+    overflow: hidden;
+  }
+  .mobi_show_menu {
+    height: 300px;
   }
 }
