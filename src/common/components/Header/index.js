@@ -48,33 +48,35 @@ export default class Header extends Component {
             }`}
           >
             {!isLoggedIn && (
-              <div>
+              <div onClick={this.toggle_menu}>
                 <HashLink smooth to="/#lastlist">
-                  What is Last List?
+                  What Is Last List?
                 </HashLink>
-                <Link to="/signup">Create your List</Link>
-                <Link to="/#">Blog</Link>
+                <Link to="/signup">Create Your List</Link>
+                <Link to="/#">The Last Word</Link>
                 <Link to="/guardian">Guardians</Link>
-                <Link to="/login">Sign in</Link>
+                <Link to="/login">Sign In</Link>
               </div>
             )}
-            {isLoggedIn && Header.renderLogin(isLoggedIn, isRegistered)}
+            {isLoggedIn && Header.renderLogin(isLoggedIn, isRegistered, this)}
           </div>
         </header>
       </div>
     )
   }
 
-  static renderLogin(isLoggedIn, isRegistered) {
+  static renderLogin(isLoggedIn, isRegistered, self) {
     return (
       <Fragment>
         {isLoggedIn &&
           isRegistered && (
             <Fragment>
-              <Link to="/reg/create-profile">Your Profile</Link>
-              <Link to="/reg/create-list">Your Last List</Link>
-              <Link to="/reg/add-guardian">Your Guardians</Link>
-              <Link to="/sign-out">Sign out</Link>
+              <div onClick={self.toggle_menu}>
+                <Link to="/reg/create-profile">Your Profile</Link>
+                <Link to="/reg/create-list">Your Last List</Link>
+                <Link to="/reg/add-guardian">Your Guardians</Link>
+                <Link to="/sign-out">Sign Out</Link>
+              </div>
             </Fragment>
           )}
       </Fragment>

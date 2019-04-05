@@ -12,6 +12,10 @@
   margin: 0;
   text-decoration: none;
   text-align: center;
+  text-transform: lowercase;
+}
+.button:first-letter {
+  text-transform: capitalize;
 }
 
 .button:focus,

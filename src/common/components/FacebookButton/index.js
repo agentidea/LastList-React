@@ -28,7 +28,7 @@ class FacebookButton extends Component {
         onClick={this.componentClicked}
         callback={this.responseFacebook}
         cssClass={style.fbBtn}
-        textButton="Sign in with Facebook"
+        textButton="Sign in with facebook"
         icon={<FontAwesomeIcon className={style.faIcon} icon={faFacebookSquare} />}
       />
     )

@@ -3,7 +3,7 @@
 
 :root {
   --color: #000000;
-  --theme-color: #3917fe;
+  --theme-color: #4062ba;
   --header-color: none;
   --footer-color: #ffffff;
   --font-family: 'Nunito', sans-serif;
@@ -13,8 +13,8 @@
   --spacing-container: 16px;
   --font-weight: 400;
   --color-link-1: #4062ba;
-  --color-link-2: #3917fe;
-  --color-link-3: #168cff;
+  --color-link-2: #4062ba;
+  --color-link-3: #4062ba;
   --color-link-4: #eaeaea;
   --color-link-1-alpha: rgba(64, 98, 186, 0.8);
   --color-link-2-alpha: rgba(57, 23, 254, 0.5);
@@ -38,7 +38,7 @@ body {
 }
 
 h2 {
-  color: #0f1b56;
+  color: #4062ba;
   font-size: 46px;
   font-weight: normal;
 }

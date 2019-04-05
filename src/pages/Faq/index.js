@@ -23,15 +23,15 @@ const Faq = () => {
         <ul>
           <li>Sign up. (We won’t share your information with anyone)</li>
           <li>Create a set of 10 songs for US $1.</li>
-          <li>Add up to 5 Guardians of your Last List.</li>
+          <li>Add up to 5 guardians of your Last List.</li>
           <li>Finish up by paying via Stripe or Paypal.</li>
-          <li>We’ll store your Last List and release it to your Guardians.</li>
+          <li>We’ll store your Last List and release it to your guardians.</li>
         </ul>
 
         <h4>3. How will my Last List be shared with my loved ones?</h4>
 
         <p>
-          Once you’ve created your Last List, you have to choose up to 5 Guardians. It’s their
+          Once you’ve created your Last List, you have to choose up to 5 guardians. It’s their
           responsibility to get it from us when you’ve passed away.
         </p>
         <p>All they have to do is:</p>
@@ -47,16 +47,16 @@ const Faq = () => {
           A set of 10 songs is only $1. Your Last List can be made up of as many songs as you want.
         </p>
 
-        <h4>5. What is a Guardian?</h4>
+        <h4>5. What is a guardian?</h4>
 
         <p>
-          A Guardian is someone who is responsible for a Last List. They have to get their loved
+          A guardian is someone who is responsible for a Last List. They have to get their loved
           one’s Last List from us when the person dies.
         </p>
 
-        <h4>6. What if I want to change my Last List or Guardians?</h4>
+        <h4>6. What if I want to change my Last List or guardians?</h4>
 
-        <p>You can edit your Last List and Guardians as many times as you want.</p>
+        <p>You can edit your Last List and guardians as many times as you want.</p>
       </div>
     </div>
   )

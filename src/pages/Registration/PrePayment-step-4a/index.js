@@ -100,7 +100,7 @@ class RegPrePayment extends Component {
                   className={styles.nextBtn}
                   onClick={this.openPayment}
                 >
-                  {goingnext ? 'Pay via Stripe' : 'Pay via Stripe'}
+                  {goingnext ? 'Pay via stripe' : 'Pay via stripe'}
                 </Button>
               </div>
             )}

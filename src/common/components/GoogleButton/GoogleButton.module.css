@@ -5,6 +5,7 @@
   text-align: left !important;
   margin: 1em auto;
   min-width: 318px;
+  text-transform: none;
 }
 
 .faIcon {

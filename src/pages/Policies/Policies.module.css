@@ -6,6 +6,13 @@
   margin-left: 5px;
 }
 
+.content h4 {
+  text-transform: lowercase;
+}
+.content h4:first-letter {
+  text-transform: uppercase;
+}
+
 .subpara {
   margin-left: 15px;
 }

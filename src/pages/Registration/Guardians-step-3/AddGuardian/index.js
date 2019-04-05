@@ -54,7 +54,7 @@ class AddGuardian extends Component {
     const { firstName, lastName, email, adding, goingnext, error } = this.state
     return (
       <div className={styles.content}>
-        <h4>Add Guardian</h4>
+        <h4>Add guardian</h4>
 
         <form className={styles.addGuardian} onSubmit={this.addGuardian}>
           <div className={styles.inputs}>

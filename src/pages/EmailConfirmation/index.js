@@ -47,18 +47,18 @@ class EmailConfirmation extends Component {
             <Loading />
           ) : error ? (
             <div>
-              <h3>Oops! Something went wrong</h3>
+              <h3>Oops! something went wrong</h3>
               <p className={styles.error}>{error.message}</p>
             </div>
           ) : (
             <div>
-              <h3>Thanks! You're all set</h3>
+              <h3>Thanks! you're all set</h3>
               <div className={styles.spaceHack}>&nbsp;</div>
               <p className={styles.success}>
                 Your email address and Last List account are confirmed. You can start creating your
                 Last List.
               </p>
-              <Button to="/reg/create-profile">Get Started</Button>
+              <Button to="/reg/create-profile">Get started</Button>
             </div>
           )}
         </div>

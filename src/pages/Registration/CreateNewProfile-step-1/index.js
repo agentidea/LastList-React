@@ -136,17 +136,21 @@ class NewProfile extends Component {
     let serverStates = this.props.user.states
     let heading = 'Step 1. Tell us about yourself'
     let actionBtnText = 'Save'
+    let sub_text = ''
 
     if (serverStates && serverStates.find(item => item === 'registration_complete')) {
       heading = 'About you'
       actionBtnText = 'Update'
+      sub_text = 'To make changes to your profile, simply edit the info below.'
     }
 
     return (
       <div className={main_styles.grey_bg}>
         <div className={styles.content}>
           <h3>{heading}</h3>
-          <p className={styles.para}>To make changes to your profile, simply edit the info below</p>
+          <p className={styles.para} style={{ display: sub_text === '' ? 'none' : '' }}>
+            {sub_text}
+          </p>
           {loaded && (
             <div className={styles.fragment}>
               <Fragment>

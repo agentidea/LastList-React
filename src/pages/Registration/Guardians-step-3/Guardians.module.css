@@ -4,6 +4,13 @@
   margin: var(--spacing-container) 0;
 }
 
+.btn_wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3em;
+}
+
 .text {
   font-size: 18px;
   line-height: 28px;
@@ -28,8 +35,14 @@
 .main_text p {
   text-align: center;
   font-size: 19px;
-  margin-bottom: 4em;
   color: #4062ba;
+  font-weight: 600;
+}
+.need_more {
+  float: right;
+  font-size: 13px;
+  color: #694873;
+  cursor: pointer;
   font-weight: 600;
 }
 

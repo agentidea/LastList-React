@@ -113,7 +113,7 @@ class SongAdd extends Component {
               <FontAwesomeIcon className={styles.faIcon} icon={faSearch} />
               <Textfield
                 className={styles.tx_1}
-                placeholder="Enter artist and song name e.g (Artist - Song Title)"
+                placeholder="Enter artist and song name (Artist - Song Title) You can play a snippet of songs in the Spotify database."
                 value={artist_song}
                 error={error.field === 'artist_song' ? error.error : null}
                 onChange={value => this.onChange('artist_song', value, 'Artist / Song Title')}
@@ -124,7 +124,7 @@ class SongAdd extends Component {
           </div>
           <Textfield
             label="Why this song?"
-            placeholder="Explain why this song means a lot to you in 250 words."
+            placeholder="Explain why this song means a lot to you in up to 250 words."
             value={note}
             onChange={value => this.onChange('note', value)}
             onKeyUp={() => this.handleClose(false)}

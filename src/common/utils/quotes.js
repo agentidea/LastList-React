@@ -21,7 +21,7 @@ export const quotes = {
       credit: 'Bryce Anderson',
     },
     {
-      text: '"The life of the dead is pace in the memory of the living."',
+      text: '"The life of the dead is placed in the memory of the living."',
       credit: 'Marcus Tullius Cicero',
     },
     {

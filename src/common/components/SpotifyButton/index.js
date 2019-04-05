@@ -52,7 +52,7 @@ class SpotifyButton extends Component {
   render() {
     const SfyBtn = (
       <Button className={style.btn} onClick={this.handleClick}>
-        <FontAwesomeIcon className={style.faIcon} icon={faSpotify} />Sign in with Spotify
+        <FontAwesomeIcon className={style.faIcon} icon={faSpotify} />Sign in with spotify
       </Button>
     )
 

@@ -13,7 +13,7 @@ export class Footer extends Component {
           <Link to="/faq">FAQs</Link>
         </div>
         <div className={styles.right}>
-          <Link to="mailto:contact@lastlist.com">contact@lastlist.com</Link>
+          <a href="mailto:contact@lastlist.com">contact@lastlist.com</a>
         </div>
       </footer>
     )

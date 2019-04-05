@@ -29,7 +29,7 @@ export default class GuardiansList extends Component {
     const { guardians } = this.props
     return (
       <div className={styles.listWrap}>
-        <h4>Current Guardians</h4>
+        <h4>Current guardians</h4>
 
         <ul>
           {guardians.map(g => (

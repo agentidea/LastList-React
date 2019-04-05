@@ -166,7 +166,7 @@ class Login extends Component {
         <SpotifyButton setSocialAuth={this.setSocialAuth} />
         <GoogleButton setSocialAuth={this.setSocialAuth} />
         <div className={styles.belowBtnInfo}>
-          We won’t share any of your information with Facebook or Spotify or Google.
+          We won’t share any of your information with Google, Spotify or Facebook.
         </div>
       </div>
     )
@@ -184,7 +184,7 @@ class Login extends Component {
           value={email}
           required
           error={errorEmail}
-          placeholder="your@emailaddress.com"
+          placeholder="Email Address"
           onChange={value => this.onChange('email', value)}
         />
         <Textfield

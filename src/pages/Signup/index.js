@@ -133,14 +133,14 @@ class Signup extends Component {
         {successMessage && <div className={styles.success}>{successMessage}</div>}
         <div className={styles.buttons}>
           <Button onClick={() => this.setNextAction('login')}>
-            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
+            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign in'}
           </Button>
           <Button
             disabled={creating}
             className={styles.signupButton}
             onClick={() => this.setNextAction('create-account')}
           >
-            {creating && nextAction === 'create-account' ? 'Creating Account...' : 'Create Account'}
+            {creating && nextAction === 'create-account' ? 'Creating account...' : 'Create account'}
           </Button>
 
           <div className="">&nbsp;</div>
@@ -167,7 +167,7 @@ class Signup extends Component {
         <SpotifyButton setSocialAuth={this.setSocialAuth} />
         <GoogleButton setSocialAuth={this.setSocialAuth} />
         <div className={styles.belowBtnInfo}>
-          We won’t share any of your information with Facebook or Spotify or Google.
+          We won’t share any of your information with Google, Spotify or Facebook.
         </div>
       </div>
     )
@@ -185,7 +185,7 @@ class Signup extends Component {
           value={email}
           required
           error={errorEmail}
-          placeholder="your@emailaddress.com"
+          placeholder="Email Address"
           onChange={value => this.onChange('email', value)}
         />
         <Textfield

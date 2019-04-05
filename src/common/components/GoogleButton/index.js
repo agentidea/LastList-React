@@ -28,7 +28,7 @@ class GoogleButton extends Component {
         clientId={environment.googleCLIENT_ID}
         render={renderProps => (
           <Button className={style.btn} onClick={renderProps.onClick}>
-            <FontAwesomeIcon className={style.faIcon} icon={faGoogle} />Sign in with Google
+            <FontAwesomeIcon className={style.faIcon} icon={faGoogle} />Sign in with google
           </Button>
         )}
         onSuccess={this.successful}
