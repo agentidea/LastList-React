@@ -31,6 +31,7 @@ class Signup extends Component {
       message: null,
     },
     nextAction: null,
+    social_auth: false,
   }
 
   componentDidMount() {
@@ -52,6 +53,10 @@ class Signup extends Component {
     const { history } = this.props
     let got_to = this.state.nextAction === 'login' ? '/reg/create-profile' : '/signup-confirmation'
     history.push(got_to)
+  }
+
+  triggered_social_auth = (status = true) => {
+    this.setState({ social_auth: status })
   }
 
   // On successful login, redirect the user to the intended page.
@@ -123,49 +128,68 @@ class Signup extends Component {
   }
 
   render() {
-    const { successMessage, creating, nextAction } = this.state
+    const { successMessage, creating, nextAction, social_auth } = this.state
     return (
-      <form className={styles.content} onSubmit={this.onSubmit}>
-        <h3 className={styles.h3}>Create your profile</h3>
-        {this.renderSocialAuth()}
-        <h3>OR</h3>
-        {this.renderInputs()}
-        {successMessage && <div className={styles.success}>{successMessage}</div>}
-        <div className={styles.buttons}>
-          <Button onClick={() => this.setNextAction('login')}>
-            {creating && nextAction === 'login' ? 'Please wait...' : 'Sign in'}
-          </Button>
-          <Button
-            disabled={creating}
-            className={styles.signupButton}
-            onClick={() => this.setNextAction('create-account')}
-          >
-            {creating && nextAction === 'create-account' ? 'Creating account...' : 'Create account'}
-          </Button>
+      <div className={styles.all_wrap}>
+        <form className={styles.content} onSubmit={this.onSubmit}>
+          <h3 className={styles.h3}>Create your profile</h3>
+          {this.renderSocialAuth()}
+          <h3>OR</h3>
+          {this.renderInputs()}
+          {successMessage && <div className={styles.success}>{successMessage}</div>}
+          <div className={styles.buttons}>
+            <Button onClick={() => this.setNextAction('login')}>
+              {creating && nextAction === 'login' ? 'Please wait...' : 'Sign in'}
+            </Button>
+            <Button
+              disabled={creating}
+              className={styles.signupButton}
+              onClick={() => this.setNextAction('create-account')}
+            >
+              {creating && nextAction === 'create-account'
+                ? 'Creating account...'
+                : 'Create account'}
+            </Button>
 
-          <div className="">&nbsp;</div>
+            <div className="">&nbsp;</div>
 
-          <FormControlLabel
-            className={styles.checkbox}
-            control={
-              <Checkbox
-                checked={this.state.remember}
-                onChange={(e, checked) => this.setState({ remember: checked })}
-              />
-            }
-            label="Remember me"
-          />
+            <FormControlLabel
+              className={styles.checkbox}
+              control={
+                <Checkbox
+                  checked={this.state.remember}
+                  onChange={(e, checked) => this.setState({ remember: checked })}
+                />
+              }
+              label="Remember me"
+            />
+          </div>
+        </form>
+        <div className={`${social_auth ? styles.pop_auth : styles.hide}`}>
+          <h3 className={styles.h3}>Please Wait ...</h3>
+          <p>
+            <span onClick={() => this.triggered_social_auth(false)}>BACK</span>
+          </p>
         </div>
-      </form>
+      </div>
     )
   }
 
   renderSocialAuth = () => {
     return (
       <div className={styles.socialLoginWrapper}>
-        <FacebookButton onChange={this.setSocialAuth} />
-        <SpotifyButton setSocialAuth={this.setSocialAuth} />
-        <GoogleButton setSocialAuth={this.setSocialAuth} />
+        <div className={styles.each_btn_wrap} onClick={this.triggered_social_auth}>
+          <FacebookButton onChange={this.setSocialAuth} />
+        </div>
+
+        <div className={styles.each_btn_wrap} onClick={this.triggered_social_auth}>
+          <SpotifyButton setSocialAuth={this.setSocialAuth} />
+        </div>
+
+        <div className={styles.each_btn_wrap} onClick={this.triggered_social_auth}>
+          <GoogleButton setSocialAuth={this.setSocialAuth} />
+        </div>
+
         <div className={styles.belowBtnInfo}>
           We won’t share any of your information with Google, Spotify or Facebook.
         </div>
