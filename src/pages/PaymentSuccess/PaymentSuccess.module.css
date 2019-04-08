@@ -1,6 +1,7 @@
 .main_content {
   max-width: 700px;
   margin: 0 auto;
+  min-height: 800px;
 }
 .main_content h3 {
   font-size: 45px;

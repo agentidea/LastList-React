@@ -47,6 +47,7 @@
 
 .payButtonsWrap button {
   border-color: #ffffff;
+  text-transform: none;
 }
 
 .paid {
