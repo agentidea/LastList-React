@@ -144,7 +144,7 @@ class ResetPassword extends Component {
 
               <div className={style.btnWrap}>
                 <Button className={style.fpButton}>
-                  {this.state.loading ? 'Please wait...' : 'Reset My Password'}
+                  {this.state.loading ? 'Please wait...' : 'Reset my password'}
                 </Button>
               </div>
             </form>

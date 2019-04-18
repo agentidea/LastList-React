@@ -85,7 +85,7 @@ export class RegPayment extends Component {
               Back
             </Button>
             <Button className={styles.paymentBtn} onClick={this.payForList}>
-              Submit Payment
+              Submit payment
             </Button>
           </div>
 

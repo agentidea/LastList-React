@@ -15,7 +15,7 @@ export class WelcomeMember extends Component {
         <h3>Congratulations!</h3>
         <p>You've created your Last List.</p>
         <Button to="/edit-list" vspace>
-          View Your Last List
+          View your Last List
         </Button>
       </div>
     )

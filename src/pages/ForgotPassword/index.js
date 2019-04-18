@@ -93,7 +93,7 @@ class ForgotPassword extends Component {
 
               <div className={style.btnWrap}>
                 <Button className={style.fpButton}>
-                  {loading ? 'Please wait...' : 'Reset My Password'}
+                  {loading ? 'Please wait...' : 'Reset my password'}
                 </Button>
               </div>
             </form>

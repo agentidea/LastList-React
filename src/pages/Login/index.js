@@ -145,7 +145,7 @@ class Login extends Component {
           {this.renderInputs()}
           <div className={styles.buttons}>
             <Button disabled={creating} className={''} onClick={() => this.setNextAction('login')}>
-              {creating && nextAction === 'login' ? 'Please wait...' : 'Sign In'}
+              {creating && nextAction === 'login' ? 'Please wait...' : 'Sign in'}
             </Button>
             <p className={styles.fgtPwd}>
               <Link to="/forgot">Forgot password?</Link>

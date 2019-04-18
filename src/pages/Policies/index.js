@@ -109,7 +109,7 @@ const Policies = () => {
         </p>
         <p className={styles.subpara}>
           a. as part of the Services, you may give third-parties access to your information
-          (including, without limitation, access to Your Content to your Guardians);
+          (including, without limitation, access to Your Content to your guardians);
         </p>
         <p className={styles.subpara}>
           {' '}

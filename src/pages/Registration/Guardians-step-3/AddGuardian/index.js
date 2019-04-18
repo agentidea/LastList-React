@@ -91,12 +91,12 @@ class AddGuardian extends Component {
             </Button>
 
             <Button className={styles.addGuardianBtn}>
-              {adding ? 'Adding...' : 'Add Guardian'}
+              {adding ? 'Adding...' : 'Add guardian'}
             </Button>
 
             {this.shouldShowNextButton() && (
               <Button className={styles.nextBtn} onClick={this.goNext}>
-                {goingnext ? 'Next: Payment' : 'Next: Payment'}
+                {goingnext ? 'Next: payment' : 'Next: payment'}
               </Button>
             )}
           </div>

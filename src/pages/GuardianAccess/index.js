@@ -63,8 +63,7 @@ export class GuardianAccess extends Component {
               <h3>Access your loved one's Last List</h3>
               <p>
                 Thanks for being a Last List Guardian. We’re very sorry for your loss. <br />
-                Please enter your email address below to receive a code, via email, that will allow
-                you to access your loved one’s favorite songs.
+                Please enter your email address below to access your loved one's favorite songs.
               </p>
             </div>
           )}

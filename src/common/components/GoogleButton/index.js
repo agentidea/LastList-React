@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import FacebookLogin from 'react-facebook-login'
 import style from './GoogleButton.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookSquare, faGoogle, faSpotify } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { environment } from '../../../environment/environment'
 import GoogleLogin from 'react-google-login'
 import Button from '../Button'
@@ -28,7 +27,7 @@ class GoogleButton extends Component {
         clientId={environment.googleCLIENT_ID}
         render={renderProps => (
           <Button className={style.btn} onClick={renderProps.onClick}>
-            <FontAwesomeIcon className={style.faIcon} icon={faGoogle} />Sign in with google
+            <FontAwesomeIcon className={style.faIcon} icon={faGoogle} />Sign in with Google
           </Button>
         )}
         onSuccess={this.successful}

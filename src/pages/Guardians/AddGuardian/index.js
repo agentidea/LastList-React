@@ -58,7 +58,7 @@ class AddGuardian extends Component {
             />
           </div>
           {error && <div className={styles.error}>{error}</div>}
-          <Button>{adding ? 'Adding...' : 'Add Guardian'}</Button>
+          <Button>{adding ? 'Adding...' : 'Add guardian'}</Button>
         </form>
       </div>
     )

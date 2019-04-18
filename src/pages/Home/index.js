@@ -39,7 +39,7 @@ export class Home extends Component {
 
             <div className={styles.btn_grp}>
               <Button to="/signup" vspace>
-                Create Your Last List
+                Create your Last List
               </Button>
               <Button to="" vspace clear>
                 <HashLink smooth to="/#lastlist">
@@ -87,22 +87,22 @@ export class Home extends Component {
                     </li>
                     <li className={styles.listItem}>
                       <span className={styles.listItemText}>
-                        Create a set of 10 songs for US $1.
+                        Create a set of up to 10 songs for US $1. (You can edit them any time.)
                       </span>
                     </li>
                     <li className={styles.listItem}>
                       <span className={styles.listItemText}>
-                        Add up to 5 Guardians of your Last List.
+                        Add up to 5 guardians of your Last List.
                       </span>
                     </li>
                     <li className={styles.listItem}>
                       <span className={styles.listItemText}>
-                        Finish up by paying via Stripe or PayPal.
+                        Finish up by paying via Credit Card or PayPal.
                       </span>
                     </li>
                     <li className={styles.listItem}>
                       <span className={styles.listItemText} />
-                      We’ll store your Last List and release it to your Guardians.
+                      We’ll store your Last List and release it to your guardians.
                     </li>
                   </ul>
                 </div>
@@ -116,7 +116,7 @@ export class Home extends Component {
               <span> - {quote.credit}</span>
             </div>
             <Button to="/signup" vspace>
-              Create Your Last List
+              Create your Last List
             </Button>
           </div>
         </div>

@@ -134,13 +134,15 @@ class NewProfile extends Component {
     const errorLastName = error.field === 'lastName' ? error.message : null
 
     let serverStates = this.props.user.states
-    let heading = 'Step 1. Tell us about yourself'
+    let heading = 'Tell us about yourself'
     let actionBtnText = 'Save'
+    let nextBtnText = 'Next: create your list'
     let sub_text = ''
 
     if (serverStates && serverStates.find(item => item === 'registration_complete')) {
       heading = 'About you'
       actionBtnText = 'Update'
+      nextBtnText = 'Next: your Last List'
       sub_text = 'To make changes to your profile, simply edit the info below.'
     }
 
@@ -148,9 +150,7 @@ class NewProfile extends Component {
       <div className={main_styles.grey_bg}>
         <div className={styles.content}>
           <h3>{heading}</h3>
-          <p className={styles.para} style={{ display: sub_text === '' ? 'none' : '' }}>
-            {sub_text}
-          </p>
+          <p className={styles.para}>{sub_text}</p>
           {loaded && (
             <div className={styles.fragment}>
               <Fragment>
@@ -177,7 +177,7 @@ class NewProfile extends Component {
                 <div className={styles.buttons}>
                   {this.shouldShowNextButton() && (
                     <Button className={styles.nextBtn} onClick={this.goNext}>
-                      Next: Your Last List
+                      {nextBtnText}
                     </Button>
                   )}
 

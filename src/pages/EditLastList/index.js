@@ -54,7 +54,7 @@ export class EditLastList extends Component {
             <div className={styles.buttons}>
               {this.shouldShowAddSongs() && (
                 <Button className={styles.addMoreBtn} onClick={this.props.listsActions.addNewList}>
-                  Add Another 10 Songs
+                  Add another 10 songs
                 </Button>
               )}
               <Button

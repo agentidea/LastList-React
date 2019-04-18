@@ -139,20 +139,21 @@ export class CreateFirstLastList extends Component {
     const { lists, loading, saving, user } = this.props
     const { show_add_more, show_next, need_to_add_more } = this.state
     let serverStates = user.states
-    let heading =
-      serverStates && serverStates.find(item => item === 'made_payment')
-        ? 'Add your songs'
-        : 'Step 2: Create your Last List'
+    let heading = 'Create your Last List'
+    let info_text =
+      "Add up to 10 songs for $1.<br />You can add more songs and sets, and change them, whenever you feel like it. If you can't find a song in the database, just type it in."
+
+    if (serverStates && serverStates.find(item => item === 'made_payment')) {
+      heading = 'Add or change your songs'
+      info_text = ''
+    }
 
     return (
       <div className={main_styles.grey_bg}>
         <div className={styles.content}>
           <h3>{heading}</h3>
-          <div className={styles.text}>
-            <p>
-              Add a set of 10 songs for $1.<br />
-              You can add as many sets as you want and change them whenever you feel like it.
-            </p>
+          <div className={styles.text} style={{ display: info_text === '' ? 'none' : '' }}>
+            <p dangerouslySetInnerHTML={{ __html: info_text }} />
           </div>
           {loading ? (
             <div className={styles.loaderContainer}>
@@ -178,7 +179,7 @@ export class CreateFirstLastList extends Component {
 
                     {show_add_more ? (
                       <Button className={styles.addMoreBtn} onClick={this.shouldAddMore}>
-                        Add Another 10 Songs
+                        Add another 10 songs
                       </Button>
                     ) : (
                       <div>&nbsp;</div>
@@ -186,7 +187,7 @@ export class CreateFirstLastList extends Component {
 
                     {show_next ? (
                       <Button className={styles.nextBtn} onClick={this.goNext}>
-                        {saving ? 'Saving...' : 'Next: Choose Your Guardians'}
+                        {saving ? 'Saving...' : 'Next: choose your guardians'}
                       </Button>
                     ) : null}
                   </div>
@@ -201,7 +202,7 @@ export class CreateFirstLastList extends Component {
                     style={{ display: need_to_add_more ? 'none' : '' }}
                     onClick={this.show_add_more}
                   >
-                    Need more songs?
+                    Add more songs?
                   </span>
                 </div>
               </div>

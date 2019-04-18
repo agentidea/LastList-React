@@ -4,7 +4,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 770px;
   margin: 0 auto;
   padding: 0 1em 5em 1em;
 }
@@ -44,7 +44,7 @@
 .submit {
   display: block;
   margin: 3em auto 0 auto;
-  width: 50%;
+  width: 42%;
 }
 
 .inputWrap {

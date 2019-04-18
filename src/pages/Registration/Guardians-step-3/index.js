@@ -92,7 +92,7 @@ class RegGuardians extends Component {
                   style={{ display: need_to_add_more ? 'none' : '' }}
                   onClick={this.show_add_more}
                 >
-                  Need to add guardians?
+                  Add guardians?
                 </span>
 
                 <div
@@ -100,7 +100,7 @@ class RegGuardians extends Component {
                   style={{ display: need_to_add_more ? 'none' : '' }}
                 >
                   <Button className={styles.nextBtn} onClick={this.goNext}>
-                    Next: Payment
+                    Next: payment
                   </Button>
                 </div>
               </div>

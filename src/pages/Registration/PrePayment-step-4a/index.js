@@ -70,7 +70,7 @@ class RegPrePayment extends Component {
     let heading =
       serverStates && serverStates.find(item => item === 'made_payment')
         ? 'Summary & Payment'
-        : 'Step 4: Finish up'
+        : 'Finish up'
 
     return (
       <div className={main_styles.grey_bg}>
@@ -100,7 +100,7 @@ class RegPrePayment extends Component {
                   className={styles.nextBtn}
                   onClick={this.openPayment}
                 >
-                  {goingnext ? 'Pay via stripe' : 'Pay via stripe'}
+                  {goingnext ? 'Pay via Credit Card' : 'Pay via Credit Card'}
                 </Button>
               </div>
             )}

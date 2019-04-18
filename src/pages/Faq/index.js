@@ -24,7 +24,7 @@ const Faq = () => {
           <li>Sign up. (We won’t share your information with anyone)</li>
           <li>Create a set of 10 songs for US $1.</li>
           <li>Add up to 5 guardians of your Last List.</li>
-          <li>Finish up by paying via Stripe or Paypal.</li>
+          <li>Finish up by paying via Credit Card or Paypal.</li>
           <li>We’ll store your Last List and release it to your guardians.</li>
         </ul>
 
