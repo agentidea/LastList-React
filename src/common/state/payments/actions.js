@@ -58,3 +58,38 @@ export const stripePay = payload => {
 
   return { error: false, token: payload.token ? payload.token.id : null }
 }
+
+/* dispatch on coupon code verification */
+export const couponVerify = async coupon => {
+  let userJwt = getJwt()
+
+  if (!userJwt || !coupon) {
+    console.error('User not logged in or coupon invalid')
+    return null
+  }
+
+  try {
+    let response = fetch(API_ROOT + '/payment/coupon', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${userJwt}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_jwt: userJwt,
+        coupon: coupon,
+      }),
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        return data
+      })
+
+    return response
+  } catch (e) {
+    console.error('Error Occurred on coupon verify | ', e)
+  }
+}

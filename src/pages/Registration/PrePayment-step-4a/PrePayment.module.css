@@ -1,6 +1,7 @@
 .content {
   max-width: 750px;
   margin: 0 auto;
+  min-height: 70vh;
 }
 
 .content h3 {
@@ -28,11 +29,13 @@
 .backBtn {
   display: block;
   border: none;
+  max-height: 52px;
+  margin-top: 8px;
 }
 
 .nextBtn {
   display: block;
-  height: 60px;
+  max-height: 52px;
   margin-top: 0.5em;
 }
 
@@ -41,7 +44,6 @@
   flex-wrap: wrap;
   margin: 0 auto;
   margin-top: 1em;
-  max-width: 600px;
   justify-content: space-between;
 }
 
@@ -69,12 +71,26 @@
   height: 160px;
   background: url('./StripePayment/stripe_header.jpg');
 }
+.coupon_wrap {
+  display: flex;
+  border: 1px #ccc solid;
+  padding: 1em;
+  border-radius: 5px;
+}
+.coupon_text {
+  margin-bottom: 0;
+}
+.coupon_btn {
+  max-height: 52px;
+  margin-top: auto;
+  width: 200px;
+  padding: 12px 0;
+}
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 662px) {
   .backBtn {
-    margin: 1em auto;
     min-width: 270px;
-    padding: 16px 28px;
+    padding: 12px 28px;
     border: 2px solid #fff;
   }
   .payButtonsWrap {
