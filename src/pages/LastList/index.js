@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 import apiRequest from '../../common/utils/api'
 import Loading from '../../common/components/Loading'
 import styles from './LastList.module.css'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 
 export class LastList extends Component {
   state = {
@@ -15,7 +15,7 @@ export class LastList extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     const { match } = this.props
     const { id } = match.params

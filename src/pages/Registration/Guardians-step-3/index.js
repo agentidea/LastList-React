@@ -9,7 +9,7 @@ import styles from './Guardians.module.css'
 import main_styles from '../../../App.module.css'
 import GuardiansList from './GuardiansList'
 import AddGuardian from './AddGuardian'
-import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import gAnalytics from '../../../common/utils/googleAnalytics'
 import { guardians_dictionary } from '../../../common/dictionaries/GuardiansDictionary'
 import Button from '../../../common/components/Button'
 
@@ -27,7 +27,7 @@ class RegGuardians extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     this.props.guardiansActions.fetchUserGuardians()
 

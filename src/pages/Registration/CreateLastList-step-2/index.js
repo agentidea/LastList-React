@@ -7,7 +7,7 @@ import * as listsActionCreators from '../../../common/state/lists/actions'
 import Loading from '../../../common/components/Loading'
 import Button from '../../../common/components/Button'
 import styles from './EditLastList.module.css'
-import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import gAnalytics from '../../../common/utils/googleAnalytics'
 import SongAdd from '../../../common/components/SongAdd'
 import SongList from '../../../common/components/SongList'
 import main_styles from '../../../App.module.css'
@@ -33,7 +33,7 @@ export class CreateFirstLastList extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     this.props.listsActions.fetchUserLists()
     this.setState({ ...this.props.currentProfile, saved: false, loaded: true }) // see if user had previously saved a list ( aka edit_list )

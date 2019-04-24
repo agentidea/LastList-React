@@ -14,7 +14,7 @@ import ReactModal from 'react-modal'
 import logo from '../../../common/components/Header/logo.png'
 import StripeCardForm from './StripePayment'
 import PayPalButton from '../../../common/components/PayPalButton'
-import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import gAnalytics from '../../../common/utils/googleAnalytics'
 import * as listsActionCreators from '../../../common/state/lists/actions'
 import * as paymentActionCreators from '../../../common/state/payments/actions'
 import main_styles from '../../../App.module.css'
@@ -62,7 +62,7 @@ class RegPrePayment extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     const { invoiceActions, listsActions } = this.props
     invoiceActions.getInvoice()
@@ -81,12 +81,22 @@ class RegPrePayment extends Component {
 
   send_coupon = () => {
     const { coupon } = this.state
+    const { paymentActions, user } = this.props
+
     if (coupon === '') {
       this.setState({ coupon_error: 'Can not submit an empty code!' })
       return null
     }
+
+    let event_data_obj = {
+      category: 'Payments',
+      action: 'coupon submit',
+      label: JSON.stringify({ userEmail: user.email, coupon: coupon }),
+    }
+    gAnalytics.gAnalyticsEvents(event_data_obj)
+
     this.setState({ verifying: true })
-    this.props.paymentActions
+    paymentActions
       .couponVerify(coupon)
       .then(data => {
         console.log('Data returned is => ', data)

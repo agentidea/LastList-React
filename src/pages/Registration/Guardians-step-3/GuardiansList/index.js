@@ -10,7 +10,7 @@ import Slide from 'material-ui/transitions/Slide'
 
 import Button from '../../../../common/components/Button'
 import styles from './GuardiansList.module.css'
-import gAnalyticsPageView from '../../../../common/utils/googleAnalytics'
+import gAnalytics from '../../../../common/utils/googleAnalytics'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -22,7 +22,7 @@ export default class GuardiansList extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
   }
 
   render() {

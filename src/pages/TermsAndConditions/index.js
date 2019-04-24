@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './TermsAndConditions.module.css'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 import main_styles from '../../App.module.css'
 
 const Terms = () => {
-  gAnalyticsPageView()
+  gAnalytics.gAnalyticsPageView()
 
   return (
     <div className={styles.content}>

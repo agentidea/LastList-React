@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import styles from './SignupConfirmation.module.css'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 
 export class SignupConfirmation extends Component {
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
   }
 
   render() {

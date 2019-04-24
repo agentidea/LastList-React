@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 
 const Contact = () => {
-  gAnalyticsPageView()
+  gAnalytics.gAnalyticsPageView()
 
   return (
     <div>

@@ -7,7 +7,7 @@ import UserError from '../../../../common/state/user/error'
 import Button from '../../../../common/components/Button'
 import Textfield from '../../../../common/components/Textfield'
 import styles from './AddGuardian.module.css'
-import gAnalyticsPageView from '../../../../common/utils/googleAnalytics'
+import gAnalytics from '../../../../common/utils/googleAnalytics'
 
 const mapDispatchToProps = dispatch => ({
   guardiansActions: bindActionCreators(guardiansActionCreators, dispatch),
@@ -24,7 +24,7 @@ class AddGuardian extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
   }
 
   goNext = () => {

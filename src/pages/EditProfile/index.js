@@ -11,7 +11,7 @@ import Textfield from '../../common/components/Textfield'
 import styles from './EditProfile.module.css'
 import DateOfBirthSelector from '../../common/components/DateOfBirthSelector'
 import dateFns from 'date-fns'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 
 const mapStateToProps = state => ({
   currentProfile: profileSelector(state),
@@ -27,7 +27,7 @@ class EditProfile extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     this.setState({ ...this.props.currentProfile, loaded: true })
   }

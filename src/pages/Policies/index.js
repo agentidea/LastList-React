@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Policies.module.css'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 import main_styles from '../../App.module.css'
 
 const Policies = () => {
-  gAnalyticsPageView()
+  gAnalytics.gAnalyticsPageView()
 
   return (
     <div className={styles.content}>

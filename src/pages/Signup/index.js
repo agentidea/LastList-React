@@ -9,7 +9,7 @@ import Textfield from '../../common/components/Textfield'
 import styles from './Signup.module.css'
 import FacebookButton from '../../common/components/FacebookButton'
 import { getJwt } from '../../common/state/user/utils/jwt'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 import { FormControlLabel } from 'material-ui/Form'
 import Checkbox from 'material-ui/Checkbox'
 import SpotifyButton from '../../common/components/SpotifyButton'
@@ -35,7 +35,7 @@ class Signup extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
   }
 
   componentWillMount() {

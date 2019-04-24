@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import Button from '../../common/components/Button'
 import styles from './Home.module.css'
 import { HashLink } from 'react-router-hash-link'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 import { quotes } from '../../common/utils/quotes'
 import grave from './music_grave.png'
 import dead_guys from './dead_guys.png'
 
 export class Home extends Component {
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
     setInterval(() => {
       this.showQuote()
     }, 7000)

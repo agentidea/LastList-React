@@ -7,7 +7,7 @@ import Textfield from '../../common/components/Textfield'
 import Button from '../../common/components/Button'
 import UserError from '../../common/state/user/error'
 import { getJwt } from '../../common/state/user/utils/jwt'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -33,7 +33,7 @@ class ResetPassword extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     const params = this.props.match.params
     const reset_token = params.token

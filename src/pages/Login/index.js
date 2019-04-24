@@ -12,7 +12,7 @@ import Textfield from '../../common/components/Textfield'
 import styles from './Login.module.css'
 import { getJwt } from '../../common/state/user/utils/jwt'
 import FacebookButton from '../../common/components/FacebookButton'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 import SpotifyButton from '../../common/components/SpotifyButton'
 import GoogleButton from '../../common/components/GoogleButton'
 
@@ -40,7 +40,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
   }
 
   componentWillMount() {

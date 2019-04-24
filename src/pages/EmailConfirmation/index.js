@@ -7,7 +7,7 @@ import UserError from '../../common/state/user/error'
 import Loading from '../../common/components/Loading'
 import Button from '../../common/components/Button'
 import styles from './EmailConfirmation.module.css'
-import gAnalyticsPageView from '../../common/utils/googleAnalytics'
+import gAnalytics from '../../common/utils/googleAnalytics'
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -20,7 +20,7 @@ class EmailConfirmation extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
 
     const { match } = this.props
     const { code } = match.params

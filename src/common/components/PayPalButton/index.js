@@ -5,7 +5,7 @@ import styles from './PayPalButton.module.css'
 import Button from '../Button'
 import { faPaypal } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import gAnalyticsPageView from '../../utils/googleAnalytics'
+import gAnalytics from '../../utils/googleAnalytics'
 import * as paymentsActions from '../../state/payments/actions'
 
 const client = {
@@ -47,7 +47,7 @@ class PayPalButton extends Component {
   }
 
   payment = (data, actions) => {
-    gAnalyticsPageView('paypal payment')
+    gAnalytics.gAnalyticsPageView('paypal payment')
 
     let total = this.props.elements.amount.due
     const paypal = window.PAYPAL

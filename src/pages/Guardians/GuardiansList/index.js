@@ -10,7 +10,7 @@ import Slide from 'material-ui/transitions/Slide'
 
 import Button from '../../../common/components/Button'
 import styles from './GuardiansList.module.css'
-import gAnalyticsPageView from '../../../common/utils/googleAnalytics'
+import gAnalytics from '../../../common/utils/googleAnalytics'
 
 const Transition = props => <Slide direction="down" {...props} /> // used for the remove dialog
 
@@ -20,7 +20,7 @@ export default class GuardiansList extends Component {
   }
 
   componentDidMount() {
-    gAnalyticsPageView()
+    gAnalytics.gAnalyticsPageView()
   }
 
   render() {
