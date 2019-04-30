@@ -53,7 +53,9 @@ export default class Header extends Component {
                   What Is Last List?
                 </HashLink>
                 <Link to="/signup">Create Your List</Link>
-                <Link to="/#">The Last Word</Link>
+                <Link to="http://blog.lastlist.com/" target="_blank">
+                  The Last Word
+                </Link>
                 <Link to="/guardian">Guardians</Link>
                 <Link to="/login">Sign In</Link>
               </div>
@@ -74,6 +76,9 @@ export default class Header extends Component {
               <div onClick={self.toggle_menu}>
                 <Link to="/reg/create-profile">Your Profile</Link>
                 <Link to="/reg/create-list">Your Last List</Link>
+                <Link to="http://blog.lastlist.com/" target="_blank">
+                  The Last Word
+                </Link>
                 <Link to="/reg/add-guardian">Your Guardians</Link>
                 <Link to="/sign-out">Sign Out</Link>
               </div>
