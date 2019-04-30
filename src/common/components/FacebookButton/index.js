@@ -30,6 +30,7 @@ class FacebookButton extends Component {
         cssClass={style.fbBtn}
         textButton="Sign in with Facebook"
         icon={<FontAwesomeIcon className={style.faIcon} icon={faFacebookSquare} />}
+        disableMobileRedirect={true}
       />
     )
 
