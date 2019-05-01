@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { loggedInSelector } from './common/state/user/selectors'
+import { loggedInSelector, registerStartedSelector } from './common/state/user/selectors'
 import { registeredSelector } from './common/state/user/selectors'
 import * as userActionCreators from './common/state/user/actions'
 import ScrollToTop from './common/components/ScrollToTop'
@@ -45,6 +45,7 @@ sentryWatcher()
 const mapStateToProps = state => ({
   isLoggedIn: loggedInSelector(state),
   isRegistered: registeredSelector(state),
+  isRegisterStarted: registerStartedSelector(state),
 })
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActionCreators, dispatch),
@@ -58,14 +59,18 @@ class App extends Component {
   }
 
   render() {
-    const { isLoggedIn, isRegistered } = this.props
+    const { isLoggedIn, isRegistered, isRegisterStarted } = this.props
     return (
       <Router>
         <ScrollToTop>
           <div className={styles.app}>
             <Background />
             <div className={styles.main}>
-              <Header isLoggedIn={isLoggedIn} isRegistered={isRegistered} />
+              <Header
+                isLoggedIn={isLoggedIn}
+                isRegistered={isRegistered}
+                isRegisterStarted={isRegisterStarted}
+              />
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/confirmation/:code" component={EmailConfirmation} />

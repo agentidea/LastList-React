@@ -17,7 +17,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { isLoggedIn, isRegistered } = this.props
+    const { isLoggedIn, isRegistered, isRegisterStarted } = this.props
     let { toggle_icon } = this.state
 
     return (
@@ -60,26 +60,30 @@ export default class Header extends Component {
                 <Link to="/login">Sign In</Link>
               </div>
             )}
-            {isLoggedIn && Header.renderLogin(isLoggedIn, isRegistered, this)}
+            {isLoggedIn && Header.renderLogin(isLoggedIn, isRegistered, isRegisterStarted, this)}
           </div>
         </header>
       </div>
     )
   }
 
-  static renderLogin(isLoggedIn, isRegistered, self) {
+  static renderLogin(isLoggedIn, isRegistered, isRegisterStarted, self) {
     return (
       <Fragment>
         {isLoggedIn &&
-          isRegistered && (
+          isRegisterStarted && (
             <Fragment>
               <div onClick={self.toggle_menu}>
-                <Link to="/reg/create-profile">Your Profile</Link>
-                <Link to="/reg/create-list">Your Last List</Link>
+                {isRegistered && (
+                  <div style={{ display: 'inline-flex' }}>
+                    <Link to="/reg/create-profile">Your Profile</Link>
+                    <Link to="/reg/create-list">Your Last List</Link>
+                    <Link to="/reg/add-guardian">Your Guardians</Link>
+                  </div>
+                )}
                 <Link to="http://blog.lastlist.com/" target="_blank">
                   The Last Word
                 </Link>
-                <Link to="/reg/add-guardian">Your Guardians</Link>
                 <Link to="/sign-out">Sign Out</Link>
               </div>
             </Fragment>

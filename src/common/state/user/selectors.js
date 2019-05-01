@@ -24,11 +24,17 @@ export const registeredSelector = state => {
 
     if (userStates && userStates.find(item => item === 'registration_complete')) {
       return true
-    } else {
-      if (userStates && userStates.find(item => item === 'registration_started')) {
-        return false
-      }
     }
   }
-  return null
+  return false
+}
+
+export const registerStartedSelector = state => {
+  if (state.user && state.user._id) {
+    let userStates = state.user.states
+    if (userStates && userStates.find(item => item === 'registration_started')) {
+      return true
+    }
+  }
+  return false
 }
